@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane styleClass="bigBackground" stylesheets="@../Css/Client/background.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Design.Common.LoginV2Controller">
+   <children>
+      <StackPane fx:id="loginAndResister" styleClass="index-rightBackground" stylesheets="@../Css/Client/background.css">
+         <children>
+            <Pane fx:id="loginParent">
+               <children>
+                  <fx:include source="Form-Login.fxml" />
+               </children>
+            </Pane>
+            <Pane fx:id="resisterParent" visible="false">
+               <children>
+                  <fx:include source="Form-Resister.fxml" />
+               </children>
+            </Pane>
+            <Pane fx:id="forgettingPassParent" prefHeight="200.0" prefWidth="200.0" visible="false">
+               <children>
+                  <fx:include source="ForgettingPass.fxml" />
+               </children>
+            </Pane>
+         </children>
+      </StackPane>
+      <VBox alignment="TOP_CENTER" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <fx:include source="HeadFunction.fxml" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

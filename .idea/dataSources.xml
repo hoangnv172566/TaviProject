@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="TaviEcoSystem_DEV@103.9.86.61" uuid="c5a1a5d7-a71c-41a7-afa5-58cf845a197c">
+      <driver-ref>sqlserver.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://103.9.86.61:1433;database=TaviEcoSystem_DEV</jdbc-url>
+    </data-source>
+  </component>
+</project>

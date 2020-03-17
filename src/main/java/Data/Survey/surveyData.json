@@ -1,0 +1,119 @@
+{
+  "idSurvey" : 1,
+  "companyID" : 0,
+  "contentSurvey" : "Khảo sát về Cà phê bạc xỉu",
+  "kindOfSurvey" : null,
+  "listQuestion" : [ {
+    "questionID" : 1,
+    "ord" : 1,
+    "enable" : true,
+    "viContent" : "Hãy cho ý kiến của bạn về món ăn bạn đã thưởng thức",
+    "enContent" : "Give your point about the cuisine that you taste",
+    "type" : "CSAT",
+    "maxLevel" : 0,
+    "choice" : [ ]
+  }, {
+    "questionID" : 6,
+    "ord" : 2,
+    "enable" : true,
+    "viContent" : "Điều gì khiến bạn cảm thấy hài lòng?",
+    "enContent" : "Do You sasfify with the proviced service?",
+    "type" : "MULTIPLE_CHOICE",
+    "maxLevel" : 0,
+    "choice" : [ {
+      "enContentChoice" : "Service",
+      "viContentChoice" : "Chất Lượng Dịch Vụ"
+    }, {
+      "enContentChoice" : "Staff",
+      "viContentChoice" : "Nhân Viên"
+    }, {
+      "enContentChoice" : "Space",
+      "viContentChoice" : "Không gian"
+    }, {
+      "enContentChoice" : "Decoration",
+      "viContentChoice" : "Trang Trí"
+    }, {
+      "enContentChoice" : "Location",
+      "viContentChoice" : "Vị trí"
+    } ]
+  }, {
+    "questionID" : 7,
+    "ord" : 3,
+    "enable" : true,
+    "viContent" : "Điều gì khiến bạn bị \"kích thích\" khi đến đây?",
+    "enContent" : "what makes you interested in here?",
+    "type" : "SINGLE_CHOICE",
+    "maxLevel" : 0,
+    "choice" : [ {
+      "enContentChoice" : "Service",
+      "viContentChoice" : "Dịch vụ"
+    }, {
+      "enContentChoice" : "Staff",
+      "viContentChoice" : "Nhân viên"
+    }, {
+      "enContentChoice" : "Space",
+      "viContentChoice" : "Không gian"
+    }, {
+      "enContentChoice" : "Traffic",
+      "viContentChoice" : "Giao Thông"
+    }, {
+      "enContentChoice" : "Price",
+      "viContentChoice" : "Giá cả"
+    } ]
+  }, {
+    "questionID" : 8,
+    "ord" : 4,
+    "enable" : true,
+    "viContent" : "Vui lòng để lại một chút thông tin của bạn để chúng tôi có thể gửi cho bạn thông tin khuyến mãi",
+    "enContent" : "give us your information so that we can send you discount code!",
+    "type" : "CONTACT",
+    "maxLevel" : 0,
+    "choice" : [ ]
+  }, {
+    "questionID" : 23,
+    "ord" : 5,
+    "enable" : true,
+    "viContent" : "Trên thang điểm 5, bạn đánh giá thế nào về hương vị của Cà phê bạc xỉu?",
+    "enContent" : "Base on 5 level, leave you review about the favor of the black coffee!",
+    "type" : "FLX",
+    "maxLevel" : 5,
+    "choice" : [ ]
+  }, {
+    "questionID" : 28,
+    "ord" : 6,
+    "enable" : true,
+    "viContent" : "Chất lượng phục vụ của nhân viên có khiến bạn hài lòng",
+    "enContent" : "Did the support of staffs make you satisfied?",
+    "type" : "NPS",
+    "maxLevel" : 0,
+    "choice" : [ ]
+  }, {
+    "questionID" : 29,
+    "ord" : 7,
+    "enable" : true,
+    "viContent" : "Bạn cho mấy điểm về sự thân thiện của nhân viên pha chế",
+    "enContent" : "Did the support of staffs make you satisfied?",
+    "type" : "STAR",
+    "maxLevel" : 0,
+    "choice" : [ ]
+  }, {
+    "questionID" : 30,
+    "ord" : 8,
+    "enable" : true,
+    "viContent" : "Không gian nơi đây có khiến bạn thoải mái?",
+    "enContent" : "How about the space? Did it make you comfortable?",
+    "type" : "OPEN",
+    "maxLevel" : 0,
+    "choice" : [ ]
+  }, {
+    "questionID" : 40,
+    "ord" : 9,
+    "enable" : true,
+    "viContent" : "Mức độ hài lòng về hương vị capuchino",
+    "enContent" : "How sastified are you with the smell of capuchino",
+    "type" : "CES",
+    "maxLevel" : 0,
+    "choice" : [ ]
+  } ],
+  "status" : "active"
+}

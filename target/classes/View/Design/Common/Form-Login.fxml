@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="loginPane" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Design.Common.FormLoginController">
+   <children>
+      <Label styleClass="dangnhapTitile" stylesheets="@../Css/Common/Index.css" text="Đăng nhập" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="90.0">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER_LEFT" layoutX="88.0" layoutY="162.0" prefHeight="30.0" prefWidth="300.0" styleClass="backgroundTF" stylesheets="@../Css/Common/Index.css">
+         <children>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Image/user.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="usernameTF" prefHeight="30.0" prefWidth="181.0" promptText="Nhập username hoặc email" styleClass="text-field" stylesheets="@../Css/Common/Index.css" HBox.hgrow="ALWAYS" />
+         </children>
+         <padding>
+            <Insets bottom="2.0" left="7.0" right="7.0" top="2.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="88.0" layoutY="218.0" prefHeight="30.0" prefWidth="300.0" styleClass="backgroundTF" stylesheets="@../Css/Common/Index.css">
+         <children>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Image/password.png" />
+               </image>
+            </ImageView>
+            <PasswordField fx:id="passwordTF" promptText="Password" styleClass="text-field" stylesheets="@../Css/Common/Index.css" HBox.hgrow="ALWAYS" />
+         </children>
+         <padding>
+            <Insets bottom="2.0" left="7.0" right="7.0" top="2.0" />
+         </padding>
+      </HBox>
+      <Button fx:id="loginBtn" layoutX="88.0" layoutY="271.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="300.0" styleClass="buttonLogin" stylesheets="@../Css/Common/Index.css" text="Đăng nhập" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label fx:id="forgettingPassBtn" layoutX="300.0" layoutY="201.0" text="Quên mật khẩu?" textFill="#3300ff">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Label>
+      <AnchorPane fx:id="hhijiii" layoutX="88.0" layoutY="318.0">
+         <children>
+            <Button fx:id="resisterBtn" mnemonicParsing="false" prefHeight="35.0" prefWidth="300.0" styleClass="resisterBtn" stylesheets="@../Css/Common/Index.css" text="Chưa có tài khoản? Đăng ký">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </AnchorPane>
+      <Label layoutX="197.0" layoutY="376.0" text="Hoặc đăng nhập với" />
+      <HBox layoutX="150.0" layoutY="405.0" prefHeight="30.0" prefWidth="100.0">
+         <children>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+               <image>
+                  <Image url="@../../Image/facebook.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+               <image>
+                  <Image url="@../../Image/skype.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+               <image>
+                  <Image url="@../../Image/google.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+               <image>
+                  <Image url="@../../Image/github.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </HBox>
+      <Line endX="10.0" layoutX="176.0" layoutY="384.0" startX="-62.0" stroke="#686767" strokeWidth="0.5" />
+      <Line endX="-42.0" layoutX="418.0" layoutY="383.0" startX="-100.0" stroke="#686767" strokeWidth="0.5" />
+   </children>
+</AnchorPane>

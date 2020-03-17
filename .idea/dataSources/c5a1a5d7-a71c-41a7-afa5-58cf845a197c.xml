@@ -1,0 +1,2757 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="TaviEcoSystem_DEV@103.9.86.61">
+  <database-model serializer="dbm" dbms="MSSQL" family-id="MSSQL" format-version="4.17">
+    <root id="1">
+      <ServerVersion>11.0.2100</ServerVersion>
+    </root>
+    <database id="2" parent="1" name="ReportServer">
+      <ObjectId>5</ObjectId>
+      <Collation>Latin1_General_CI_AS_KS_WS</Collation>
+    </database>
+    <database id="3" parent="1" name="ReportServerTempDB">
+      <ObjectId>6</ObjectId>
+      <Collation>Latin1_General_CI_AS_KS_WS</Collation>
+    </database>
+    <database id="4" parent="1" name="TaviCMS_DEV">
+      <ObjectId>10</ObjectId>
+      <Collation>Latin1_General_100_CI_AS_SC</Collation>
+    </database>
+    <database id="5" parent="1" name="TaviEcoSystem_DEV">
+      <ObjectId>7</ObjectId>
+      <Current>1</Current>
+      <Collation>Latin1_General_100_CI_AS_SC</Collation>
+      <Fingerprint>7.43810/F4D20ACD-86C3-4B22-8A6E-BF3A756DC78F@WIN-7VLM3LQRGOU</Fingerprint>
+    </database>
+    <database id="6" parent="1" name="TaviMineralResources_DEV">
+      <ObjectId>8</ObjectId>
+      <Collation>Latin1_General_100_CI_AI_SC</Collation>
+    </database>
+    <database id="7" parent="1" name="TaviSmartSystem_DEMO">
+      <ObjectId>9</ObjectId>
+      <Collation>SQL_Latin1_General_CP1_CI_AS</Collation>
+    </database>
+    <database id="8" parent="1" name="master">
+      <ObjectId>1</ObjectId>
+      <Collation>SQL_Latin1_General_CP1_CI_AS</Collation>
+    </database>
+    <database id="9" parent="1" name="model">
+      <ObjectId>3</ObjectId>
+      <Collation>SQL_Latin1_General_CP1_CI_AS</Collation>
+    </database>
+    <database id="10" parent="1" name="msdb">
+      <ObjectId>4</ObjectId>
+      <Collation>SQL_Latin1_General_CP1_CI_AS</Collation>
+    </database>
+    <database id="11" parent="1" name="tempdb">
+      <ObjectId>2</ObjectId>
+      <Collation>SQL_Latin1_General_CP1_CI_AS</Collation>
+    </database>
+    <schema id="12" parent="5" name="INFORMATION_SCHEMA">
+      <ObjectId>3</ObjectId>
+    </schema>
+    <schema id="13" parent="5" name="cms">
+      <ObjectId>5</ObjectId>
+    </schema>
+    <schema id="14" parent="5" name="cms_demo">
+      <ObjectId>6</ObjectId>
+    </schema>
+    <schema id="15" parent="5" name="db_accessadmin">
+      <ObjectId>16385</ObjectId>
+    </schema>
+    <schema id="16" parent="5" name="db_backupoperator">
+      <ObjectId>16389</ObjectId>
+    </schema>
+    <schema id="17" parent="5" name="db_datareader">
+      <ObjectId>16390</ObjectId>
+    </schema>
+    <schema id="18" parent="5" name="db_datawriter">
+      <ObjectId>16391</ObjectId>
+    </schema>
+    <schema id="19" parent="5" name="db_ddladmin">
+      <ObjectId>16387</ObjectId>
+    </schema>
+    <schema id="20" parent="5" name="db_denydatareader">
+      <ObjectId>16392</ObjectId>
+    </schema>
+    <schema id="21" parent="5" name="db_denydatawriter">
+      <ObjectId>16393</ObjectId>
+    </schema>
+    <schema id="22" parent="5" name="db_owner">
+      <ObjectId>16384</ObjectId>
+    </schema>
+    <schema id="23" parent="5" name="db_securityadmin">
+      <ObjectId>16386</ObjectId>
+    </schema>
+    <schema id="24" parent="5" name="dbo">
+      <ObjectId>1</ObjectId>
+      <IntrospectionTimestamp>2020-02-20.02:40:11.983</IntrospectionTimestamp>
+      <Current>1</Current>
+    </schema>
+    <schema id="25" parent="5" name="guest">
+      <ObjectId>2</ObjectId>
+    </schema>
+    <schema id="26" parent="5" name="sys">
+      <ObjectId>4</ObjectId>
+    </schema>
+    <table id="27" parent="24" name="SRS_Answer_Contact">
+      <ObjectId>245575913</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:45.757</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-04.03:48:44.017</ModifiedTimestamp>
+    </table>
+    <table id="28" parent="24" name="SRS_Answer_Level_Group">
+      <ObjectId>261575970</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:45.920</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-04.03:45:05.933</ModifiedTimestamp>
+    </table>
+    <table id="29" parent="24" name="SRS_Answer_Multi_Choice">
+      <ObjectId>277576027</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:46.110</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-04.03:45:29.357</ModifiedTimestamp>
+    </table>
+    <table id="30" parent="24" name="SRS_Answer_Multi_Choice_Has_Sample_Answer">
+      <ObjectId>606625204</ObjectId>
+      <CreatedTimestamp>2020-01-15.00:41:25.100</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-04.04:56:36.347</ModifiedTimestamp>
+    </table>
+    <table id="31" parent="24" name="SRS_Answer_Open">
+      <ObjectId>309576141</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:46.450</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-04.03:48:26.447</ModifiedTimestamp>
+    </table>
+    <table id="32" parent="24" name="SRS_Answer_Single_Choice">
+      <ObjectId>325576198</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:46.637</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-04.03:45:50.423</ModifiedTimestamp>
+    </table>
+    <table id="33" parent="24" name="SRS_Answer_Total">
+      <ObjectId>341576255</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:46.823</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-04.02:57:17.917</ModifiedTimestamp>
+    </table>
+    <table id="34" parent="24" name="SRS_App_User">
+      <ObjectId>373576369</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:47.173</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-18.21:31:43.883</ModifiedTimestamp>
+    </table>
+    <table id="35" parent="24" name="SRS_Collection">
+      <ObjectId>389576426</ObjectId>
+      <Outdated>1</Outdated>
+      <CreatedTimestamp>2019-12-13.16:36:47.307</CreatedTimestamp>
+      <ModifiedTimestamp>2020-01-15.16:36:24.627</ModifiedTimestamp>
+    </table>
+    <table id="36" parent="24" name="SRS_Collection_Item">
+      <ObjectId>405576483</ObjectId>
+      <Outdated>1</Outdated>
+      <CreatedTimestamp>2019-12-13.16:36:47.430</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-01.05:16:25.003</ModifiedTimestamp>
+    </table>
+    <table id="37" parent="24" name="SRS_Company">
+      <ObjectId>421576540</ObjectId>
+      <Outdated>1</Outdated>
+      <CreatedTimestamp>2019-12-13.16:36:47.563</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-20.00:07:09.357</ModifiedTimestamp>
+    </table>
+    <table id="38" parent="24" name="SRS_Contact_Field">
+      <ObjectId>469576711</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:47.667</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-01.05:15:43.327</ModifiedTimestamp>
+    </table>
+    <table id="39" parent="24" name="SRS_Customer">
+      <ObjectId>485576768</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:47.840</CreatedTimestamp>
+      <ModifiedTimestamp>2020-01-07.16:30:42.357</ModifiedTimestamp>
+    </table>
+    <table id="40" parent="24" name="SRS_Group_Role">
+      <ObjectId>1070626857</ObjectId>
+      <CreatedTimestamp>2020-02-10.17:31:01.020</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-10.17:45:37.690</ModifiedTimestamp>
+    </table>
+    <table id="41" parent="24" name="SRS_Group_Role_Has_Role">
+      <ObjectId>1150627142</ObjectId>
+      <CreatedTimestamp>2020-02-10.17:40:28.660</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-10.17:40:28.660</ModifiedTimestamp>
+    </table>
+    <table id="42" parent="24" name="SRS_Invited_Survey">
+      <ObjectId>725577623</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:50.063</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-04.02:55:50.580</ModifiedTimestamp>
+    </table>
+    <table id="43" parent="24" name="SRS_Public_News">
+      <ObjectId>757577737</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:50.430</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-01.05:15:24.577</ModifiedTimestamp>
+    </table>
+    <table id="44" parent="24" name="SRS_Reward_Code">
+      <ObjectId>773577794</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:50.763</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-01.05:16:07.387</ModifiedTimestamp>
+    </table>
+    <table id="45" parent="24" name="SRS_Reward_Program">
+      <ObjectId>789577851</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:52.033</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-01.16:25:25.117</ModifiedTimestamp>
+    </table>
+    <table id="46" parent="24" name="SRS_Role">
+      <ObjectId>1118627028</ObjectId>
+      <CreatedTimestamp>2020-02-10.17:36:51.737</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-10.17:36:51.737</ModifiedTimestamp>
+    </table>
+    <table id="47" parent="24" name="SRS_Sample_Answer">
+      <ObjectId>478624748</ObjectId>
+      <CreatedTimestamp>2020-01-15.00:23:57.800</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-01.17:31:59.043</ModifiedTimestamp>
+    </table>
+    <table id="48" parent="24" name="SRS_Sample_Answer_List">
+      <ObjectId>526624919</ObjectId>
+      <Outdated>1</Outdated>
+      <CreatedTimestamp>2020-01-15.00:33:27.370</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-01.17:31:59.043</ModifiedTimestamp>
+    </table>
+    <table id="49" parent="24" name="SRS_Survey">
+      <ObjectId>805577908</ObjectId>
+      <Outdated>1</Outdated>
+      <CreatedTimestamp>2019-12-13.16:36:52.147</CreatedTimestamp>
+      <ModifiedTimestamp>2020-01-31.23:51:34.883</ModifiedTimestamp>
+    </table>
+    <table id="50" parent="24" name="SRS_Survey_Total">
+      <ObjectId>821577965</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:52.280</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-10.17:24:44.457</ModifiedTimestamp>
+    </table>
+    <table id="51" parent="24" name="SRS_Survey_Total_Has_Survey">
+      <ObjectId>837578022</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:52.397</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-01.05:07:22.933</ModifiedTimestamp>
+    </table>
+    <table id="52" parent="24" name="SRS_Survey_Type">
+      <ObjectId>875150163</ObjectId>
+      <Outdated>1</Outdated>
+      <CreatedTimestamp>2020-02-19.23:58:35</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-20.00:15:59.607</ModifiedTimestamp>
+    </table>
+    <table id="53" parent="24" name="SRS_Thanks">
+      <ObjectId>869578136</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:54.460</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-04.02:57:17.910</ModifiedTimestamp>
+    </table>
+    <table id="54" parent="24" name="SRS_Theme">
+      <ObjectId>885578193</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:54.600</CreatedTimestamp>
+      <ModifiedTimestamp>2020-01-07.16:35:23.063</ModifiedTimestamp>
+    </table>
+    <table id="55" parent="24" name="SRS_device_kiosk">
+      <ObjectId>501576825</ObjectId>
+      <Outdated>1</Outdated>
+      <CreatedTimestamp>2019-12-13.16:36:48.097</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-17.17:20:24.817</ModifiedTimestamp>
+    </table>
+    <table id="56" parent="24" name="SRS_device_web">
+      <ObjectId>517576882</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:48.317</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-17.22:04:28.350</ModifiedTimestamp>
+    </table>
+    <table id="57" parent="24" name="SRS_group_device">
+      <ObjectId>677577452</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:49.550</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-10.17:21:24.180</ModifiedTimestamp>
+    </table>
+    <table id="58" parent="24" name="SRS_object_survey">
+      <ObjectId>741577680</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:50.277</CreatedTimestamp>
+      <ModifiedTimestamp>2020-01-18.18:53:41.163</ModifiedTimestamp>
+    </table>
+    <table id="59" parent="24" name="sysdiagrams">
+      <ObjectId>1874105717</ObjectId>
+      <CreatedTimestamp>2020-01-09.14:24:31.663</CreatedTimestamp>
+      <ModifiedTimestamp>2020-01-09.14:24:31.663</ModifiedTimestamp>
+    </table>
+    <routine id="60" parent="24" name="fn_diagramobjects">
+      <ObjectId>1013578649</ObjectId>
+      <SourceTextLength>1647</SourceTextLength>
+      <CreatedTimestamp>2019-12-13.16:36:55.670</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:36:55.670</ModifiedTimestamp>
+      <RoutineKind>function</RoutineKind>
+      <RoutineType>scalar-fun</RoutineType>
+    </routine>
+    <routine id="61" parent="24" name="sp_alterdiagram">
+      <ObjectId>981578535</ObjectId>
+      <SourceTextLength>1501</SourceTextLength>
+      <CreatedTimestamp>2019-12-13.16:36:55.500</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:36:55.500</ModifiedTimestamp>
+      <RoutineKind>procedure</RoutineKind>
+      <RoutineType>proc</RoutineType>
+    </routine>
+    <routine id="62" parent="24" name="sp_creatediagram">
+      <ObjectId>949578421</ObjectId>
+      <SourceTextLength>1223</SourceTextLength>
+      <CreatedTimestamp>2019-12-13.16:36:55.217</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:36:55.217</ModifiedTimestamp>
+      <RoutineKind>procedure</RoutineKind>
+      <RoutineType>proc</RoutineType>
+    </routine>
+    <routine id="63" parent="24" name="sp_dropdiagram">
+      <ObjectId>997578592</ObjectId>
+      <SourceTextLength>896</SourceTextLength>
+      <CreatedTimestamp>2019-12-13.16:36:55.583</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:36:55.583</ModifiedTimestamp>
+      <RoutineKind>procedure</RoutineKind>
+      <RoutineType>proc</RoutineType>
+    </routine>
+    <routine id="64" parent="24" name="sp_helpdiagramdefinition">
+      <ObjectId>933578364</ObjectId>
+      <SourceTextLength>921</SourceTextLength>
+      <CreatedTimestamp>2019-12-13.16:36:55.080</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:36:55.080</ModifiedTimestamp>
+      <RoutineKind>procedure</RoutineKind>
+      <RoutineType>proc</RoutineType>
+    </routine>
+    <routine id="65" parent="24" name="sp_helpdiagrams">
+      <ObjectId>917578307</ObjectId>
+      <SourceTextLength>658</SourceTextLength>
+      <CreatedTimestamp>2019-12-13.16:36:54.933</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:36:54.933</ModifiedTimestamp>
+      <RoutineKind>procedure</RoutineKind>
+      <RoutineType>proc</RoutineType>
+    </routine>
+    <routine id="66" parent="24" name="sp_renamediagram">
+      <ObjectId>965578478</ObjectId>
+      <SourceTextLength>1721</SourceTextLength>
+      <CreatedTimestamp>2019-12-13.16:36:55.380</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:36:55.380</ModifiedTimestamp>
+      <RoutineKind>procedure</RoutineKind>
+      <RoutineType>proc</RoutineType>
+    </routine>
+    <routine id="67" parent="24" name="sp_upgraddiagrams">
+      <ObjectId>901578250</ObjectId>
+      <SourceTextLength>1463</SourceTextLength>
+      <CreatedTimestamp>2019-12-13.16:36:54.793</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:36:54.793</ModifiedTimestamp>
+      <RoutineKind>procedure</RoutineKind>
+      <RoutineType>proc</RoutineType>
+    </routine>
+    <column id="68" parent="27" name="id">
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="69" parent="27" name="name">
+      <Position>2</Position>
+      <DataType>nvarchar(50 char)|0s</DataType>
+    </column>
+    <column id="70" parent="27" name="phone">
+      <Position>3</Position>
+      <DataType>nchar(10 char)|0s</DataType>
+    </column>
+    <column id="71" parent="27" name="email">
+      <Position>4</Position>
+      <DataType>nvarchar(100 char)|0s</DataType>
+    </column>
+    <column id="72" parent="27" name="address">
+      <Position>5</Position>
+      <DataType>nvarchar(255 char)|0s</DataType>
+    </column>
+    <column id="73" parent="27" name="deleted">
+      <Position>6</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="74" parent="27" name="answer_total_id">
+      <Position>7</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="75" parent="27" name="survey_id">
+      <Position>8</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="76" parent="27" name="ord">
+      <Position>9</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="77" parent="27" name="status">
+      <Position>10</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="78" parent="27" name="PK_answer_contact">
+      <Position>1</Position>
+      <ColNames>id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="79" parent="27" name="PK_answer_contact">
+      <ObjectId>1029578706</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:55.830</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:36:55.830</ModifiedTimestamp>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>PK_answer_contact</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="80" parent="27" name="FK_answer_contact_answer_total">
+      <ObjectId>990626572</ObjectId>
+      <CreatedTimestamp>2020-02-04.02:57:00.077</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-04.02:57:00.077</ModifiedTimestamp>
+      <ColNames>answer_total_id</ColNames>
+      <RefTableId>341576255</RefTableId>
+      <RefTableName>SRS_Answer_Total</RefTableName>
+      <RefKeyName>PK_answer_total</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="81" parent="27" name="FK_answer_contact_survey">
+      <ObjectId>1589580701</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:59.820</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:36:59.820</ModifiedTimestamp>
+      <ColNames>survey_id</ColNames>
+      <RefTableId>805577908</RefTableId>
+      <RefTableName>SRS_Survey</RefTableName>
+      <RefKeyName>PK_survey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="82" parent="28" name="id">
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="83" parent="28" name="level">
+      <Position>2</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="84" parent="28" name="deleted">
+      <Position>3</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="85" parent="28" name="answer_total_id">
+      <Position>4</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="86" parent="28" name="survey_id">
+      <Position>5</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="87" parent="28" name="ord">
+      <Position>6</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="88" parent="28" name="status">
+      <Position>7</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="89" parent="28" name="PK_answer_group_level">
+      <Position>1</Position>
+      <ColNames>id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="90" parent="28" name="PK_answer_group_level">
+      <ObjectId>1045578763</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:55.957</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:36:55.957</ModifiedTimestamp>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>PK_answer_group_level</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="91" parent="28" name="FK_answer_group_level_answer_total">
+      <ObjectId>974626515</ObjectId>
+      <CreatedTimestamp>2020-02-04.02:56:42.680</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-04.02:56:42.680</ModifiedTimestamp>
+      <ColNames>answer_total_id</ColNames>
+      <RefTableId>341576255</RefTableId>
+      <RefTableName>SRS_Answer_Total</RefTableName>
+      <RefKeyName>PK_answer_total</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="92" parent="28" name="FK_answer_group_level_survey">
+      <ObjectId>1621580815</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:59.957</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:36:59.957</ModifiedTimestamp>
+      <ColNames>survey_id</ColNames>
+      <RefTableId>805577908</RefTableId>
+      <RefTableName>SRS_Survey</RefTableName>
+      <RefKeyName>PK_survey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="93" parent="29" name="id">
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="94" parent="29" name="deleted">
+      <Position>2</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="95" parent="29" name="answer_total_id">
+      <Position>3</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="96" parent="29" name="survey_id">
+      <Position>4</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="97" parent="29" name="ord">
+      <Position>5</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="98" parent="29" name="status">
+      <Position>6</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="99" parent="29" name="PK_answer_multi_choice">
+      <Position>1</Position>
+      <ColNames>id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="100" parent="29" name="PK_answer_multi_choice">
+      <ObjectId>1061578820</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:56.057</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:36:56.057</ModifiedTimestamp>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>PK_answer_multi_choice</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="101" parent="29" name="FK_answer_multi_choice_answer_total">
+      <ObjectId>1006626629</ObjectId>
+      <CreatedTimestamp>2020-02-04.02:57:17.917</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-04.02:57:17.917</ModifiedTimestamp>
+      <ColNames>answer_total_id</ColNames>
+      <RefTableId>341576255</RefTableId>
+      <RefTableName>SRS_Answer_Total</RefTableName>
+      <RefKeyName>PK_answer_total</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="102" parent="29" name="FK_answer_multi_choice_survey">
+      <ObjectId>1653580929</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:37:00.070</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:37:00.070</ModifiedTimestamp>
+      <ColNames>survey_id</ColNames>
+      <RefTableId>805577908</RefTableId>
+      <RefTableName>SRS_Survey</RefTableName>
+      <RefKeyName>PK_survey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="103" parent="30" name="answer_multi_choice_id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="104" parent="30" name="sample_answer_id">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="105" parent="30" name="id">
+      <Position>3</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <foreign-key id="106" parent="30" name="FK_to_answer_multi_choice">
+      <ObjectId>654625375</ObjectId>
+      <CreatedTimestamp>2020-01-15.00:41:25.103</CreatedTimestamp>
+      <ModifiedTimestamp>2020-01-15.00:41:25.103</ModifiedTimestamp>
+      <ColNames>answer_multi_choice_id</ColNames>
+      <RefTableId>277576027</RefTableId>
+      <RefTableName>SRS_Answer_Multi_Choice</RefTableName>
+      <RefKeyName>PK_answer_multi_choice</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="107" parent="30" name="FK_trung_gian_1">
+      <ObjectId>750625717</ObjectId>
+      <CreatedTimestamp>2020-01-31.23:55:22.890</CreatedTimestamp>
+      <ModifiedTimestamp>2020-01-31.23:55:22.890</ModifiedTimestamp>
+      <ColNames>sample_answer_id</ColNames>
+      <RefTableId>478624748</RefTableId>
+      <RefTableName>SRS_Sample_Answer</RefTableName>
+      <RefKeyName>PK__SRS_Samp__3213E83FFBF0387A</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="108" parent="31" name="id">
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="109" parent="31" name="answer">
+      <Position>2</Position>
+      <DataType>text|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="110" parent="31" name="deleted">
+      <Position>3</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="111" parent="31" name="answer_total_id">
+      <Position>4</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="112" parent="31" name="survey_id">
+      <Position>5</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="113" parent="31" name="ord">
+      <Position>6</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="114" parent="31" name="status">
+      <Position>7</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="115" parent="31" name="PK_answer_open">
+      <Position>1</Position>
+      <ColNames>id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="116" parent="31" name="PK_answer_open">
+      <ObjectId>1077578877</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:56.173</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:36:56.173</ModifiedTimestamp>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>PK_answer_open</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="117" parent="31" name="FK_answer_open_answer_total">
+      <ObjectId>958626458</ObjectId>
+      <CreatedTimestamp>2020-02-04.02:56:27.223</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-04.02:56:27.223</ModifiedTimestamp>
+      <ColNames>answer_total_id</ColNames>
+      <RefTableId>341576255</RefTableId>
+      <RefTableName>SRS_Answer_Total</RefTableName>
+      <RefKeyName>PK_answer_total</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="118" parent="31" name="FK_answer_open_survey">
+      <ObjectId>1717581157</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:37:00.347</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:37:00.347</ModifiedTimestamp>
+      <ColNames>survey_id</ColNames>
+      <RefTableId>805577908</RefTableId>
+      <RefTableName>SRS_Survey</RefTableName>
+      <RefKeyName>PK_survey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="119" parent="32" name="id">
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="120" parent="32" name="deleted">
+      <Position>2</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="121" parent="32" name="sample_answer_id">
+      <Position>3</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="122" parent="32" name="answer_total_id">
+      <Position>4</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="123" parent="32" name="survey_id">
+      <Position>5</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="124" parent="32" name="ord">
+      <Position>6</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="125" parent="32" name="status">
+      <Position>7</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="126" parent="32" name="PK_answer_single__choice">
+      <Position>1</Position>
+      <ColNames>id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="127" parent="32" name="PK_answer_single__choice">
+      <ObjectId>1093578934</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:56.293</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:36:56.293</ModifiedTimestamp>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>PK_answer_single__choice</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="128" parent="32" name="FK_answer_single_choice_sample_answer">
+      <ObjectId>734625660</ObjectId>
+      <CreatedTimestamp>2020-01-31.23:54:44.487</CreatedTimestamp>
+      <ModifiedTimestamp>2020-01-31.23:54:44.487</ModifiedTimestamp>
+      <ColNames>sample_answer_id</ColNames>
+      <RefTableId>478624748</RefTableId>
+      <RefTableName>SRS_Sample_Answer</RefTableName>
+      <RefKeyName>PK__SRS_Samp__3213E83FFBF0387A</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="129" parent="32" name="FK_answer_single__choice_answer_total">
+      <ObjectId>942626401</ObjectId>
+      <CreatedTimestamp>2020-02-04.02:56:11.667</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-04.02:56:11.667</ModifiedTimestamp>
+      <ColNames>answer_total_id</ColNames>
+      <RefTableId>341576255</RefTableId>
+      <RefTableName>SRS_Answer_Total</RefTableName>
+      <RefKeyName>PK_answer_total</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="130" parent="32" name="FK_answer_single__choice_survey">
+      <ObjectId>1765581328</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:37:00.580</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:37:00.580</ModifiedTimestamp>
+      <ColNames>survey_id</ColNames>
+      <RefTableId>805577908</RefTableId>
+      <RefTableName>SRS_Survey</RefTableName>
+      <RefKeyName>PK_survey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="131" parent="33" name="name">
+      <Position>2</Position>
+      <DataType>nvarchar(80 char)|0s</DataType>
+    </column>
+    <column id="132" parent="33" name="note">
+      <Position>3</Position>
+      <DataType>nvarchar(500 char)|0s</DataType>
+    </column>
+    <column id="133" parent="33" name="init_date">
+      <Position>4</Position>
+      <DataType>nchar(15 char)|0s</DataType>
+    </column>
+    <column id="134" parent="33" name="deleted">
+      <Position>5</Position>
+      <DataType>bit|0s</DataType>
+    </column>
+    <column id="135" parent="33" name="survey_total_id">
+      <Position>6</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="136" parent="33" name="object_survey_id">
+      <Position>7</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="137" parent="33" name="device_kiosk_id">
+      <Position>8</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="138" parent="33" name="device_web_id">
+      <Position>9</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="139" parent="33" name="id">
+      <Position>10</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="140" parent="33" name="PK_answer_total">
+      <Position>1</Position>
+      <ColNames>id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="141" parent="33" name="PK_answer_total">
+      <ObjectId>910626287</ObjectId>
+      <CreatedTimestamp>2020-02-04.02:52:53.443</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-04.02:52:53.443</ModifiedTimestamp>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>PK_answer_total</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="142" parent="33" name="FK_answer_total_survey_total">
+      <ObjectId>1829581556</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:37:00.830</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:37:00.830</ModifiedTimestamp>
+      <ColNames>survey_total_id</ColNames>
+      <RefTableId>821577965</RefTableId>
+      <RefTableName>SRS_Survey_Total</RefTableName>
+      <RefKeyName>PK_survey_total</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="143" parent="33" name="FK_answer_total_object_survey">
+      <ObjectId>1813581499</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:37:00.787</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:37:00.787</ModifiedTimestamp>
+      <ColNames>object_survey_id</ColNames>
+      <RefTableId>741577680</RefTableId>
+      <RefTableName>SRS_object_survey</RefTableName>
+      <RefKeyName>PK_object_survey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="144" parent="33" name="FK_answer_total_device_kiosk">
+      <ObjectId>1781581385</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:37:00.660</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:37:00.660</ModifiedTimestamp>
+      <ColNames>device_kiosk_id</ColNames>
+      <RefTableId>501576825</RefTableId>
+      <RefTableName>SRS_device_kiosk</RefTableName>
+      <RefKeyName>PK_device_kiosk</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="145" parent="33" name="FK_answer_total_device_web">
+      <ObjectId>1797581442</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:37:00.730</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:37:00.730</ModifiedTimestamp>
+      <ColNames>device_web_id</ColNames>
+      <RefTableId>517576882</RefTableId>
+      <RefTableName>SRS_device_web</RefTableName>
+      <RefKeyName>PK_device_web</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="146" parent="34" name="id">
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="147" parent="34" name="user_id">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="148" parent="34" name="enable">
+      <Position>3</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="149" parent="34" name="deleted">
+      <Position>4</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="150" parent="34" name="company_id">
+      <Position>5</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="151" parent="34" name="max_device">
+      <Position>8</Position>
+      <DataType>tinyint|0s</DataType>
+    </column>
+    <column id="152" parent="34" name="username">
+      <Position>9</Position>
+      <DataType>varchar(255 char)|0s</DataType>
+    </column>
+    <column id="153" parent="34" name="group_role_id">
+      <Position>10</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="154" parent="34" name="email">
+      <Position>11</Position>
+      <DataType>varchar(100 char)|0s</DataType>
+    </column>
+    <column id="155" parent="34" name="code">
+      <Position>12</Position>
+      <DataType>varchar(10 char)|0s</DataType>
+    </column>
+    <column id="156" parent="34" name="name">
+      <Position>14</Position>
+      <DataType>varchar(40 char)|0s</DataType>
+    </column>
+    <index id="157" parent="34" name="PK_app_user">
+      <Position>1</Position>
+      <ColNames>id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="158" parent="34" name="PK_app_user">
+      <ObjectId>1141579105</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:56.620</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:36:56.620</ModifiedTimestamp>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>PK_app_user</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="159" parent="34" name="FK_app_user_company">
+      <ObjectId>1861581670</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:37:00.897</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:37:00.897</ModifiedTimestamp>
+      <ColNames>company_id</ColNames>
+      <RefTableId>421576540</RefTableId>
+      <RefTableName>SRS_Company</RefTableName>
+      <RefKeyName>PK_company</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="160" parent="34" name="FK_user_group_role">
+      <ObjectId>1182627256</ObjectId>
+      <CreatedTimestamp>2020-02-10.17:45:37.690</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-10.17:45:37.690</ModifiedTimestamp>
+      <ColNames>group_role_id</ColNames>
+      <RefTableId>1070626857</RefTableId>
+      <RefTableName>SRS_Group_Role</RefTableName>
+      <RefKeyName>PK__SRS_Grou__3213E83F219FD0A7</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="161" parent="35" name="id">
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="162" parent="35" name="name">
+      <Position>2</Position>
+      <DataType>nvarchar(50 char)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="163" parent="35" name="init_date">
+      <Position>4</Position>
+      <DataType>nchar(15 char)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="164" parent="35" name="enable">
+      <Position>5</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="165" parent="35" name="company_id">
+      <Position>7</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="166" parent="35" name="deleted">
+      <Position>8</Position>
+      <DefaultConstraintName>DF__SRS_Colle__delet__72910220</DefaultConstraintName>
+      <DefaultExpression>0</DefaultExpression>
+      <DataType>bit|0s</DataType>
+    </column>
+    <column id="167" parent="35" name="note">
+      <Position>9</Position>
+      <DataType>nvarchar(500 char)|0s</DataType>
+    </column>
+    <index id="168" parent="35" name="PK_collection">
+      <Position>1</Position>
+      <ColNames>id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="169" parent="35" name="PK_collection">
+      <ObjectId>1157579162</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:56.750</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:36:56.750</ModifiedTimestamp>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>PK_collection</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="170" parent="35" name="FK_collection_company">
+      <ObjectId>1877581727</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:37:00.927</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:37:00.927</ModifiedTimestamp>
+      <ColNames>company_id</ColNames>
+      <RefTableId>421576540</RefTableId>
+      <RefTableName>SRS_Company</RefTableName>
+      <RefKeyName>PK_company</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <default id="171" parent="35" name="DF__SRS_Colle__delet__72910220">
+      <ObjectId>1922105888</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <ModifiedTimestamp>2020-01-13.15:59:57.113</ModifiedTimestamp>
+      <ColNames>deleted</ColNames>
+      <DefaultExpression>0</DefaultExpression>
+    </default>
+    <column id="172" parent="36" name="id">
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="173" parent="36" name="order">
+      <Position>2</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="174" parent="36" name="url">
+      <Position>3</Position>
+      <DataType>nvarchar(255 char)|0s</DataType>
+    </column>
+    <column id="175" parent="36" name="enable">
+      <Position>6</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="176" parent="36" name="deleted">
+      <Position>7</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="177" parent="36" name="collection_id">
+      <Position>8</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="178" parent="36" name="video">
+      <Position>9</Position>
+      <DataType>bit|0s</DataType>
+    </column>
+    <index id="179" parent="36" name="PK_collection_item">
+      <Position>1</Position>
+      <ColNames>id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="180" parent="36" name="PK_collection_item">
+      <ObjectId>1173579219</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:56.867</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:36:56.867</ModifiedTimestamp>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>PK_collection_item</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="181" parent="36" name="FK_collection_item_collection">
+      <ObjectId>1893581784</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:37:00.957</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:37:00.957</ModifiedTimestamp>
+      <ColNames>collection_id</ColNames>
+      <RefTableId>389576426</RefTableId>
+      <RefTableName>SRS_Collection</RefTableName>
+      <RefKeyName>PK_collection</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="182" parent="37" name="id">
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="183" parent="37" name="name">
+      <Position>2</Position>
+      <DataType>nvarchar(50 char)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="184" parent="37" name="address">
+      <Position>3</Position>
+      <DataType>nvarchar(255 char)|0s</DataType>
+    </column>
+    <column id="185" parent="37" name="phone">
+      <Position>4</Position>
+      <DataType>nvarchar(10 char)|0s</DataType>
+    </column>
+    <column id="186" parent="37" name="website">
+      <Position>5</Position>
+      <DataType>nchar(255 char)|0s</DataType>
+    </column>
+    <column id="187" parent="37" name="hook_api">
+      <Position>6</Position>
+      <DataType>nchar(255 char)|0s</DataType>
+    </column>
+    <column id="188" parent="37" name="feedback_api">
+      <Position>7</Position>
+      <DataType>nchar(255 char)|0s</DataType>
+    </column>
+    <column id="189" parent="37" name="report_api">
+      <Position>8</Position>
+      <DataType>nchar(255 char)|0s</DataType>
+    </column>
+    <column id="190" parent="37" name="img_logo">
+      <Position>10</Position>
+      <DataType>nchar(255 char)|0s</DataType>
+    </column>
+    <column id="191" parent="37" name="enable">
+      <Position>12</Position>
+      <DefaultConstraintName>DF__company__enable__1A14E395</DefaultConstraintName>
+      <DefaultExpression>1</DefaultExpression>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="192" parent="37" name="deleted">
+      <Position>13</Position>
+      <DefaultConstraintName>DF__company__deleted__1B0907CE</DefaultConstraintName>
+      <DefaultExpression>0</DefaultExpression>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="193" parent="37" name="app_user_id">
+      <Position>14</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="194" parent="37" name="code">
+      <Position>15</Position>
+      <DataType>varchar(255 char)|0s</DataType>
+    </column>
+    <index id="195" parent="37" name="PK_company">
+      <Position>1</Position>
+      <ColNames>id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="196" parent="37" name="PK_company">
+      <ObjectId>1189579276</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:56.967</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:36:56.967</ModifiedTimestamp>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>PK_company</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <default id="197" parent="37" name="DF__company__enable__1A14E395">
+      <ObjectId>437576597</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <ModifiedTimestamp>2019-12-13.16:36:47.563</ModifiedTimestamp>
+      <ColNames>enable</ColNames>
+      <DefaultExpression>1</DefaultExpression>
+    </default>
+    <default id="198" parent="37" name="DF__company__deleted__1B0907CE">
+      <ObjectId>453576654</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <ModifiedTimestamp>2019-12-13.16:36:47.563</ModifiedTimestamp>
+      <ColNames>deleted</ColNames>
+      <DefaultExpression>0</DefaultExpression>
+    </default>
+    <column id="199" parent="38" name="id">
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="200" parent="38" name="name_use">
+      <Position>2</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="201" parent="38" name="name_require">
+      <Position>3</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="202" parent="38" name="phone_use">
+      <Position>4</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="203" parent="38" name="phone_required">
+      <Position>5</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="204" parent="38" name="email_use">
+      <Position>6</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="205" parent="38" name="email_required">
+      <Position>7</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="206" parent="38" name="address_use">
+      <Position>8</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="207" parent="38" name="address_required">
+      <Position>9</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="208" parent="38" name="PK_contact_field">
+      <Position>1</Position>
+      <ColNames>id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="209" parent="38" name="PK_contact_field">
+      <ObjectId>1205579333</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:57.090</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:36:57.090</ModifiedTimestamp>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>PK_contact_field</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="210" parent="39" name="id">
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="211" parent="39" name="name">
+      <Position>2</Position>
+      <DataType>nvarchar(50 char)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="212" parent="39" name="gender">
+      <Position>3</Position>
+      <DataType>tinyint|0s</DataType>
+    </column>
+    <column id="213" parent="39" name="phone">
+      <Position>4</Position>
+      <DataType>nchar(10 char)|0s</DataType>
+    </column>
+    <column id="214" parent="39" name="email">
+      <Position>5</Position>
+      <DataType>nvarchar(80 char)|0s</DataType>
+    </column>
+    <column id="215" parent="39" name="birthday">
+      <Position>6</Position>
+      <DataType>nchar(15 char)|0s</DataType>
+    </column>
+    <column id="216" parent="39" name="address">
+      <Position>7</Position>
+      <DataType>nvarchar(120 char)|0s</DataType>
+    </column>
+    <column id="217" parent="39" name="company">
+      <Position>8</Position>
+      <DataType>nvarchar(60 char)|0s</DataType>
+    </column>
+    <column id="218" parent="39" name="description">
+      <Position>9</Position>
+      <DataType>nvarchar(500 char)|0s</DataType>
+    </column>
+    <column id="219" parent="39" name="url">
+      <Position>10</Position>
+      <DataType>nvarchar(255 char)|0s</DataType>
+    </column>
+    <column id="220" parent="39" name="company_id">
+      <Position>11</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="221" parent="39" name="enable">
+      <Position>12</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="222" parent="39" name="deleted">
+      <Position>13</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="223" parent="39" name="PK_customer">
+      <Position>1</Position>
+      <ColNames>id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="224" parent="39" name="PK_customer">
+      <ObjectId>1221579390</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:57.210</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:36:57.210</ModifiedTimestamp>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>PK_customer</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="225" parent="39" name="FK_customer_company">
+      <ObjectId>1925581898</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:37:01.023</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:37:01.023</ModifiedTimestamp>
+      <ColNames>company_id</ColNames>
+      <RefTableId>421576540</RefTableId>
+      <RefTableName>SRS_Company</RefTableName>
+      <RefKeyName>PK_company</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="226" parent="40" name="id">
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="227" parent="40" name="name">
+      <Position>2</Position>
+      <DataType>varchar(255 char)|0s</DataType>
+    </column>
+    <column id="228" parent="40" name="enable">
+      <Position>3</Position>
+      <DataType>bit|0s</DataType>
+    </column>
+    <column id="229" parent="40" name="deleted">
+      <Position>4</Position>
+      <DataType>bit|0s</DataType>
+    </column>
+    <column id="230" parent="40" name="company_id">
+      <Position>5</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <index id="231" parent="40" name="PK__SRS_Grou__3213E83F219FD0A7">
+      <Position>1</Position>
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="232" parent="40" name="PK__SRS_Grou__3213E83F219FD0A7">
+      <ObjectId>1086626914</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2020-02-10.17:31:01.023</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-10.17:31:01.023</ModifiedTimestamp>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>PK__SRS_Grou__3213E83F219FD0A7</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="233" parent="40" name="FK_Group_Role">
+      <ObjectId>1102626971</ObjectId>
+      <CreatedTimestamp>2020-02-10.17:32:58.987</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-10.17:32:58.987</ModifiedTimestamp>
+      <ColNames>company_id</ColNames>
+      <RefTableId>421576540</RefTableId>
+      <RefTableName>SRS_Company</RefTableName>
+      <RefKeyName>PK_company</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="234" parent="41" name="group_role_id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="235" parent="41" name="role_id">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <index id="236" parent="41" name="PK__SRS_Grou__7776CE7274277F79">
+      <Position>1</Position>
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>group_role_id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="237" parent="41" name="PK__SRS_Grou__7776CE7274277F79">
+      <ObjectId>1166627199</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2020-02-10.17:40:28.660</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-10.17:40:28.660</ModifiedTimestamp>
+      <ColNames>group_role_id</ColNames>
+      <UnderlyingIndexName>PK__SRS_Grou__7776CE7274277F79</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="238" parent="42" name="id">
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="239" parent="42" name="invited_date">
+      <Position>2</Position>
+      <DataType>nvarchar(15 char)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="240" parent="42" name="answered">
+      <Position>3</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="241" parent="42" name="deleted">
+      <Position>4</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="242" parent="42" name="customer_id">
+      <Position>5</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="243" parent="42" name="answer_total_id">
+      <Position>6</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="244" parent="42" name="device_web_id">
+      <Position>7</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="245" parent="42" name="company_id">
+      <Position>8</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <index id="246" parent="42" name="PK_invited_survey">
+      <Position>1</Position>
+      <ColNames>id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <index id="247" parent="42" name="IX_invited_survey">
+      <Position>2</Position>
+      <ColNames>answer_total_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="248" parent="42" name="PK_invited_survey">
+      <ObjectId>1381579960</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:58.473</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:36:58.473</ModifiedTimestamp>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>PK_invited_survey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="249" parent="42" name="FK_invited_survey_customer">
+      <ObjectId>306100131</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:37:03.360</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:37:03.360</ModifiedTimestamp>
+      <ColNames>customer_id</ColNames>
+      <RefTableId>485576768</RefTableId>
+      <RefTableName>SRS_Customer</RefTableName>
+      <RefKeyName>PK_customer</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="250" parent="42" name="FK_invited_survey_answer_total">
+      <ObjectId>926626344</ObjectId>
+      <CreatedTimestamp>2020-02-04.02:55:50.580</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-04.02:55:50.580</ModifiedTimestamp>
+      <ColNames>answer_total_id</ColNames>
+      <RefTableId>341576255</RefTableId>
+      <RefTableName>SRS_Answer_Total</RefTableName>
+      <RefKeyName>PK_answer_total</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="251" parent="42" name="FK_invited_survey_device_web">
+      <ObjectId>446624634</ObjectId>
+      <CreatedTimestamp>2020-01-14.17:42:39.590</CreatedTimestamp>
+      <ModifiedTimestamp>2020-01-14.17:42:39.590</ModifiedTimestamp>
+      <ColNames>device_web_id</ColNames>
+      <RefTableId>517576882</RefTableId>
+      <RefTableName>SRS_device_web</RefTableName>
+      <RefKeyName>PK_device_web</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="252" parent="42" name="SRS_InvitedSurvey___company">
+      <ObjectId>462624691</ObjectId>
+      <CreatedTimestamp>2020-01-14.17:42:39.630</CreatedTimestamp>
+      <ModifiedTimestamp>2020-01-14.17:42:39.630</ModifiedTimestamp>
+      <ColNames>company_id</ColNames>
+      <RefTableId>421576540</RefTableId>
+      <RefTableName>SRS_Company</RefTableName>
+      <RefKeyName>PK_company</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="253" parent="43" name="id">
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="254" parent="43" name="name">
+      <Position>2</Position>
+      <DataType>nvarchar(60 char)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="255" parent="43" name="note">
+      <Position>3</Position>
+      <DataType>nvarchar(500 char)|0s</DataType>
+    </column>
+    <column id="256" parent="43" name="enable">
+      <Position>4</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="257" parent="43" name="deleted">
+      <Position>5</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="258" parent="43" name="company_id">
+      <Position>6</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="259" parent="43" name="PK_public_news">
+      <Position>1</Position>
+      <ColNames>id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="260" parent="43" name="PK_public_news">
+      <ObjectId>1413580074</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:58.733</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:36:58.733</ModifiedTimestamp>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>PK_public_news</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="261" parent="43" name="FK_public_news_company">
+      <ObjectId>338100245</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:37:03.470</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:37:03.470</ModifiedTimestamp>
+      <ColNames>company_id</ColNames>
+      <RefTableId>421576540</RefTableId>
+      <RefTableName>SRS_Company</RefTableName>
+      <RefKeyName>PK_company</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="262" parent="44" name="id">
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="263" parent="44" name="contact">
+      <Position>2</Position>
+      <DataType>nvarchar(100 char)|0s</DataType>
+    </column>
+    <column id="264" parent="44" name="code">
+      <Position>3</Position>
+      <DataType>nvarchar(100 char)|0s</DataType>
+    </column>
+    <column id="265" parent="44" name="init_date">
+      <Position>4</Position>
+      <DataType>nvarchar(25 char)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="266" parent="44" name="end_date">
+      <Position>5</Position>
+      <DataType>nchar(25 char)|0s</DataType>
+    </column>
+    <column id="267" parent="44" name="note">
+      <Position>6</Position>
+      <DataType>nvarchar(500 char)|0s</DataType>
+    </column>
+    <column id="268" parent="44" name="used">
+      <Position>7</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="269" parent="44" name="deleted">
+      <Position>8</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="270" parent="44" name="reward_program_id">
+      <Position>9</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <index id="271" parent="44" name="PK_reward_code">
+      <Position>1</Position>
+      <ColNames>id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="272" parent="44" name="PK_reward_code">
+      <ObjectId>1429580131</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:58.873</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:36:58.873</ModifiedTimestamp>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>PK_reward_code</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="273" parent="44" name="FK_reward_code_reward_program">
+      <ObjectId>354100302</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:37:03.543</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:37:03.543</ModifiedTimestamp>
+      <ColNames>reward_program_id</ColNames>
+      <RefTableId>789577851</RefTableId>
+      <RefTableName>SRS_Reward_Program</RefTableName>
+      <RefKeyName>PK_reward_program</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="274" parent="45" name="id">
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="275" parent="45" name="name">
+      <Position>2</Position>
+      <DataType>nvarchar(80 char)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="276" parent="45" name="start_date">
+      <Position>3</Position>
+      <DataType>nvarchar(15 char)|0s</DataType>
+    </column>
+    <column id="277" parent="45" name="end_date">
+      <Position>4</Position>
+      <DataType>nvarchar(15 char)|0s</DataType>
+    </column>
+    <column id="278" parent="45" name="note">
+      <Position>5</Position>
+      <DataType>nvarchar(500 char)|0s</DataType>
+    </column>
+    <column id="279" parent="45" name="enable">
+      <Position>6</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="280" parent="45" name="deleted">
+      <Position>7</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="281" parent="45" name="survey_total_id">
+      <Position>8</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="282" parent="45" name="company_id">
+      <Position>9</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="283" parent="45" name="PK_reward_program">
+      <Position>1</Position>
+      <ColNames>id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="284" parent="45" name="PK_reward_program">
+      <ObjectId>1445580188</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:59.033</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:36:59.033</ModifiedTimestamp>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>PK_reward_program</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="285" parent="45" name="FK_reward_program_survey_total">
+      <ObjectId>370100359</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:37:03.620</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:37:03.620</ModifiedTimestamp>
+      <ColNames>survey_total_id</ColNames>
+      <RefTableId>821577965</RefTableId>
+      <RefTableName>SRS_Survey_Total</RefTableName>
+      <RefKeyName>PK_survey_total</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="286" parent="45" name="FK_reward_program_company">
+      <ObjectId>386100416</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:37:03.700</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:37:03.700</ModifiedTimestamp>
+      <ColNames>company_id</ColNames>
+      <RefTableId>421576540</RefTableId>
+      <RefTableName>SRS_Company</RefTableName>
+      <RefKeyName>PK_company</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="287" parent="46" name="id">
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="288" parent="46" name="name">
+      <Position>2</Position>
+      <DataType>varchar(255 char)|0s</DataType>
+    </column>
+    <column id="289" parent="46" name="role_code">
+      <Position>3</Position>
+      <DataType>varchar(255 char)|0s</DataType>
+    </column>
+    <column id="290" parent="46" name="enable">
+      <Position>4</Position>
+      <DataType>bit|0s</DataType>
+    </column>
+    <column id="291" parent="46" name="deleted">
+      <Position>5</Position>
+      <DataType>bit|0s</DataType>
+    </column>
+    <index id="292" parent="46" name="PK__SRS_Role__3213E83F86AEA8ED">
+      <Position>1</Position>
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="293" parent="46" name="PK__SRS_Role__3213E83F86AEA8ED">
+      <ObjectId>1134627085</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2020-02-10.17:36:51.737</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-10.17:36:51.737</ModifiedTimestamp>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>PK__SRS_Role__3213E83F86AEA8ED</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="294" parent="47" name="vi_title">
+      <Position>2</Position>
+      <DataType>nvarchar(255 char)|0s</DataType>
+    </column>
+    <column id="295" parent="47" name="en_title">
+      <Position>3</Position>
+      <DataType>nvarchar(255 char)|0s</DataType>
+    </column>
+    <column id="296" parent="47" name="img_url">
+      <Position>4</Position>
+      <DataType>varchar(255 char)|0s</DataType>
+    </column>
+    <column id="297" parent="47" name="ord">
+      <Position>5</Position>
+      <DataType>smallint|0s</DataType>
+    </column>
+    <column id="298" parent="47" name="enable">
+      <Position>6</Position>
+      <DataType>bit|0s</DataType>
+    </column>
+    <column id="299" parent="47" name="deleted">
+      <Position>7</Position>
+      <DataType>bit|0s</DataType>
+    </column>
+    <column id="300" parent="47" name="sample_answer_list_id">
+      <Position>8</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="301" parent="47" name="id">
+      <Position>9</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="302" parent="47" name="PK__SRS_Samp__3213E83FFBF0387A">
+      <Position>1</Position>
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="303" parent="47" name="PK__SRS_Samp__3213E83FFBF0387A">
+      <ObjectId>718625603</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2020-01-31.23:53:36.370</CreatedTimestamp>
+      <ModifiedTimestamp>2020-01-31.23:53:36.370</ModifiedTimestamp>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>PK__SRS_Samp__3213E83FFBF0387A</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="304" parent="47" name="FK_Sample_answer_Sample_answer_list">
+      <ObjectId>766625774</ObjectId>
+      <CreatedTimestamp>2020-02-01.17:31:59.043</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-01.17:31:59.043</ModifiedTimestamp>
+      <ColNames>sample_answer_list_id</ColNames>
+      <RefTableId>526624919</RefTableId>
+      <RefTableName>SRS_Sample_Answer_List</RefTableName>
+      <RefKeyName>PK__SRS_Samp__3213E83F4489F30A</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="305" parent="48" name="name">
+      <Position>2</Position>
+      <DataType>nvarchar(255 char)|0s</DataType>
+    </column>
+    <column id="306" parent="48" name="note">
+      <Position>3</Position>
+      <DataType>nvarchar(500 char)|0s</DataType>
+    </column>
+    <column id="307" parent="48" name="init_date">
+      <Position>4</Position>
+      <DataType>varchar(15 char)|0s</DataType>
+    </column>
+    <column id="308" parent="48" name="enable">
+      <Position>5</Position>
+      <DataType>bit|0s</DataType>
+    </column>
+    <column id="309" parent="48" name="deleted">
+      <Position>6</Position>
+      <DataType>bit|0s</DataType>
+    </column>
+    <column id="310" parent="48" name="company_id">
+      <Position>7</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="311" parent="48" name="survey_type">
+      <Position>8</Position>
+      <DataType>tinyint|0s</DataType>
+    </column>
+    <column id="312" parent="48" name="id">
+      <Position>9</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="313" parent="48" name="PK__SRS_Samp__3213E83F4489F30A">
+      <Position>1</Position>
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="314" parent="48" name="PK__SRS_Samp__3213E83F4489F30A">
+      <ObjectId>686625489</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2020-01-31.23:50:23.387</CreatedTimestamp>
+      <ModifiedTimestamp>2020-01-31.23:50:23.387</ModifiedTimestamp>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>PK__SRS_Samp__3213E83F4489F30A</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="315" parent="48" name="FK_SampleAnswerList_Company">
+      <ObjectId>558625033</ObjectId>
+      <CreatedTimestamp>2020-01-15.00:33:27.370</CreatedTimestamp>
+      <ModifiedTimestamp>2020-01-15.00:33:27.370</ModifiedTimestamp>
+      <ColNames>company_id</ColNames>
+      <RefTableId>421576540</RefTableId>
+      <RefTableName>SRS_Company</RefTableName>
+      <RefKeyName>PK_company</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="316" parent="49" name="id">
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="317" parent="49" name="name">
+      <Position>2</Position>
+      <DataType>nvarchar(80 char)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="318" parent="49" name="type">
+      <Position>3</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="319" parent="49" name="max_level">
+      <Position>4</Position>
+      <DataType>tinyint|0s</DataType>
+    </column>
+    <column id="320" parent="49" name="note">
+      <Position>5</Position>
+      <DataType>nvarchar(500 char)|0s</DataType>
+    </column>
+    <column id="321" parent="49" name="vi_question">
+      <Position>6</Position>
+      <DataType>nvarchar(500 char)|0s</DataType>
+    </column>
+    <column id="322" parent="49" name="en_question">
+      <Position>7</Position>
+      <DataType>nvarchar(500 char)|0s</DataType>
+    </column>
+    <column id="323" parent="49" name="enable">
+      <Position>8</Position>
+      <DataType>bit|0s</DataType>
+    </column>
+    <column id="324" parent="49" name="deleted">
+      <Position>9</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="325" parent="49" name="sample_answer_list_id">
+      <Position>10</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="326" parent="49" name="contact_field_id">
+      <Position>11</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="327" parent="49" name="company_id">
+      <Position>12</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="328" parent="49" name="PK_survey">
+      <Position>1</Position>
+      <ColNames>id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="329" parent="49" name="PK_survey">
+      <ObjectId>1461580245</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:59.180</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:36:59.180</ModifiedTimestamp>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>PK_survey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="330" parent="49" name="FK_survey_sample_answer_list">
+      <ObjectId>702625546</ObjectId>
+      <CreatedTimestamp>2020-01-31.23:51:34.883</CreatedTimestamp>
+      <ModifiedTimestamp>2020-01-31.23:51:34.883</ModifiedTimestamp>
+      <ColNames>sample_answer_list_id</ColNames>
+      <RefTableId>526624919</RefTableId>
+      <RefTableName>SRS_Sample_Answer_List</RefTableName>
+      <RefKeyName>PK__SRS_Samp__3213E83F4489F30A</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="331" parent="49" name="FK_survey_contact_field">
+      <ObjectId>418100530</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:37:03.850</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:37:03.850</ModifiedTimestamp>
+      <ColNames>contact_field_id</ColNames>
+      <RefTableId>469576711</RefTableId>
+      <RefTableName>SRS_Contact_Field</RefTableName>
+      <RefKeyName>PK_contact_field</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="332" parent="49" name="FK_survey_company">
+      <ObjectId>434100587</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:37:03.923</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:37:03.923</ModifiedTimestamp>
+      <ColNames>company_id</ColNames>
+      <RefTableId>421576540</RefTableId>
+      <RefTableName>SRS_Company</RefTableName>
+      <RefKeyName>PK_company</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="333" parent="50" name="id">
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="334" parent="50" name="name">
+      <Position>2</Position>
+      <DataType>nvarchar(50 char)|0s</DataType>
+    </column>
+    <column id="335" parent="50" name="note">
+      <Position>3</Position>
+      <DataType>nvarchar(500 char)|0s</DataType>
+    </column>
+    <column id="336" parent="50" name="init_date">
+      <Position>4</Position>
+      <DataType>nvarchar(15 char)|0s</DataType>
+    </column>
+    <column id="337" parent="50" name="tag">
+      <Position>5</Position>
+      <DataType>nvarchar(50 char)|0s</DataType>
+    </column>
+    <column id="338" parent="50" name="enable">
+      <Position>6</Position>
+      <DataType>bit|0s</DataType>
+    </column>
+    <column id="339" parent="50" name="deleted">
+      <Position>7</Position>
+      <DataType>bit|0s</DataType>
+    </column>
+    <column id="340" parent="50" name="company_id">
+      <Position>8</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="341" parent="50" name="theme_id">
+      <Position>9</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="342" parent="50" name="public_news_id">
+      <Position>10</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <index id="343" parent="50" name="PK_survey_total">
+      <Position>1</Position>
+      <ColNames>id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="344" parent="50" name="PK_survey_total">
+      <ObjectId>1477580302</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:59.303</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:36:59.303</ModifiedTimestamp>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>PK_survey_total</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="345" parent="50" name="FK_survey_total_company">
+      <ObjectId>482100758</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:37:04.100</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:37:04.100</ModifiedTimestamp>
+      <ColNames>company_id</ColNames>
+      <RefTableId>421576540</RefTableId>
+      <RefTableName>SRS_Company</RefTableName>
+      <RefKeyName>PK_company</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="346" parent="50" name="FK_survey_total_theme">
+      <ObjectId>466100701</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:37:04.043</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:37:04.043</ModifiedTimestamp>
+      <ColNames>theme_id</ColNames>
+      <RefTableId>885578193</RefTableId>
+      <RefTableName>SRS_Theme</RefTableName>
+      <RefKeyName>PK_theme</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="347" parent="50" name="FK_survey_total_public_news">
+      <ObjectId>450100644</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:37:03.990</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:37:03.990</ModifiedTimestamp>
+      <ColNames>public_news_id</ColNames>
+      <RefTableId>757577737</RefTableId>
+      <RefTableName>SRS_Public_News</RefTableName>
+      <RefKeyName>PK_public_news</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="348" parent="51" name="survey_total_id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="349" parent="51" name="survey_id">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="350" parent="51" name="enable">
+      <Position>3</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="351" parent="51" name="deleted">
+      <Position>4</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="352" parent="51" name="id">
+      <Position>5</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="353" parent="51" name="ord">
+      <Position>6</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="354" parent="51" name="PK_survey_total_has_survey">
+      <Position>1</Position>
+      <ColNames>id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="355" parent="51" name="PK_survey_total_has_survey">
+      <ObjectId>1493580359</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:59.380</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:36:59.380</ModifiedTimestamp>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>PK_survey_total_has_survey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="356" parent="51" name="FK_Survey_total_has_survey_survey_total">
+      <ObjectId>498100815</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:37:04.150</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:37:04.150</ModifiedTimestamp>
+      <ColNames>survey_total_id</ColNames>
+      <RefTableId>821577965</RefTableId>
+      <RefTableName>SRS_Survey_Total</RefTableName>
+      <RefKeyName>PK_survey_total</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="357" parent="51" name="FK_Survey_total_has_survey_survey">
+      <ObjectId>514100872</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:37:04.197</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:37:04.197</ModifiedTimestamp>
+      <ColNames>survey_id</ColNames>
+      <RefTableId>805577908</RefTableId>
+      <RefTableName>SRS_Survey</RefTableName>
+      <RefKeyName>PK_survey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="358" parent="52" name="id">
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="359" parent="52" name="name">
+      <Position>2</Position>
+      <DataType>nvarchar(50 char)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="360" parent="52" name="type">
+      <Position>3</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="361" parent="52" name="note">
+      <Position>4</Position>
+      <DataType>nvarchar(200 char)|0s</DataType>
+    </column>
+    <column id="362" parent="52" name="enable">
+      <Position>5</Position>
+      <DataType>bit|0s</DataType>
+    </column>
+    <column id="363" parent="52" name="company_id">
+      <Position>6</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="364" parent="52" name="code">
+      <Position>7</Position>
+      <DataType>varchar(20 char)|0s</DataType>
+    </column>
+    <index id="365" parent="52" name="SRS_Survey_Type_pk">
+      <Position>2</Position>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="366" parent="52" name="SRS_Survey_Type_pk">
+      <ObjectId>891150220</ObjectId>
+      <CreatedTimestamp>2020-02-19.23:58:35.003</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-19.23:58:35.003</ModifiedTimestamp>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>SRS_Survey_Type_pk</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="367" parent="52" name="FK_Survey_Type_Company">
+      <ObjectId>907150277</ObjectId>
+      <CreatedTimestamp>2020-02-20.00:07:09.357</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-20.00:07:09.357</ModifiedTimestamp>
+      <ColNames>company_id</ColNames>
+      <RefTableId>421576540</RefTableId>
+      <RefTableName>SRS_Company</RefTableName>
+      <RefKeyName>PK_company</RefKeyName>
+      <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <column id="368" parent="53" name="id">
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="369" parent="53" name="name">
+      <Position>2</Position>
+      <DataType>nvarchar(50 char)|0s</DataType>
+    </column>
+    <column id="370" parent="53" name="content">
+      <Position>3</Position>
+      <DataType>nvarchar(500 char)|0s</DataType>
+    </column>
+    <column id="371" parent="53" name="enable">
+      <Position>4</Position>
+      <DataType>bit|0s</DataType>
+    </column>
+    <column id="372" parent="53" name="deleted">
+      <Position>5</Position>
+      <DataType>bit|0s</DataType>
+    </column>
+    <column id="373" parent="53" name="company_id">
+      <Position>6</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <index id="374" parent="53" name="PK_thanks">
+      <Position>1</Position>
+      <ColNames>id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="375" parent="53" name="PK_thanks">
+      <ObjectId>1541580530</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:59.623</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:36:59.623</ModifiedTimestamp>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>PK_thanks</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="376" parent="53" name="FK_thanks_company">
+      <ObjectId>530100929</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:37:04.257</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:37:04.257</ModifiedTimestamp>
+      <ColNames>company_id</ColNames>
+      <RefTableId>421576540</RefTableId>
+      <RefTableName>SRS_Company</RefTableName>
+      <RefKeyName>PK_company</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="377" parent="54" name="id">
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="378" parent="54" name="type">
+      <Position>2</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="379" parent="54" name="img_title">
+      <Position>3</Position>
+      <DataType>nchar(255 char)|0s</DataType>
+    </column>
+    <column id="380" parent="54" name="img_background">
+      <Position>4</Position>
+      <DataType>nchar(255 char)|0s</DataType>
+    </column>
+    <column id="381" parent="54" name="enable">
+      <Position>5</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="382" parent="54" name="deleted">
+      <Position>6</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="383" parent="54" name="company_id">
+      <Position>7</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="384" parent="54" name="name">
+      <Position>8</Position>
+      <DataType>nvarchar(80 char)|0s</DataType>
+    </column>
+    <column id="385" parent="54" name="note">
+      <Position>9</Position>
+      <DataType>nvarchar(500 char)|0s</DataType>
+    </column>
+    <index id="386" parent="54" name="PK_theme">
+      <Position>1</Position>
+      <ColNames>id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="387" parent="54" name="PK_theme">
+      <ObjectId>1557580587</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:59.720</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:36:59.720</ModifiedTimestamp>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>PK_theme</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="388" parent="54" name="FK_theme_company">
+      <ObjectId>546100986</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:37:04.317</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:37:04.317</ModifiedTimestamp>
+      <ColNames>company_id</ColNames>
+      <RefTableId>421576540</RefTableId>
+      <RefTableName>SRS_Company</RefTableName>
+      <RefKeyName>PK_company</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="389" parent="55" name="id">
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="390" parent="55" name="name">
+      <Position>2</Position>
+      <DataType>nvarchar(100 char)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="391" parent="55" name="note">
+      <Position>3</Position>
+      <DataType>nvarchar(500 char)|0s</DataType>
+    </column>
+    <column id="392" parent="55" name="token">
+      <Position>4</Position>
+      <DataType>nchar(255 char)|0s</DataType>
+    </column>
+    <column id="393" parent="55" name="username">
+      <Position>5</Position>
+      <DataType>nchar(255 char)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="394" parent="55" name="password">
+      <Position>6</Position>
+      <DataType>nchar(255 char)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="395" parent="55" name="thank_visible">
+      <Position>7</Position>
+      <DataType>bit|0s</DataType>
+    </column>
+    <column id="396" parent="55" name="thank_style">
+      <Position>8</Position>
+      <DataType>tinyint|0s</DataType>
+    </column>
+    <column id="397" parent="55" name="thank_time">
+      <Position>9</Position>
+      <DataType>tinyint|0s</DataType>
+    </column>
+    <column id="398" parent="55" name="init_date">
+      <Position>10</Position>
+      <DataType>nchar(15 char)|0s</DataType>
+    </column>
+    <column id="399" parent="55" name="status">
+      <Position>11</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="400" parent="55" name="deleted">
+      <Position>12</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="401" parent="55" name="group_device_id">
+      <Position>13</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="402" parent="55" name="object_survey_id">
+      <Position>14</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="403" parent="55" name="company_id">
+      <Position>15</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="404" parent="55" name="survey_total_id">
+      <Position>16</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="405" parent="55" name="type">
+      <Position>17</Position>
+      <DefaultConstraintName>DF__SRS_device__type__324172E1</DefaultConstraintName>
+      <DefaultExpression>0</DefaultExpression>
+      <DataType>int|0s</DataType>
+    </column>
+    <index id="406" parent="55" name="PK_device_kiosk">
+      <Position>1</Position>
+      <ColNames>id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="407" parent="55" name="PK_device_kiosk">
+      <ObjectId>1237579447</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:57.330</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:36:57.330</ModifiedTimestamp>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>PK_device_kiosk</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="408" parent="55" name="FK_device_kiosk_group_device1">
+      <ObjectId>1941581955</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:37:01.060</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:37:01.060</ModifiedTimestamp>
+      <ColNames>group_device_id</ColNames>
+      <RefTableId>677577452</RefTableId>
+      <RefTableName>SRS_group_device</RefTableName>
+      <RefKeyName>PK_group_device</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="409" parent="55" name="FK_device_kiosk_object_survey">
+      <ObjectId>1957582012</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:37:01.100</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:37:01.100</ModifiedTimestamp>
+      <ColNames>object_survey_id</ColNames>
+      <RefTableId>741577680</RefTableId>
+      <RefTableName>SRS_object_survey</RefTableName>
+      <RefKeyName>PK_object_survey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="410" parent="55" name="FK_device_kiosk_company">
+      <ObjectId>1973582069</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:37:01.160</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:37:01.160</ModifiedTimestamp>
+      <ColNames>company_id</ColNames>
+      <RefTableId>421576540</RefTableId>
+      <RefTableName>SRS_Company</RefTableName>
+      <RefKeyName>PK_company</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="411" parent="55" name="FK_device_kiosk_survey_total_id">
+      <ObjectId>1054626800</ObjectId>
+      <CreatedTimestamp>2020-02-10.17:24:44.457</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-10.17:24:44.457</ModifiedTimestamp>
+      <ColNames>survey_total_id</ColNames>
+      <RefTableId>821577965</RefTableId>
+      <RefTableName>SRS_Survey_Total</RefTableName>
+      <RefKeyName>PK_survey_total</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <default id="412" parent="55" name="DF__SRS_device__type__324172E1">
+      <ObjectId>843150049</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <ModifiedTimestamp>2020-02-17.17:20:24.817</ModifiedTimestamp>
+      <ColNames>type</ColNames>
+      <DefaultExpression>0</DefaultExpression>
+    </default>
+    <column id="413" parent="56" name="id">
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="414" parent="56" name="type">
+      <Position>2</Position>
+      <DefaultConstraintName>DF__SRS_device__type__3335971A</DefaultConstraintName>
+      <DefaultExpression>1</DefaultExpression>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="415" parent="56" name="name">
+      <Position>3</Position>
+      <DataType>nvarchar(100 char)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="416" parent="56" name="note">
+      <Position>4</Position>
+      <DataType>nvarchar(500 char)|0s</DataType>
+    </column>
+    <column id="417" parent="56" name="thank_visible">
+      <Position>5</Position>
+      <DataType>bit|0s</DataType>
+    </column>
+    <column id="418" parent="56" name="thank_style">
+      <Position>6</Position>
+      <DataType>tinyint|0s</DataType>
+    </column>
+    <column id="419" parent="56" name="thank_time">
+      <Position>7</Position>
+      <DefaultConstraintName>DF__device_we__thank__1FCDBCEB</DefaultConstraintName>
+      <DefaultExpression>5</DefaultExpression>
+      <DataType>tinyint|0s</DataType>
+    </column>
+    <column id="420" parent="56" name="deleted">
+      <Position>9</Position>
+      <DefaultConstraintName>DF__device_we__delet__21B6055D</DefaultConstraintName>
+      <DefaultExpression>0</DefaultExpression>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="421" parent="56" name="group_device_id">
+      <Position>10</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="422" parent="56" name="object_survey_id">
+      <Position>11</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="423" parent="56" name="survey_total_id">
+      <Position>12</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="424" parent="56" name="init_date">
+      <Position>13</Position>
+      <DataType>nchar(16 char)|0s</DataType>
+    </column>
+    <column id="425" parent="56" name="company_id">
+      <Position>14</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="426" parent="56" name="status">
+      <Position>15</Position>
+      <DataType>tinyint|0s</DataType>
+    </column>
+    <index id="427" parent="56" name="PK_device_web">
+      <Position>1</Position>
+      <ColNames>id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="428" parent="56" name="PK_device_web">
+      <ObjectId>1253579504</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:57.450</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:36:57.450</ModifiedTimestamp>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>PK_device_web</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="429" parent="56" name="FK_device_web_group_device">
+      <ObjectId>2005582183</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:37:01.263</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:37:01.263</ModifiedTimestamp>
+      <ColNames>group_device_id</ColNames>
+      <RefTableId>677577452</RefTableId>
+      <RefTableName>SRS_group_device</RefTableName>
+      <RefKeyName>PK_group_device</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="430" parent="56" name="FK_device_web_object_survey">
+      <ObjectId>1989582126</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:37:01.210</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:37:01.210</ModifiedTimestamp>
+      <ColNames>object_survey_id</ColNames>
+      <RefTableId>741577680</RefTableId>
+      <RefTableName>SRS_object_survey</RefTableName>
+      <RefKeyName>PK_object_survey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="431" parent="56" name="FK_device_web_survey_total">
+      <ObjectId>2021582240</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:37:01.317</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:37:01.317</ModifiedTimestamp>
+      <ColNames>survey_total_id</ColNames>
+      <RefTableId>821577965</RefTableId>
+      <RefTableName>SRS_Survey_Total</RefTableName>
+      <RefKeyName>PK_survey_total</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="432" parent="56" name="FK_device_web_company">
+      <ObjectId>2037582297</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:37:01.380</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:37:01.380</ModifiedTimestamp>
+      <ColNames>company_id</ColNames>
+      <RefTableId>421576540</RefTableId>
+      <RefTableName>SRS_Company</RefTableName>
+      <RefKeyName>PK_company</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <default id="433" parent="56" name="DF__device_we__thank__1FCDBCEB">
+      <ObjectId>533576939</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <ModifiedTimestamp>2019-12-13.16:36:48.320</ModifiedTimestamp>
+      <ColNames>thank_time</ColNames>
+      <DefaultExpression>5</DefaultExpression>
+    </default>
+    <default id="434" parent="56" name="DF__device_we__delet__21B6055D">
+      <ObjectId>565577053</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <ModifiedTimestamp>2019-12-13.16:36:48.320</ModifiedTimestamp>
+      <ColNames>deleted</ColNames>
+      <DefaultExpression>0</DefaultExpression>
+    </default>
+    <default id="435" parent="56" name="DF__SRS_device__type__3335971A">
+      <ObjectId>859150106</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <ModifiedTimestamp>2020-02-17.17:21:06.290</ModifiedTimestamp>
+      <ColNames>type</ColNames>
+      <DefaultExpression>1</DefaultExpression>
+    </default>
+    <column id="436" parent="57" name="id">
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="437" parent="57" name="name">
+      <Position>2</Position>
+      <DataType>nvarchar(100 char)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="438" parent="57" name="note">
+      <Position>3</Position>
+      <DataType>nvarchar(500 char)|0s</DataType>
+    </column>
+    <column id="439" parent="57" name="company_id">
+      <Position>4</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="440" parent="57" name="enable">
+      <Position>5</Position>
+      <DataType>bit|0s</DataType>
+    </column>
+    <column id="441" parent="57" name="deleted">
+      <Position>6</Position>
+      <DataType>bit|0s</DataType>
+    </column>
+    <column id="442" parent="57" name="survey_total_id">
+      <Position>7</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <index id="443" parent="57" name="PK_group_device">
+      <Position>1</Position>
+      <ColNames>id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="444" parent="57" name="PK_group_device">
+      <ObjectId>1349579846</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:58.117</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:36:58.117</ModifiedTimestamp>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>PK_group_device</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="445" parent="57" name="FK_group_device_company">
+      <ObjectId>210099789</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:37:03.087</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:37:03.087</ModifiedTimestamp>
+      <ColNames>company_id</ColNames>
+      <RefTableId>421576540</RefTableId>
+      <RefTableName>SRS_Company</RefTableName>
+      <RefKeyName>PK_company</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="446" parent="57" name="FK_group_device_survey_total">
+      <ObjectId>1038626743</ObjectId>
+      <CreatedTimestamp>2020-02-10.17:21:24.180</CreatedTimestamp>
+      <ModifiedTimestamp>2020-02-10.17:21:24.180</ModifiedTimestamp>
+      <ColNames>survey_total_id</ColNames>
+      <RefTableId>821577965</RefTableId>
+      <RefTableName>SRS_Survey_Total</RefTableName>
+      <RefKeyName>PK_survey_total</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="447" parent="58" name="id">
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="448" parent="58" name="name">
+      <Position>2</Position>
+      <DataType>nvarchar(100 char)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="449" parent="58" name="description">
+      <Position>3</Position>
+      <DataType>nvarchar(500 char)|0s</DataType>
+    </column>
+    <column id="450" parent="58" name="init_date">
+      <Position>4</Position>
+      <DataType>nchar(15 char)|0s</DataType>
+    </column>
+    <column id="451" parent="58" name="img_url">
+      <Position>5</Position>
+      <DataType>nchar(255 char)|0s</DataType>
+    </column>
+    <column id="452" parent="58" name="department">
+      <Position>6</Position>
+      <DataType>nvarchar(50 char)|0s</DataType>
+    </column>
+    <column id="453" parent="58" name="enable">
+      <Position>7</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="454" parent="58" name="deleted">
+      <Position>8</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="455" parent="58" name="company_id">
+      <Position>9</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="456" parent="58" name="PK_object_survey">
+      <Position>1</Position>
+      <ColNames>id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="457" parent="58" name="PK_object_survey">
+      <ObjectId>1397580017</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:36:58.600</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:36:58.600</ModifiedTimestamp>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>PK_object_survey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="458" parent="58" name="FK_object_survey_company">
+      <ObjectId>322100188</ObjectId>
+      <CreatedTimestamp>2019-12-13.16:37:03.407</CreatedTimestamp>
+      <ModifiedTimestamp>2019-12-13.16:37:03.407</ModifiedTimestamp>
+      <ColNames>company_id</ColNames>
+      <RefTableId>421576540</RefTableId>
+      <RefTableName>SRS_Company</RefTableName>
+      <RefKeyName>PK_company</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="459" parent="59" name="name">
+      <Position>1</Position>
+      <DataType>sysname|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="460" parent="59" name="principal_id">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="461" parent="59" name="diagram_id">
+      <Position>3</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="462" parent="59" name="version">
+      <Position>4</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="463" parent="59" name="definition">
+      <Position>5</Position>
+      <DataType>varbinary(max)|0s</DataType>
+    </column>
+    <index id="464" parent="59" name="PK__sysdiagr__C2B05B61E715AC8A">
+      <Position>1</Position>
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>diagram_id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <index id="465" parent="59" name="UK_principal_name">
+      <Position>2</Position>
+      <ColNames>principal_id
+name</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="466" parent="59" name="PK__sysdiagr__C2B05B61E715AC8A">
+      <ObjectId>1890105774</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2020-01-09.14:24:31.667</CreatedTimestamp>
+      <ModifiedTimestamp>2020-01-09.14:24:31.667</ModifiedTimestamp>
+      <ColNames>diagram_id</ColNames>
+      <UnderlyingIndexName>PK__sysdiagr__C2B05B61E715AC8A</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <key id="467" parent="59" name="UK_principal_name">
+      <ObjectId>1906105831</ObjectId>
+      <CreatedTimestamp>2020-01-09.14:24:31.667</CreatedTimestamp>
+      <ModifiedTimestamp>2020-01-09.14:24:31.667</ModifiedTimestamp>
+      <ColNames>principal_id
+name</ColNames>
+      <UnderlyingIndexName>UK_principal_name</UnderlyingIndexName>
+    </key>
+    <argument id="468" parent="60">
+      <ArgumentDirection>R</ArgumentDirection>
+      <DataType>int|0s</DataType>
+    </argument>
+    <argument id="469" parent="61" name="@diagramname">
+      <Position>1</Position>
+      <DataType>sysname|0s</DataType>
+    </argument>
+    <argument id="470" parent="61" name="@owner_id">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+    </argument>
+    <argument id="471" parent="61" name="@version">
+      <Position>3</Position>
+      <DataType>int|0s</DataType>
+    </argument>
+    <argument id="472" parent="61" name="@definition">
+      <Position>4</Position>
+      <DataType>varbinary(max)|0s</DataType>
+    </argument>
+    <argument id="473" parent="62" name="@diagramname">
+      <Position>1</Position>
+      <DataType>sysname|0s</DataType>
+    </argument>
+    <argument id="474" parent="62" name="@owner_id">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+    </argument>
+    <argument id="475" parent="62" name="@version">
+      <Position>3</Position>
+      <DataType>int|0s</DataType>
+    </argument>
+    <argument id="476" parent="62" name="@definition">
+      <Position>4</Position>
+      <DataType>varbinary(max)|0s</DataType>
+    </argument>
+    <argument id="477" parent="63" name="@diagramname">
+      <Position>1</Position>
+      <DataType>sysname|0s</DataType>
+    </argument>
+    <argument id="478" parent="63" name="@owner_id">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+    </argument>
+    <argument id="479" parent="64" name="@diagramname">
+      <Position>1</Position>
+      <DataType>sysname|0s</DataType>
+    </argument>
+    <argument id="480" parent="64" name="@owner_id">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+    </argument>
+    <argument id="481" parent="65" name="@diagramname">
+      <Position>1</Position>
+      <DataType>sysname|0s</DataType>
+    </argument>
+    <argument id="482" parent="65" name="@owner_id">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+    </argument>
+    <argument id="483" parent="66" name="@diagramname">
+      <Position>1</Position>
+      <DataType>sysname|0s</DataType>
+    </argument>
+    <argument id="484" parent="66" name="@owner_id">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+    </argument>
+    <argument id="485" parent="66" name="@new_diagramname">
+      <Position>3</Position>
+      <DataType>sysname|0s</DataType>
+    </argument>
+  </database-model>
+</dataSource>

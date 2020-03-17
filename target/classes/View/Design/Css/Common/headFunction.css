@@ -1,0 +1,30 @@
+.button{
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-border-insets: none;
+    -fx-background-color: transparent;
+
+}
+.cancelBtn{
+
+}
+.cancelBtn:hover{
+    -fx-text-fill: white;
+    -fx-background-color: red;
+}
+.minimizeBtn:hover{
+    -fx-text-fill: black;
+    -fx-background-color: #babac9;
+}
+
+.backBtn{
+    -fx-max-width: 50;
+    -fx-max-height: 50;
+    -fx-background-color: transparent;
+    -fx-border-radius: 25;
+    -fx-background-radius: 25;
+
+}
+.backBtn:hover{
+    -fx-background-color: #76bafe;
+}

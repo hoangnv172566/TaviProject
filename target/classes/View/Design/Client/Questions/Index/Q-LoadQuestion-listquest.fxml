@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Design.Client.Questions.Index.QLoadQuestionListquestController">
+   <children>
+      <TableView fx:id="listSurvey" prefHeight="400.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columns>
+          <TableColumn fx:id="ID" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="nameSurveyCol" prefWidth="342.0" text="Tên bộ khảo sát" />
+            <TableColumn fx:id="kindOfSurveyCol" prefWidth="126.0" text="Loại khảo sát" />
+            <TableColumn fx:id="createdDateOfSurveyCol" prefWidth="179.0" text="Ngày tạo" />
+            <TableColumn fx:id="statusCol" prefWidth="179.0" text="Trạng thái" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

@@ -1,0 +1,51 @@
+
+.leftBtn{
+    /*-fx-background-color: transparent;*/
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+.leftBtn:hover{
+    -fx-background-color: white;
+    -fx-border-radius: 0;
+    -fx-background-radius: 25 0 0 25;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-font-size: 14;
+}
+.choiced{
+    -fx-background-color: white;
+    -fx-background-radius: 25 0 0 25;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+}
+
+.background{
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-background-color: #90AFC5;
+}
+.childBackground{
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-background-color: white;
+}
+
+
+.rightButton{
+    -fx-background-radius: 100;
+    -fx-border-radius: 100 ;
+    -fx-background-color: transparent;
+
+}
+.rightButtonImage{
+    -fx-background-radius: 80;
+    -fx-border-radius: 80;
+    -fx-background-color: #efff00;
+}
+
+
+.rightButtonLabel{
+    -fx-text-fill: black;
+}

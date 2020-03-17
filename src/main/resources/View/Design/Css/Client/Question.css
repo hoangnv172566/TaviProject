@@ -1,0 +1,10 @@
+.background{
+    -fx-background-color: transparent;
+
+}
+.NpsChoice{
+    -fx-background-color: pink;
+    -fx-text-fill: white;
+    -fx-background-radius: 7;
+    -fx-border-radius: 7;
+}

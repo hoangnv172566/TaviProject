@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Design.Client.Questions.Contact.CQuestionContactController">
+   <children>
+      <Label fx:id="content" alignment="CENTER" contentDisplay="CENTER" layoutX="89.0" layoutY="65.0" text="Hãy để lại thông tin để bạn có thể nhận được các thông tin khuyến mãi" textAlignment="CENTER" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="20.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutY="70.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
+         <children>
+            <HBox layoutX="74.0" layoutY="24.0">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                  <TextField fx:id="name" prefHeight="30.0" prefWidth="200.0" promptText="Họ và tên" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+            <HBox layoutX="441.0" layoutY="24.0">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                  <TextField fx:id="phone" prefHeight="30.0" prefWidth="200.0" promptText="Số điện thoại" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+            <HBox layoutX="74.0" layoutY="86.0">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                  <TextField fx:id="email" prefHeight="30.0" prefWidth="300.0" promptText="Địa chỉ Email" />
+               </children>
+            </HBox>
+            <Label fx:id="emailAnnouncement" layoutX="104.0" layoutY="123.0" prefHeight="17.0" prefWidth="200.0" text="(*) Hãy điền tên của bạn" textFill="RED" visible="false">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <Label fx:id="nameAnnouncement" layoutX="104.0" layoutY="61.0" prefHeight="17.0" prefWidth="200.0" text="(*) Hãy điền tên của bạn" textFill="RED" visible="false">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <Label fx:id="phoneAnnouncement" layoutX="471.0" layoutY="61.0" prefHeight="17.0" prefWidth="200.0" text="(*) Hãy điền tên của bạn" textFill="RED" visible="false">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets bottom="20.0" />
+         </padding>
+      </AnchorPane>
+   </children>
+</AnchorPane>

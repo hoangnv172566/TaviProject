@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="resisterPane" prefHeight="610.0" prefWidth="325.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Design.ResisterController">
+   <children>
+      <JFXTextField layoutX="24.0" layoutY="141.0" opacity="0.7" prefHeight="25.0" prefWidth="254.0" promptText="Email ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXTextField>
+      <JFXPasswordField layoutX="24.0" layoutY="194.0" opacity="0.7" prefHeight="25.0" prefWidth="254.0" promptText="Mật khẩu">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXPasswordField>
+      <JFXTextField layoutX="24.0" layoutY="309.0" opacity="0.7" prefHeight="25.0" prefWidth="254.0" promptText="Số điện thoại">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField layoutX="24.0" layoutY="374.0" opacity="0.7" prefHeight="25.0" prefWidth="254.0" promptText="Email ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXTextField>
+      <JFXPasswordField layoutX="24.0" layoutY="245.0" opacity="0.7" prefHeight="25.0" prefWidth="254.0" promptText="Nhập lại mật khẩu">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXPasswordField>
+      <JFXButton fx:id="resisterBtn" layoutX="24.0" layoutY="418.0" prefHeight="42.0" prefWidth="254.0" text="Đăng ký">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="24.0" layoutY="177.0" opacity="0.7" prefHeight="17.0" prefWidth="254.0" text="Email không đúng định dạng" textAlignment="CENTER" textFill="RED" />
+      <Label layoutX="24.0" layoutY="346.0" opacity="0.7" prefHeight="17.0" prefWidth="254.0" text="(*) Số điện thoại chưa chính xác" textAlignment="CENTER" textFill="RED" />
+      <Label layoutX="24.0" layoutY="282.0" opacity="0.7" prefHeight="17.0" prefWidth="254.0" text="(*) Mật khẩu nhập lại chưa chính xác" textAlignment="CENTER" textFill="RED" />
+      <Label layoutX="24.0" layoutY="228.0" opacity="0.7" prefHeight="17.0" prefWidth="254.0" text="(*) Mật khẩu cần ít nhất 8 ký tự, có một chữ số!" textAlignment="CENTER" textFill="RED" />
+      <JFXButton fx:id="backBtn" layoutX="10.0" layoutY="18.0" text="Back">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/icons8-back-20.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+   </children>
+</AnchorPane>

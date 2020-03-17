@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="761.0" prefWidth="1181.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Design.IndexController">
+   <children>
+      <JFXButton alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="87.0" layoutY="271.0" prefHeight="70.0" prefWidth="200.0" ripplerFill="#d9c7c7da" text="Thông báo" textAlignment="JUSTIFY">
+         <graphic>
+            <ImageView fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/icons8-file-40.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font size="20.0" />
+         </font>
+      </JFXButton>
+      <JFXButton alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="87.0" layoutY="383.0" prefHeight="70.0" prefWidth="200.0" ripplerFill="#d9c7c7da" text="Nhân lực" textAlignment="JUSTIFY">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/icons8-file-40.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="900.0" layoutY="263.0" prefHeight="70.0" prefWidth="200.0" ripplerFill="#d9c7c7da" text="Tuyển dụng" textAlignment="JUSTIFY">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/icons8-file-40.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="406.0" layoutY="271.0" prefHeight="70.0" prefWidth="200.0" ripplerFill="#d9c7c7da" text="Hồ sơ" textAlignment="JUSTIFY">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/icons8-file-40.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="665.0" layoutY="263.0" prefHeight="70.0" prefWidth="200.0" ripplerFill="#d9c7c7da" text="Đào tạo" textAlignment="JUSTIFY">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/icons8-file-40.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="665.0" layoutY="383.0" prefHeight="70.0" prefWidth="200.0" ripplerFill="#d9c7c7da" text="Tiền lương" textAlignment="JUSTIFY">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/icons8-file-40.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="406.0" layoutY="383.0" prefHeight="70.0" prefWidth="200.0" ripplerFill="#d9c7c7da" text="Chấm công" textAlignment="JUSTIFY">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/icons8-file-40.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXTextArea layoutX="81.0" layoutY="200.0" prefHeight="26.0" prefWidth="342.0" promptText="Tìm kiếm" />
+      <JFXButton alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="900.0" layoutY="383.0" prefHeight="70.0" prefWidth="200.0" ripplerFill="#d9c7c7da" text="Tài khoản" textAlignment="JUSTIFY">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/icons8-file-40.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+   </children>
+</AnchorPane>

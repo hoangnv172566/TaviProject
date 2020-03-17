@@ -1,0 +1,53 @@
+.signInLabel{
+    -fx-font-weight: bold;
+    -fx-text-fill: #7e4dd1;
+
+}
+.anchor1{
+    -fx-background-color: #EAE2F9;
+}
+.signUpButton{
+    -fx-background-color: #EAE2F9;
+    -fx-text-fill: #7e4dd1;
+    -fx-font-weight: bold;
+    -fx-border-color: #B6A9D1;
+
+    -fx-border-radius: 30;
+    -fx-background-radius: 30;
+
+}
+.signInButton{
+    -fx-background-color: #705FA6;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+    -fx-border-radius: 30;
+    -fx-background-radius: 30;
+}
+.text-field{
+    -fx-text-fill: black;
+    -fx-font-weight: 500;
+}
+.hyperlinkforgeting{
+    -fx-text-fill: #7e4dd1;
+}
+
+.functionBtn{
+    -fx-background-color: transparent;
+    -fx-background-radius: 30 0 0 30;
+    -fx-border-width: 0;
+}
+.functionBtn:hover{
+    -fx-background-color: #7e4dd1;
+}
+.rightFunctionBtn{
+    -fx-background-radius: 20;
+
+
+}
+.searching{
+    -fx-background-color: transparent;
+    -fx-border-radius: 22;
+    -fx-background-radius: 22;
+    -fx-border-color: black;
+    -fx-cursor: hand;
+}
