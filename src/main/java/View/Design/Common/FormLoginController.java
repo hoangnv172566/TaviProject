@@ -7,11 +7,13 @@ import Models.User.User;
 import Service.impl.CompanyService;
 import Service.impl.UserService;
 import Utils.FileMethod;
+import Utils.StageConfigure;
 import View.Design.Client.Questions.Index.QIndexController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,6 +24,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.json.simple.JSONObject;
 
@@ -99,6 +102,9 @@ public class FormLoginController implements Initializable{
                 // if login success, load question index
                 if(userService.login(user, URLApi.LOGIN) == 200){
                     Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+                    StageConfigure.fullStage(stage);
+
                     Scene scene = new Scene(QIndexController.getParent());
                     stage.setScene(scene);
                     stage.setMaximized(true);

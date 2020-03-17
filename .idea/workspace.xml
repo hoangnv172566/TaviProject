@@ -7,8 +7,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="314285a2-7f62-4722-907f-7700fea31450" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TaviProject/TaviProject/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Data/demoData.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Data/demoData.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Design/Client/Questions/Index/QIndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Design/Client/Questions/Index/QIndexController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Design/Common/FormLoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Design/Common/FormLoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Design/Common/Login-v2.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/View/Design/Common/Login-v2.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Video/VideoTesting.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/View/Design/Client/Questions/Index/QIndexController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Design/Client/Questions/Index/QIndexController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/View/Design/Common/FormLoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Design/Common/FormLoginController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +74,13 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/hoangnv172566/TaviProject.git" />
+      </set>
+    </option>
+  </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
       <MavenImportingSettings>
@@ -81,6 +96,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DatabaseDriversLRU" value="sqlserver" />
     <property name="GenerateAntBuildDialog.backupFiles" value="true" />
     <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
@@ -92,7 +108,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/View/Design/Client/Questions/Index" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/View/Image/Common" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
@@ -187,10 +203,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.CQuestionsController" />
         <item itemvalue="Application.QIndexController" />
         <item itemvalue="Application.FileChooserSample" />
         <item itemvalue="Application.DownloadFile" />
-        <item itemvalue="Application.CQuestionsController" />
       </list>
     </recent_temporary>
   </component>
@@ -260,12 +276,35 @@
       <workItem from="1584251429700" duration="1363000" />
       <workItem from="1584341558839" duration="6681000" />
       <workItem from="1584348491902" duration="10505000" />
-      <workItem from="1584372404860" duration="9196000" />
+      <workItem from="1584372404860" duration="13118000" />
     </task>
+    <task id="LOCAL-00001" summary="&quot;Hoang Commit&quot;">
+      <created>1584416580250</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1584416580250</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="&quot;Hoang Commit&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;Hoang Commit&quot;" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1818" y="30" key="#Project_Structure" timestamp="1578125291242">
@@ -327,6 +366,10 @@
     <state x="446" y="93" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728/1366.-60.1920.1040@0.0.1366.728" timestamp="1583590806956" />
     <state x="1993" y="142" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728/1366.-60.1920.1040@1366.-60.1920.1040" timestamp="1581664247488" />
     <state x="446" y="93" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1581780614445" />
+    <state x="229" y="0" key="CommitChangelistDialog2" timestamp="1584416579321">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="229" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1584416579321" />
     <state width="304" height="242" key="DatabaseViewActions_Filter" timestamp="1582096455857">
       <screen x="1366" y="-60" width="1920" height="1040" />
     </state>
@@ -342,7 +385,7 @@
     <state x="491" y="79" key="FileChooserDialogImpl/0.0.1366.728/1366.0.1600.860@0.0.1366.728" timestamp="1578974443490" />
     <state x="1941" y="93" key="FileChooserDialogImpl/0.0.1366.728/1366.0.1600.860@1366.0.1600.860" timestamp="1581407613609" />
     <state x="491" y="79" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1584410253041" />
-    <state width="1311" height="-15" key="GridCell.Tab.0.bottom" timestamp="1584410281912">
+    <state width="1311" height="217" key="GridCell.Tab.0.bottom" timestamp="1584421473575">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1865" height="161" key="GridCell.Tab.0.bottom/0.0.1366.728/-1920.-252.1920.1040@-1920.-252.1920.1040" timestamp="1584361080357" />
@@ -351,8 +394,8 @@
     <state width="1311" height="122" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1024.728@0.0.1366.728" timestamp="1584081359867" />
     <state width="1311" height="181" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1600.860@0.0.1366.728" timestamp="1581412355772" />
     <state width="1545" height="133" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1600.860@1366.0.1600.860" timestamp="1581608514368" />
-    <state width="1311" height="-15" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1584410281912" />
-    <state width="1311" height="-15" key="GridCell.Tab.0.center" timestamp="1584410281912">
+    <state width="1311" height="217" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1584421473575" />
+    <state width="1311" height="217" key="GridCell.Tab.0.center" timestamp="1584421473575">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1865" height="161" key="GridCell.Tab.0.center/0.0.1366.728/-1920.-252.1920.1040@-1920.-252.1920.1040" timestamp="1584361080357" />
@@ -361,8 +404,8 @@
     <state width="1311" height="122" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1024.728@0.0.1366.728" timestamp="1584081359867" />
     <state width="1311" height="181" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1600.860@0.0.1366.728" timestamp="1581412355771" />
     <state width="1545" height="133" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1600.860@1366.0.1600.860" timestamp="1581608514368" />
-    <state width="1311" height="-15" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1584410281912" />
-    <state width="1311" height="-15" key="GridCell.Tab.0.left" timestamp="1584410281912">
+    <state width="1311" height="217" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1584421473575" />
+    <state width="1311" height="217" key="GridCell.Tab.0.left" timestamp="1584421473574">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1865" height="161" key="GridCell.Tab.0.left/0.0.1366.728/-1920.-252.1920.1040@-1920.-252.1920.1040" timestamp="1584361080357" />
@@ -371,8 +414,8 @@
     <state width="1311" height="122" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1024.728@0.0.1366.728" timestamp="1584081359867" />
     <state width="1311" height="181" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1600.860@0.0.1366.728" timestamp="1581412355771" />
     <state width="1545" height="133" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1600.860@1366.0.1600.860" timestamp="1581608514367" />
-    <state width="1311" height="-15" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1584410281912" />
-    <state width="1311" height="-15" key="GridCell.Tab.0.right" timestamp="1584410281912">
+    <state width="1311" height="217" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1584421473574" />
+    <state width="1311" height="217" key="GridCell.Tab.0.right" timestamp="1584421473575">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1865" height="161" key="GridCell.Tab.0.right/0.0.1366.728/-1920.-252.1920.1040@-1920.-252.1920.1040" timestamp="1584361080357" />
@@ -381,7 +424,7 @@
     <state width="1311" height="122" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1024.728@0.0.1366.728" timestamp="1584081359867" />
     <state width="1311" height="181" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1600.860@0.0.1366.728" timestamp="1581412355772" />
     <state width="1545" height="133" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1600.860@1366.0.1600.860" timestamp="1581608514368" />
-    <state width="1311" height="-15" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1584410281912" />
+    <state width="1311" height="217" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1584421473575" />
     <state width="1865" height="622" key="GridCell.Tab.1.bottom" timestamp="1583929701007">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

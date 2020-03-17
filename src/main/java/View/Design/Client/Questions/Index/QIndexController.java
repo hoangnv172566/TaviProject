@@ -7,6 +7,7 @@ import Models.User.User;
 import Service.impl.CollectionService;
 import Service.impl.UserService;
 import Utils.FileMethod;
+import Utils.StageConfigure;
 import View.Design.Client.Questions.CQuestionsController;
 import View.Design.Common.LoginV2Controller;
 import javafx.application.Application;
@@ -55,8 +56,8 @@ public class QIndexController extends Application implements Initializable {
 
     private void setScene(Parent parent, ActionEvent event){
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        StageConfigure.fullStage(stage);
         stage.setScene(new Scene(parent));
-        stage.setFullScreen(true);
         stage.show();
     }
 
