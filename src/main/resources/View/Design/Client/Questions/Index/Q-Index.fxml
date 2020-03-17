@@ -16,47 +16,98 @@
    <children>
       <AnchorPane styleClass="childBackground" stylesheets="@../../../Css/Client/QIndex.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
          <children>
-            <VBox fx:id="indexFunctionPane" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="30.0">
+            <VBox fx:id="indexFunctionPane" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" visible="false" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="30.0">
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
                      <children>
-                        <VBox alignment="CENTER">
-                           <children>
-                              <Button fx:id="loadQuesBtn" alignment="TOP_CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="rightButton" stylesheets="@../../../Css/Client/QIndex.css" VBox.vgrow="ALWAYS">
-                                 <font>
-                                    <Font size="5.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                                 <graphic>
-                                    <VBox alignment="CENTER">
-                                       <children>
-                                          <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../../../../Image/QIndex/loadQuestion.png" />
-                                             </image>
-                                          </ImageView>
-                                       </children>
+                        <Button fx:id="loadQuesBtn" mnemonicParsing="false" style="-fx-background-color: transparent;">
+                           <graphic>
+                              <VBox alignment="CENTER">
+                                 <children>
+                                    <Button alignment="TOP_CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="rightButton" stylesheets="@../../../Css/Client/QIndex.css" VBox.vgrow="ALWAYS">
+                                       <font>
+                                          <Font size="5.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <graphic>
+                                          <VBox alignment="CENTER">
+                                             <children>
+                                                <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../../Image/QIndex/loadQuestion.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </padding>
+                                          </VBox>
+                                       </graphic>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                    <Label styleClass="rightButtonLabel" stylesheets="@../../../Css/Client/QIndex.css" text="Tham gia khảo sát">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
                                        <padding>
-                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                          <Insets bottom="5.0" top="5.0" />
                                        </padding>
-                                    </VBox>
-                                 </graphic>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
-                              <Label styleClass="rightButtonLabel" stylesheets="@../../../Css/Client/QIndex.css" text="Tham gia khảo sát">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets bottom="5.0" top="5.0" />
-                                 </padding>
-                              </Label>
-                           </children>
-                        </VBox>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="historyButton" mnemonicParsing="false" style="-fx-background-color: transparent;">
+                           <graphic>
+                              <VBox alignment="CENTER">
+                                 <children>
+                                    <Button alignment="TOP_CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="rightButton" stylesheets="@../../../Css/Client/QIndex.css" VBox.vgrow="ALWAYS">
+                                       <font>
+                                          <Font size="5.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <graphic>
+                                          <VBox alignment="CENTER">
+                                             <children>
+                                                <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../../Image/QIndex/history.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </padding>
+                                          </VBox>
+                                       </graphic>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                    <Label styleClass="rightButtonLabel" stylesheets="@../../../Css/Client/QIndex.css" text="Lịch sử khảo sát">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets bottom="5.0" top="5.0" />
+                                       </padding>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
                      </children>
                   </HBox>
                </children>
@@ -66,9 +117,13 @@
                   <fx:include source="Q-LoadQuestion.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="syncDataParent" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="syncDataParent" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <fx:include source="Q-Syncdata.fxml" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <fx:include source="Q-Syncdata.fxml" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" HBox.hgrow="NEVER" />
+                     </children>
+                  </VBox>
                </children>
             </AnchorPane>
          </children>

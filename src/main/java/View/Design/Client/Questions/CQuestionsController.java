@@ -42,6 +42,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -52,6 +53,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -72,9 +74,12 @@ public class CQuestionsController extends Application implements Initializable {
     @FXML private Button back;
     @FXML private Label contentSurvey;
     @FXML private Button sendingSurvey;
-
+    @FXML private AnchorPane parentListAnswer;
+    @FXML private ScrollPane scrollParent;
     private int second = 10;
     private SurveyService surveyService;
+
+
     public static Parent getParent() {
         try{
            return FXMLLoader.load(CQuestionsController.class.getResource("C-Questions.fxml"));
@@ -793,8 +798,14 @@ public class CQuestionsController extends Application implements Initializable {
         return matcher.matches();
     }
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+//        Screen screen = Screen.getPrimary();
+//        Rectangle2D rectangle2D = screen.getVisualBounds();
+//        parentListAnswer.setPrefWidth(rectangle2D.getWidth());
+
+
         AnswerService answerService = new AnswerService();
 
         //create timeline for waiting video
@@ -937,6 +948,10 @@ public class CQuestionsController extends Application implements Initializable {
         back.getParent().getParent().setOnMouseClicked(e->{
             second = 10;
         });
+
+        System.out.println(scrollParent.getWidth());
+        System.out.println(parentListAnswer.getWidth());
+
 
         //testing
     }
