@@ -32,6 +32,7 @@ import View.Design.Common.VideoController;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jfoenix.controls.JFXToggleButton;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -76,6 +77,10 @@ public class CQuestionsController extends Application implements Initializable {
     @FXML private Button sendingSurvey;
     @FXML private AnchorPane parentListAnswer;
     @FXML private ScrollPane scrollParent;
+    @FXML private JFXToggleButton languageSwitch;
+
+
+
     private int second = 10;
     private SurveyService surveyService;
 
@@ -831,6 +836,7 @@ public class CQuestionsController extends Application implements Initializable {
         Survey survey = surveyService.getSurvey();
 
         contentSurvey.setText(survey.getContentSurvey());
+
         for(Question question:survey.getListQuestion()){
             if (question.getType().equals("CSAT")) {
                 listQuestions.getChildren().add(createCSATLayout(question, true));
@@ -852,6 +858,61 @@ public class CQuestionsController extends Application implements Initializable {
                 listQuestions.getChildren().add(createStarLayout(question, true));
             }
         }
+
+        //Tieng viet by default
+
+        languageSwitch.selectedProperty().addListener((observable, oldValue, newValue) ->
+        {
+            if (newValue) {
+                languageSwitch.setText("English");
+                listQuestions.getChildren().clear();
+                for(Question question:survey.getListQuestion()){
+                    if (question.getType().equals("CSAT")) {
+                        listQuestions.getChildren().add(createCSATLayout(question, false));
+                    } else if(question.getType().equals("NPS")){
+                        listQuestions.getChildren().add(createNPSLayout(question, false));
+                    } else if(question.getType().equals("MULTIPLE_CHOICE")){
+                        listQuestions.getChildren().add(createMutipleChoiceLayout(question, false));
+                    }else if(question.getType().equals("SINGLE_CHOICE")){
+                        listQuestions.getChildren().add(createSingleChoiceLayout(question, false));
+                    }else if(question.getType().equals("FLX")){
+                        listQuestions.getChildren().add(createFLXLayout(question, false));
+                    }else if(question.getType().equals("CES")){
+                        listQuestions.getChildren().add(createCESLayout(question, false));
+                    }else if(question.getType().equals("CONTACT")){
+                        listQuestions.getChildren().add(createContactLayout(question, false));
+                    }else if(question.getType().equals("OPEN")){
+                        listQuestions.getChildren().add(createOpenLayout(question, false));
+                    }else if(question.getType().equals("STAR")){
+                        listQuestions.getChildren().add(createStarLayout(question, false));
+                    }
+                }
+            }else{
+                languageSwitch.setText("Tiếng Việt");
+                listQuestions.getChildren().clear();
+                for(Question question:survey.getListQuestion()){
+                    if (question.getType().equals("CSAT")) {
+                        listQuestions.getChildren().add(createCSATLayout(question, true));
+                    } else if(question.getType().equals("NPS")){
+                        listQuestions.getChildren().add(createNPSLayout(question, true));
+                    } else if(question.getType().equals("MULTIPLE_CHOICE")){
+                        listQuestions.getChildren().add(createMutipleChoiceLayout(question, true));
+                    }else if(question.getType().equals("SINGLE_CHOICE")){
+                        listQuestions.getChildren().add(createSingleChoiceLayout(question, true));
+                    }else if(question.getType().equals("FLX")){
+                        listQuestions.getChildren().add(createFLXLayout(question, true));
+                    }else if(question.getType().equals("CES")){
+                        listQuestions.getChildren().add(createCESLayout(question, true));
+                    }else if(question.getType().equals("CONTACT")){
+                        listQuestions.getChildren().add(createContactLayout(question, true));
+                    }else if(question.getType().equals("OPEN")){
+                        listQuestions.getChildren().add(createOpenLayout(question, true));
+                    }else if(question.getType().equals("STAR")){
+                        listQuestions.getChildren().add(createStarLayout(question, true));
+                    }
+                }
+            }
+        });
 
         //set Event for buttons
         sendingSurvey.setOnAction(e->{
@@ -949,9 +1010,14 @@ public class CQuestionsController extends Application implements Initializable {
             second = 10;
         });
 
-        System.out.println(scrollParent.getWidth());
-        System.out.println(parentListAnswer.getWidth());
 
+//        languageSwitch.focusTraversableProperty().addListener((observable, oldValue, newValue) -> {
+//            if(newValue){
+//                languageSwitch.setText("Tiếng Việt");
+//            }else{
+//                languageSwitch.setText("English");
+//            }
+//        });
 
         //testing
     }
