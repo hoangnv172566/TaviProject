@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -14,9 +13,9 @@
 
 <AnchorPane styleClass="background" stylesheets="@../../../Css/Client/QIndex.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Design.Client.Questions.Index.QIndexController">
    <children>
-      <AnchorPane styleClass="childBackground" stylesheets="@../../../Css/Client/QIndex.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+      <AnchorPane styleClass="childBackground" stylesheets="@../../../Css/Client/QIndex.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
          <children>
-            <VBox fx:id="indexFunctionPane" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" visible="false" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="30.0">
+            <VBox fx:id="indexFunctionPane" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
                      <children>
@@ -117,7 +116,7 @@
                   <fx:include source="Q-LoadQuestion.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="syncDataParent" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="syncDataParent" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
@@ -126,41 +125,38 @@
                   </VBox>
                </children>
             </AnchorPane>
+            <HBox alignment="CENTER" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+               <children>
+                  <fx:include source="../../../Common/HeadFunction.fxml" />
+               </children>
+            </HBox>
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="100.0" stylesheets="@../../../Css/Client/QIndex.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <fx:include source="../../../Common/Company.fxml" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0" />
+            <fx:include source="../../../Common/Company.fxml" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="50.0" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="89.0" prefHeight="511.0" prefWidth="200.0" stylesheets="@../../../Css/Client/QIndex.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="100.0">
+      <AnchorPane layoutY="89.0" prefWidth="200.0" stylesheets="@../../../Css/Client/QIndex.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="150.0">
          <children>
             <VBox spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
                <children>
-                  <Button fx:id="surveyBtn" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" stylesheets="@../../../Css/Client/QIndex.css" text="Bộ khảo sát" VBox.vgrow="ALWAYS">
+                  <Button fx:id="surveyBtn" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Bộ khảo sát" VBox.vgrow="ALWAYS">
                      <font>
                         <Font size="14.0" />
                      </font>
-                     <styleClass>
-                        <String fx:value="leftBtn" />
-                        <String fx:value="choiced" />
-                     </styleClass>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
-                  <Button fx:id="syncDataBtn" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" stylesheets="@../../../Css/Client/QIndex.css" text="Đồng bộ dữ liệu">
+                  <Button fx:id="syncDataBtn" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Đồng bộ dữ liệu">
                      <font>
                         <Font size="14.0" />
                      </font>
-                     <styleClass>
-                        <String fx:value="leftBtn" />
-                        <String fx:value="choiced" />
-                     </styleClass>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="logoutBtn" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" styleClass="leftBtn" stylesheets="@../../../Css/Client/QIndex.css" text="Đăng xuất">
+                  <Button fx:id="logoutBtn" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Đăng xuất">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -171,13 +167,8 @@
             </VBox>
          </children>
       </AnchorPane>
-      <HBox alignment="CENTER" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <fx:include source="../../../Common/HeadFunction.fxml" />
-         </children>
-      </HBox>
    </children>
    <padding>
-      <Insets bottom="20.0" right="20.0" />
+      <Insets bottom="50.0" right="50.0" />
    </padding>
 </AnchorPane>

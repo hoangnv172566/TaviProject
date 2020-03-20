@@ -19,19 +19,23 @@ import org.json.simple.parser.ParseException;
 
 import java.io.*;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
-public class HeadFunctionController extends Application implements Initializable {
+public class HeadFunctionController implements Initializable {
     @FXML private Button exit;
     @FXML private Button minimize;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         UserService userService = new UserService();
+
         exit.setOnAction(e-> {
             Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
             try{
-                File file = new File("src/main/java/Data/UserData.txt");
+                Path path = Paths.get("Data", "User");
+                File file = new File(path.toAbsolutePath().toString(), "\\UserData.txt");
                 FileReader fileReader = new FileReader(file);
                 BufferedReader bufferedReader = new BufferedReader(fileReader);
                 JSONParser jsonParser = new JSONParser();
@@ -44,33 +48,32 @@ public class HeadFunctionController extends Application implements Initializable
 
                 bufferedReader.close();
                 fileReader.close();
-                file.delete();
-            } catch (FileNotFoundException ex) {
-                stage.close();
+
+                Path listPathFile = Paths.get("Data");
+                File[] listFiles = new File(listPathFile.toAbsolutePath().toString()).listFiles();
+
+                for (File fileE:listFiles){
+                    if(fileE.isDirectory()){
+                        File[] listFileData = fileE.listFiles();
+                        for(File f :listFileData){
+                            f.delete();
+                        }
+                    }
+                }
+
             } catch (IOException ex) {
-                ex.printStackTrace();
+                stage.close();
             } catch (ParseException ex) {
                 ex.printStackTrace();
             }
 
-
-            File companyData = new File("src/main/java/Data/Company/Company.json");
-            companyData.delete();
-
             stage.close();
         });
+
         minimize.setOnAction(event -> {
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             stage.setIconified(true);
         });
-
     }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("HeadFunction.fxml"));
-        primaryStage.setScene(new Scene(root));
-        primaryStage.initStyle(StageStyle.TRANSPARENT);
-        primaryStage.show();
-    }
 }

@@ -15,7 +15,6 @@ import Models.Survey.Question;
 import Models.Survey.Survey;
 import Service.impl.AnswerService;
 import Service.impl.SurveyService;
-import Utils.FileMethod;
 import View.Design.Client.Questions.CES.CQuestionsCESController;
 import View.Design.Client.Questions.CSAT.CQuestionCSATChoiceController;
 import View.Design.Client.Questions.CSAT.CQuestionsCSATController;
@@ -49,6 +48,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -59,8 +63,14 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
@@ -71,6 +81,7 @@ import java.util.regex.Pattern;
 
 public class CQuestionsController extends Application implements Initializable {
 
+    //inject element
     @FXML private VBox listQuestions;
     @FXML private Button back;
     @FXML private Label contentSurvey;
@@ -79,12 +90,11 @@ public class CQuestionsController extends Application implements Initializable {
     @FXML private ScrollPane scrollParent;
     @FXML private JFXToggleButton languageSwitch;
 
-
-
     private int second = 10;
     private SurveyService surveyService;
 
 
+    //configure layout
     public static Parent getParent() {
         try{
            return FXMLLoader.load(CQuestionsController.class.getResource("C-Questions.fxml"));
@@ -143,8 +153,17 @@ public class CQuestionsController extends Application implements Initializable {
             int finalI = i;
             ((CheckBox) listChildrenChoice.get(i)).selectedProperty().addListener((observable, oldValue, newValue) -> {
                 //open file
+                //create Path
                 String fileName = question.getType()+ "_" + question.getOrd();
-                File multipleAnswerData = new File("src/main/java/Data/SubAnswer/" + fileName +".json");
+                Path path = Paths.get("Data", "SubAnswer");
+                try {
+                    Files.createDirectories(path);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+                File multipleAnswerData = new File( path.toAbsolutePath().toString() + "\\" + fileName +".json");
 
                 if(!multipleAnswerData.exists()){
                     try {
@@ -196,27 +215,14 @@ public class CQuestionsController extends Application implements Initializable {
 
                         }
 
-                    }catch(ConcurrentModificationException e){
-                        System.out.println("hihi");
+                    }catch(ConcurrentModificationException ignored){
+
                     }
 
-//                    listAnswerMultipleChoice.remove(answerChoice);
-//                    answerMultipleChoice.setListAnswerMultiChoice(listAnswerMultipleChoice);
-//                    ObjectMapper objectMapper = new ObjectMapper();
-//                    try {
-//                        objectMapper.writerWithDefaultPrettyPrinter().writeValue(multipleAnswerData, answerMultipleChoice);
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
 
                 }
-                if(listAnswerMultipleChoice != null){
-                    System.out.println(listAnswerMultipleChoice);
-                }
-
 
             });
-//            System.out.println(listAnswerMultipleChoice.get(i));
         }
         return questionLayout;
 
@@ -256,14 +262,23 @@ public class CQuestionsController extends Application implements Initializable {
 
 
         for(int i = 0; i<question.getChoice().size(); i++) {
-            int indexChoice = i;
             SingleChoice singleChoice = (SingleChoice) question.getChoice().get(i);
             listChoice.getChildren().get(i).focusedProperty().addListener((observable, oldValue, newValue) -> {
                 String fileName = question.getType()+ "_" + question.getOrd();
-                File csatData = new File("src/main/java/Data/SubAnswer/" + fileName +".json");
-                if(!csatData.exists()){
+
+                //create Path
+                Path path = Paths.get("Data", "SubAnswer");
+                try {
+                    Files.createDirectories(path);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                // create file to save data
+
+                File singleData = new File(path.toAbsolutePath().toString() + "\\" + fileName +".json");
+                if(!singleData.exists()){
                     try {
-                        csatData.createNewFile();
+                        singleData.createNewFile();
                     } catch (IOException ex) {
                         System.out.println("can't open file");
                     }
@@ -276,7 +291,7 @@ public class CQuestionsController extends Application implements Initializable {
                     ObjectMapper mapper = new ObjectMapper();
                     try
                     {
-                        mapper.writerWithDefaultPrettyPrinter().writeValue(csatData, singleAnswer);
+                        mapper.writerWithDefaultPrettyPrinter().writeValue(singleData, singleAnswer);
                     } catch (JsonGenerationException ex) {
                         ex.printStackTrace();
                     } catch (JsonMappingException ex) {
@@ -310,19 +325,75 @@ public class CQuestionsController extends Application implements Initializable {
         HBox listChoice = (HBox) questionLayout.getChildren().get(1);
 
         for(int i = 0; i<5; i++){
+
             AnchorPane questionChoice = (AnchorPane) CQuestionCSATChoiceController.getParent();
+            ImageView imageChoice = (ImageView) questionChoice.getChildren().get(0);
+
+
+
+            try{
+                String fileName = "src/main/resources/FixedSetting/Icon/CSAT/icon_"+(i+1)+ ".gif";
+                File file = new File(fileName);
+                Image image = new Image(new FileInputStream(file));
+                imageChoice.setImage(image);
+            } catch (FileNotFoundException e) {
+                Path path = Paths.get("FixedSetting", "Icon\\CSAT");
+                String fileName = "\\icon_"+ (i+1) + ".gif";
+                try{
+                    Image image = new Image(new FileInputStream(new File(path.toAbsolutePath().toString() + fileName)));
+                    imageChoice.setImage(image);
+                } catch (FileNotFoundException ex) {
+                    Alert fileNotFoundAlert = new Alert(Alert.AlertType.ERROR);
+                    fileNotFoundAlert.setContentText("Icon không tồn tại. Đồng bộ đúng tên icon_i");
+                    fileNotFoundAlert.show();
+                }
+            }
+
             Label labelContent = (Label) questionChoice.getChildren().get(1);
+            if(vi){
+                if(i== 0){
+                    labelContent.setText("Rất tệ");
+                }else if(i==1){
+                    labelContent.setText("Tệ");
+                }else if(i==2){
+                    labelContent.setText("Bình thường");
+                }else if(i==3){
+                    labelContent.setText("Hài lòng");
+                }else if(i==4){
+                    labelContent.setText("Rất Hài lòng");
+                }
+            }else{
+                if(i== 0){
+                    labelContent.setText("Extremely bad");
+                }else if(i==1){
+                    labelContent.setText("Not good");
+                }else if(i==2){
+                    labelContent.setText("Can be accepted");
+                }else if(i==3){
+                    labelContent.setText("Satisfy");
+                }else if(i==4){
+                    labelContent.setText("Very good");
+                }
+            }
+
             questionChoice.setId(String.valueOf((i+1)));
             questionChoice.setCursor(Cursor.HAND);
             listChoice.getChildren().add(questionChoice);
         }
+
 
         for(int i = 0; i<5; i++){
             ObservableList<Node> listChildrent = listChoice.getChildren();
             int level = i+1;
             listChildrent.get(i).setOnMouseClicked(e->{
                 String fileName = question.getType()+ "_" + question.getOrd();
-                File csatData = new File("src/main/java/Data/SubAnswer/" + fileName +".json");
+                Path path = Paths.get("Data", "SubAnswer");
+                try {
+                    Files.createDirectories(path);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                File csatData = new File(path.toAbsolutePath().toString() + "\\" + fileName +".json");
                 if(!csatData.exists()){
                     try {
                         csatData.createNewFile();
@@ -383,7 +454,13 @@ public class CQuestionsController extends Application implements Initializable {
             int level = i+1;
             listChildren.get(i).setOnMouseClicked(e-> {
                 String fileName = question.getType() + "_" + question.getOrd();
-                File csatData = new File("src/main/java/Data/SubAnswer/" + fileName + ".json");
+                Path path = Paths.get("Data", "SubAnswer");
+                try {
+                    Files.createDirectories(path);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                File csatData = new File(path.toAbsolutePath().toString()+"\\" + fileName + ".json");
                 if (!csatData.exists()) {
                     try {
                         csatData.createNewFile();
@@ -447,7 +524,13 @@ public class CQuestionsController extends Application implements Initializable {
             int level = i+1;
             listChildrent.get(i).setOnMouseClicked(e->{
                 String fileName = question.getType()+ "_" + question.getOrd();
-                File csatData = new File("src/main/java/Data/SubAnswer/" + fileName +".json");
+                Path path = Paths.get("Data","SubAnswer");
+                try {
+                    Files.createDirectories(path);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                File csatData = new File(path.toAbsolutePath().toString()+"\\" + fileName +".json");
                 if(!csatData.exists()){
                     try {
                         csatData.createNewFile();
@@ -509,11 +592,16 @@ public class CQuestionsController extends Application implements Initializable {
 
         ObservableList<Node> listChildren = listChoice.getChildren();
         for(int i =0; i<7; i++){
-            ObservableList<Node> listChildrent = listChoice.getChildren();
             int level = i+1;
             listChildren.get(i).setOnMouseClicked(e-> {
                 String fileName = question.getType() + "_" + question.getOrd();
-                File csatData = new File("src/main/java/Data/SubAnswer/" + fileName + ".json");
+                Path path = Paths.get("Data", "SubAnswer");
+                try {
+                    Files.createDirectories(path);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                File csatData = new File(path.toAbsolutePath().toString()+"\\" + fileName + ".json");
                 if (!csatData.exists()) {
                     try {
                         csatData.createNewFile();
@@ -563,7 +651,7 @@ public class CQuestionsController extends Application implements Initializable {
         File fileEmptyStar = new File(emptyStarPath);
         File fileFullStar = new File(fullStarPath);
         if(fileEmptyStar.exists()&&fileFullStar.exists()){;
-            System.out.println("file Tồn tại");
+
         }
 
         Image emptyStarImage = new Image(fileEmptyStar.toURI().toString());
@@ -583,7 +671,13 @@ public class CQuestionsController extends Application implements Initializable {
             int level = i +1;
             listImageStar.get(i).setOnMouseClicked(e->{
                 String fileName = question.getType()+ "_" + question.getOrd();
-                File starData = new File("src/main/java/Data/SubAnswer/" + fileName +".json");
+                Path path = Paths.get("Data", "SubAnswer");
+                try {
+                    Files.createDirectories(path);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                File starData = new File(path.toAbsolutePath().toString()+"\\" + fileName +".json");
                 if(!starData.exists()){
                     try {
                         starData.createNewFile();
@@ -634,7 +728,14 @@ public class CQuestionsController extends Application implements Initializable {
             if(!newValue){
                 //open and write data to file
                 String fileName = question.getType()+ "_" + question.getOrd();
-                File openData = new File("src/main/java/Data/SubAnswer/" + fileName +".json");
+                Path path = Paths.get("Data", "SubAnswer");
+                try {
+                    Files.createDirectories(path);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                File openData = new File(path.toAbsolutePath().toString()+"\\" + fileName +".json");
+
                 if(!openData.exists()){
                     try {
                         openData.createNewFile();
@@ -689,7 +790,13 @@ public class CQuestionsController extends Application implements Initializable {
 
         name.focusedProperty().addListener(((observable, oldValue, newValue) -> {
             String fileName = question.getType()+ "_" + question.getOrd();
-            File contactData = new File("src/main/java/Data/SubAnswer/" + fileName +".json");
+            Path path = Paths.get("Data", "SubAnswer");
+            try {
+                Files.createDirectories(path);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            File contactData = new File(path.toAbsolutePath().toString() + "\\" + fileName +".json");
             if(!contactData.exists()){
                 try {
                     contactData.createNewFile();
@@ -789,6 +896,7 @@ public class CQuestionsController extends Application implements Initializable {
         return contactLayout;
     }
 
+    //check data
     private boolean checkValidateEmail(String text) {
         String format = "^[a-z][a-z0-9_.]{5,32}@[a-z0-9]{2,}(\\.[a-z0-9]{2,4}){1,2}$";
         Pattern pattern = Pattern.compile(format);
@@ -803,13 +911,17 @@ public class CQuestionsController extends Application implements Initializable {
         return matcher.matches();
     }
 
+    private boolean checkAmountAnswerData(String fileDirectory, AnswerTotal data){
+        return false;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        Screen screen = Screen.getPrimary();
-//        Rectangle2D rectangle2D = screen.getVisualBounds();
-//        parentListAnswer.setPrefWidth(rectangle2D.getWidth());
 
+        //set full scene for question
+        Screen screen = Screen.getPrimary();
+        Rectangle2D rectangle2D = screen.getVisualBounds();
+        parentListAnswer.setPrefWidth(rectangle2D.getWidth()-200.0);
 
         AnswerService answerService = new AnswerService();
 
@@ -860,7 +972,6 @@ public class CQuestionsController extends Application implements Initializable {
         }
 
         //Tieng viet by default
-
         languageSwitch.selectedProperty().addListener((observable, oldValue, newValue) ->
         {
             if (newValue) {
@@ -921,12 +1032,12 @@ public class CQuestionsController extends Application implements Initializable {
             try{
                 answerTotal.setAnswerTotalID(answerService.getAnswerTotalID());
             }catch (IOException er){
-                System.out.println("avas");
+                System.out.println("Lỗi set ID cho answer total");
             }
 
             ArrayList<SubAnswer> listAnswer = new ArrayList<>();
-            String path = "src/main/java/Data/SubAnswer";
-            File parentListData = new File(path);
+            Path path = Paths.get("Data", "SubAnswer");
+            File parentListData = new File(path.toAbsolutePath().toString());
             if(parentListData.isDirectory()){
                 File[] listDataFile = parentListData.listFiles();
                 for(File child : listDataFile){
@@ -990,13 +1101,65 @@ public class CQuestionsController extends Application implements Initializable {
             long stt = answerService.uploadAnswerTotal(answerTotal);
 
             if(stt != 400 && stt !=500){
-                setScene(CThanksController.getParent(), e);
+                Path answerPathData = Paths.get("Data","Answer", "UpdatedAnswer");
+                try {
+                    Files.createDirectories(answerPathData);
+                } catch (IOException ex) {
+                    System.out.println("không thể tạo đường dẫn UpdatedAnswer");
+                }
+                String nameOfUpdatedAnswer = "answerTotal_" + LocalDateTime.now().getHour() + "h"+ LocalDateTime.now().getMinute() + "m"+LocalDateTime.now().getSecond() + ".json";
+                File updatedAnswerData = new File(answerPathData.toAbsolutePath().toString()+"\\" + nameOfUpdatedAnswer);
+                if(!updatedAnswerData.exists()){
+                    try {
+                        updatedAnswerData.createNewFile();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+
+                try{
+                    ObjectMapper objectMapper = new ObjectMapper();
+                    objectMapper.writerWithDefaultPrettyPrinter().writeValue(updatedAnswerData, answerTotal);
+                } catch (JsonGenerationException err) {
+                    System.out.println("không thể tạo json Generator");
+                } catch (JsonMappingException err) {
+                    System.out.println("Không thể mapping dữ liệu!");
+                } catch (IOException err) {
+                    System.out.println("Lỗi ghi dữ liệu online vào file");
+                }
+
                 File[] listDatafile = parentListData.listFiles();
                 for(int i = 0; i <listAnswer.size(); i++){
                     listDatafile[i].delete();
                 }
+                setScene(CThanksController.getParent(), e);
             }else{
-                FileMethod.saveFile("src/main/java/Data/Answer/", "Answer.json", answerTotal);
+                Path answerPathData = Paths.get("Data","Answer", "NotBeUpdated");
+                try {
+                    Files.createDirectories(answerPathData);
+                } catch (IOException ex) {
+                    System.out.println("không thể tạo đường dẫn answer offline");
+                }
+                String nameOfNotBeUpdatedAnswer = "answerTotal_" + LocalDateTime.now().getHour() + "h"+ LocalDateTime.now().getMinute() + "m"+LocalDateTime.now().getSecond() + ".json";
+                File notBeUpdatedAnswer = new File(answerPathData.toAbsolutePath().toString() + "\\" + nameOfNotBeUpdatedAnswer);
+                if(!notBeUpdatedAnswer.exists()){
+                    try {
+                        notBeUpdatedAnswer.createNewFile();
+                    } catch (IOException ex) {
+                        System.out.println("Không thể ghi thông tin answer vào file offline");
+                    }
+                }
+                try{
+                    ObjectMapper objectMapper = new ObjectMapper();
+                    objectMapper.writerWithDefaultPrettyPrinter().writeValue(notBeUpdatedAnswer, answerTotal);
+                } catch (JsonGenerationException err) {
+                    System.out.println("không thể tạo json Generator");
+                } catch (JsonMappingException err) {
+                    System.out.println("Không thể mapping dữ liệu!");
+                } catch (IOException err) {
+                    System.out.println("Lỗi ghi dữ liệu offline vào file");
+                }
+
             }
         });
 
@@ -1010,14 +1173,6 @@ public class CQuestionsController extends Application implements Initializable {
             second = 10;
         });
 
-
-//        languageSwitch.focusTraversableProperty().addListener((observable, oldValue, newValue) -> {
-//            if(newValue){
-//                languageSwitch.setText("Tiếng Việt");
-//            }else{
-//                languageSwitch.setText("English");
-//            }
-//        });
 
         //testing
     }

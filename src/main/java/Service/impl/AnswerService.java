@@ -177,16 +177,6 @@ public class AnswerService {
         answerTotalJson.put("answerSingleChoiceForms", listSingleAnswer);
 
 
-        try{
-            File file = new File("src/main/java/Data/demoData.json");
-            FileWriter fileWriter = new FileWriter(file);
-            fileWriter.write(String.valueOf(answerTotalJson));
-            fileWriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
         HttpClient httpClient = HttpClientBuilder.create().build();
         HttpPost request = new HttpPost(URLApi.UPLOAD_ANSWER);
 

@@ -17,6 +17,9 @@ import org.json.simple.parser.ParseException;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 public class CompanyController implements Initializable {
@@ -26,7 +29,8 @@ public class CompanyController implements Initializable {
     private User getUserData(){
         User user = new User();
         try{
-            File file = new File("src/main/java/Data/Answer/UserData.txt");
+            Path path = Paths.get("Data", "User");
+            File file = new File(path.toAbsolutePath().toString() + "\\UserData.txt");
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String userData = bufferedReader.readLine();
@@ -35,47 +39,43 @@ public class CompanyController implements Initializable {
             String username = (String) userJson.get("username");
             user.setPassword(password);
             user.setUsername(username);
-
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Không tìm thấy thông tin tài khoản");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("không tìm thấy thông tin tài khoản");
         } catch (ParseException e) {
-            e.printStackTrace();
+            System.out.println("không tìm thấy thông tin tài khoản");
         }
         return user;
     }
-    private void syncData(){
+    private Company syncDataAndReturnCompanyData(){
         User user = getUserData();
         CompanyService companyService = new CompanyService();
         Company company = companyService.getCompanyInfor(user);
-        String logoDirectory = "src/main/java/Data/Company/Logo";
+        Path companyDataPath = Paths.get("Data", "Company\\Logo");
         String urlLogo = URLApi.HOST + "/" + company.getImgLogo();
         try{
-            FileMethod.createDirectory(logoDirectory);
-            FileMethod.saveFileFromURL(logoDirectory + "/" + company.getImgLogo(), urlLogo);
+            Files.createDirectories(companyDataPath);
+            FileMethod.saveFileFromURL(companyDataPath.toAbsolutePath().toString() + "\\" + company.getImgLogo(), urlLogo);
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            System.out.println("Lỗi tại CompanyController");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Lỗi tại company controller");
         }
-
+        return company;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        User user = getUserData();
-        syncData();
-        CompanyService companyService = new CompanyService();
-        Company company = companyService.getCompanyInfor(user);
+        Company company = syncDataAndReturnCompanyData();
         //setting logo and name of company
         name.setText(company.getNameOfCompany());
         try {
-            Image image = new Image(new FileInputStream("src/main/java/Data/Company/Logo/hignland.png"));
+            Path companyLogo = Paths.get("Data", "Company\\Logo");
+            Image image = new Image(new FileInputStream(companyLogo.toAbsolutePath().toString() + "\\" + company.getImgLogo()));
             logoImg.setImage(image);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
     }
 }

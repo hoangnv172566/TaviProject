@@ -48,7 +48,7 @@
                      <children>
                         <VBox alignment="CENTER" prefWidth="200.0" spacing="20.0">
                            <children>
-                              <JFXToggleButton fx:id="languageSwitch" text="Ngôn ngữ" VBox.vgrow="ALWAYS" />
+                              <JFXToggleButton fx:id="languageSwitch" text="Tiếng Việt" VBox.vgrow="ALWAYS" />
                               <Button fx:id="sendingSurvey" mnemonicParsing="false" prefHeight="45.0" prefWidth="150.0" text="Hoàn thành" VBox.vgrow="ALWAYS" />
                               <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="150.0" text="Làm lại" textAlignment="CENTER" VBox.vgrow="ALWAYS" />
                            </children>

@@ -121,5 +121,6 @@
       </HBox>
       <Line endX="10.0" layoutX="176.0" layoutY="384.0" startX="-62.0" stroke="#686767" strokeWidth="0.5" />
       <Line endX="-42.0" layoutX="418.0" layoutY="383.0" startX="-100.0" stroke="#686767" strokeWidth="0.5" />
+      <Label fx:id="announcement" layoutX="88.0" layoutY="135.0" prefHeight="17.0" prefWidth="300.0" text="Tài khoản hoặc mật khẩu không đúng" textFill="RED" visible="false" />
    </children>
 </AnchorPane>

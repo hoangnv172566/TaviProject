@@ -11,6 +11,7 @@ import javafx.stage.StageStyle;
 public class Main extends Application {
 
     public static void main(String[] args) {
+
         launch(args);
     }
 
@@ -25,8 +26,8 @@ public class Main extends Application {
         primaryStage.setHeight(bounds.getHeight());
 
         primaryStage.setScene(new Scene(LoginV2Controller.getParent()));
-        primaryStage.initStyle(StageStyle.DECORATED);
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.show();
-    }
 
+    }
 }

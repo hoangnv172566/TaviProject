@@ -1,0 +1,18 @@
+{
+  "answerTotalID" : 1309,
+  "nameOfAnswerTotal" : null,
+  "surveyTotalID" : 0,
+  "deviceKioskID" : 0,
+  "listAnswer" : [ {
+    "subAnswerID" : 1,
+    "ord" : 1,
+    "level" : 5
+  }, {
+    "subAnswerID" : 6,
+    "ord" : 2,
+    "listAnswerMultiChoice" : [ {
+      "sampleAnswerID" : 3,
+      "ord" : 4
+    } ]
+  } ]
+}

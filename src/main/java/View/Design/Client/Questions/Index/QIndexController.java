@@ -18,6 +18,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -29,13 +31,17 @@ import org.json.simple.parser.ParseException;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicBoolean;
 
-public class QIndexController extends Application implements Initializable {
+public class QIndexController implements Initializable {
     @FXML private Button loadQuesBtn;
+    @FXML private Button historyButton;
     @FXML private Button logoutBtn;
     @FXML private VBox indexFunctionPane;
     @FXML private AnchorPane parentLoadQuestPane;
@@ -69,9 +75,11 @@ public class QIndexController extends Application implements Initializable {
     }
 
     private void syncData(){
+
         try {
             User userInfo = new User();
-            FileReader readUserInfo = new FileReader(new File("src/main/java/Data/Answer/UserData.txt"));
+            Path path = Paths.get("Data", "User");
+            FileReader readUserInfo = new FileReader(new File(path.toAbsolutePath().toString() + "\\UserData.txt"));
             BufferedReader bufferedReader = new BufferedReader(readUserInfo);
             String data = bufferedReader.readLine();
             JSONObject userData = (JSONObject) new JSONParser().parse(data);
@@ -92,33 +100,35 @@ public class QIndexController extends Application implements Initializable {
                     String fileName = "/" + collectionItem.getUrl();
                     String webUrl = host + fileName;
                     try {
-                        FileMethod.createDirectory("src/main/java/Data/Collection/Image");
-                        String pathImageFile = "src/main/java/Data/Collection/Image" + fileName;
+                        Path imgPath = Paths.get("Data", "Collection\\Image");
+                        Files.createDirectories(imgPath);
+                        String pathImageFile = imgPath.toAbsolutePath().toString() + "\\" + fileName;
                         FileMethod.saveFileFromURL(pathImageFile, webUrl);
 
                     } catch (MalformedURLException e) {
-                        e.printStackTrace();
+                        System.out.println("Sai định dạng URL");
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        System.out.println("Không định dạng được file!");
                     }
                 }else{
                     if(!isLink(collectionItem.getUrl())){
                         String fileName = "/" + collectionItem.getUrl();
                         String webUrl = host + fileName;
                         try {
-                            FileMethod.createDirectory("src/main/java/Data/Collection/Video");
-                            String pathImageFile = "src/main/java/Data/Collection/Video" + fileName;
+                            Path videoPath = Paths.get("Data", "Collection\\Video");
+                            Files.createDirectories(videoPath);
+                            String pathImageFile = videoPath.toAbsolutePath().toString() + fileName;
                             FileMethod.saveFileFromURL(pathImageFile, webUrl);
                         } catch (MalformedURLException e) {
-                            e.printStackTrace();
+                            System.out.println("Không đúng định dạng URL");
                         } catch (IOException e) {
-                            e.printStackTrace();
+                            System.out.println("Không ghi được file!");
                         }
                     }else{
                         try {
-                            FileMethod.createDirectory("src/main/java/Data/Collection/Video");
-                            String pathImageFile = "src/main/java/Data/Collection/Video" +"/CreatedVideoAt"+LocalDateTime.now().getHour() + "h" +LocalDateTime.now().getMinute() + "m" +LocalDateTime.now().getSecond()+"s"+ ".mp4";
-                            System.out.println(pathImageFile);
+                            Path videoPath = Paths.get("Data", "Collection\\Video");
+                            Files.createDirectories(videoPath);
+                            String pathImageFile = videoPath.toAbsolutePath().toString() +"\\CreatedVideoAt"+LocalDateTime.now().getHour() + "h" +LocalDateTime.now().getMinute() + "m" +LocalDateTime.now().getSecond()+"s"+ ".mp4";
                             FileMethod.saveFileFromURL(pathImageFile, collectionItem.getUrl());
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -127,38 +137,60 @@ public class QIndexController extends Application implements Initializable {
                 }
 
 
-
-
-
             });
 
-
-
-
-
         } catch (FileNotFoundException e) {
-
+            System.out.println("Khong tim thay userData");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("khong doc dc file");
         } catch (ParseException e) {
-            e.printStackTrace();
+            System.out.println("khong the convert");
         }
 
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         syncData();
+
+
+
+        //set style
+        String leftBtnStyle = "-fx-border-radius: 0;\n" +
+                "    -fx-background-radius: 0;\n" +
+                "    -fx-background-color: transparent;\n" +
+                "    -fx-text-fill: white;";
+
+        String hoverLeftBtnStyle = "-fx-background-color: white;\n" +
+                "    -fx-border-radius: 0;\n" +
+                "    -fx-background-radius: 25 0 0 25;\n" +
+                "    -fx-text-fill: black;\n" +
+                "    -fx-font-weight: bold;\n" +
+                "    -fx-font-size: 14;";
+
+        surveyBtn.setStyle(hoverLeftBtnStyle);
+        syncDataBtn.setStyle(leftBtnStyle);
+        logoutBtn.setStyle(leftBtnStyle);
+
+
 
         //set event for button
         loadQuesBtn.setOnAction(e->{
             setScene(CQuestionsController.getParent(), e);
         });
 
+        historyButton.setOnAction(event -> {
+             Alert alert = new Alert(AlertType.INFORMATION);
+             alert.setContentText("Chức năng chưa phát triển");
+             alert.showAndWait();
+        });
+
         logoutBtn.setOnAction(e->{
             UserService userService = new UserService();
             try{
-                File file = new File("src/main/java/Data/UserData.txt");
+                Path userDataPath = Paths.get("Data", "User");
+                File file = new File(userDataPath.toAbsolutePath().toString()+"\\UserData.txt");
                 FileReader fileReader = new FileReader(file);
                 BufferedReader bufferedReader = new BufferedReader(fileReader);
                 JSONParser jsonParser = new JSONParser();
@@ -171,11 +203,25 @@ public class QIndexController extends Application implements Initializable {
 
                 bufferedReader.close();
                 fileReader.close();
-                file.delete();
+
+
+                Path listPathFile = Paths.get("Data");
+                File[] listFiles = new File(listPathFile.toAbsolutePath().toString()).listFiles();
+                for (File fileE:listFiles){
+                    if(fileE.isDirectory()){
+                        File[] listFileData = fileE.listFiles();
+                        if(listFileData!=null){
+                            for(File f :listFileData){
+                                f.delete();
+                            }
+                        }
+
+                    }
+                }
             } catch (FileNotFoundException ex) {
-                ex.printStackTrace();
+
             } catch (IOException ex) {
-                ex.printStackTrace();
+                System.out.println("Cann't Open or directory doesn't exist");
             } catch (ParseException ex) {
                 ex.printStackTrace();
             }
@@ -187,6 +233,10 @@ public class QIndexController extends Application implements Initializable {
                 indexFunctionPane.setVisible(true);
                 syncDataParent.setVisible(false);
             }
+            surveyBtn.setStyle(hoverLeftBtnStyle);
+            syncDataBtn.setStyle(leftBtnStyle);
+            logoutBtn.setStyle(leftBtnStyle);
+
         });
 
         syncDataBtn.setOnAction(event -> {
@@ -194,15 +244,45 @@ public class QIndexController extends Application implements Initializable {
                 indexFunctionPane.setVisible(false);
                 syncDataParent.setVisible(true);
             }
+            surveyBtn.setStyle(leftBtnStyle);
+            syncDataBtn.setStyle(hoverLeftBtnStyle);
+            logoutBtn.setStyle(leftBtnStyle);
+
+
         });
 
+        surveyBtn.hoverProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue){
+                surveyBtn.setStyle(hoverLeftBtnStyle);
+            }else if(indexFunctionPane.isVisible()){
+                surveyBtn.setStyle(hoverLeftBtnStyle);
+            }else{
+                surveyBtn.setStyle(leftBtnStyle);
+            }
+
+
+        });
+
+        syncDataBtn.hoverProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue){
+                syncDataBtn.setStyle(hoverLeftBtnStyle);
+            }else if(syncDataParent.isVisible()){
+                syncDataBtn.setStyle(hoverLeftBtnStyle);
+            }else{
+                syncDataBtn.setStyle(leftBtnStyle);
+            }
+
+
+        });
+
+        logoutBtn.hoverProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue){
+                logoutBtn.setStyle(hoverLeftBtnStyle);
+            }else{
+                logoutBtn.setStyle(leftBtnStyle);
+            }
+        });
 
     }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        primaryStage.setScene(new Scene(getParent()));
-        primaryStage.setFullScreen(true);
-        primaryStage.show();
-    }
 }
