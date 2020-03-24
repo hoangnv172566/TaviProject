@@ -42,7 +42,7 @@ public class FileMethod {
 
         try { bufferedInputStream = new BufferedInputStream(new URL(fileUrl).openStream());
             fileOutputStream = new FileOutputStream(fileName);
-            byte data[] = new byte[1024];
+            byte[] data = new byte[1024];
             int count;
             while ((count = bufferedInputStream .read(data, 0, 1024)) != -1) {
                 fileOutputStream.write(data, 0, count);

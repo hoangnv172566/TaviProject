@@ -4,42 +4,35 @@ import Config.URLApi;
 import Models.Survey.Choice.*;
 import Models.Survey.Question;
 import Models.Survey.Survey;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.JsonObject;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.fluent.Request;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class SurveyService {
 
-    public JSONObject getdata(){
-        try{
-            byte[] responseByte =  Request.Get(URLApi.SURVEY)
+    public JSONObject getdata(long idSurvey) throws IOException, ParseException {
+
+            byte[] responseByte =  Request.Get("http://103.9.86.61:8080/admin_srs/api/v1/public/survey-display/find-by-survey-total?id=" + idSurvey)
                     .execute().returnContent().asBytes();
             String response = new String(responseByte, StandardCharsets.UTF_8);
             JSONParser jsonParser = new JSONParser();
             JSONObject result = (JSONObject) jsonParser.parse(response);
-            JSONObject data = (JSONObject) result.get("data");
-            return data;
-        } catch (ParseException e) {
-            e.printStackTrace();
-        } catch (ClientProtocolException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+            return (JSONObject) result.get("data");
+
     }
 
-    public String getNameSurvey(){
-        JSONObject surveyTotal = (JSONObject) getdata().get("surveyTotal");
-        String nameSurvey = (String) surveyTotal.get("name");
-        return nameSurvey;
-    }
     public long getOrderQuestion(long surveyTotalID, long questionID, boolean enable){
         try{
             byte[] responeByte= Request.Get("http://103.9.86.61:8080/admin_srs/api/v1/public/survey-total-has-survey/search?survey-total-id=" + String.valueOf(surveyTotalID) + "&survey-id="+ String.valueOf(questionID) +"&enable=" + String.valueOf(enable)).execute().returnContent().asBytes();
@@ -93,106 +86,120 @@ public class SurveyService {
         return null;
     }
 
-    public Survey getSurvey(){
-        ArrayList<JSONObject> surveyRecordList = (ArrayList<JSONObject>) getdata().get("surveyRecordList");
-        Survey survey = new Survey();
+    public Survey getSurvey(long idSurvey){
+        try{
+            JSONObject data = getdata(idSurvey);
 
-        JSONObject surveyTotal = (JSONObject) getdata().get("surveyTotal");
-        long idSurvey = (long) surveyTotal.get("id");
-        survey.setIdSurvey(idSurvey);
+            String name = (String) ((JSONObject) data.get("surveyTotal")).get("name") ;
+            System.out.println(name);
 
-        survey.setContentSurvey(getNameSurvey());
+            ArrayList<JSONObject> surveyRecordList = (ArrayList<JSONObject>) data.get("surveyRecordList");
+            Survey survey = new Survey();
 
-        Question question;
-        ArrayList<Question> listQuestions = new ArrayList<>();
+            survey.setIdSurvey(idSurvey);
+            survey.setContentSurvey(name);
 
-        for(JSONObject ques:surveyRecordList){
+            Question question;
+            ArrayList<Question> listQuestions = new ArrayList<>();
 
-            question = new Question();
-            JSONObject questionJSon = (JSONObject) ques.get("survey");
+            for(JSONObject ques:surveyRecordList){
 
-            String viContent = (String) questionJSon.get("viQuestion");
-            question.setViContent(viContent);
+                question = new Question();
+                JSONObject questionJSon = (JSONObject) ques.get("survey");
 
-            String enContent = (String) questionJSon.get("enQuestion");
-            question.setEnContent(enContent);
+                String viContent = (String) questionJSon.get("viQuestion");
+                question.setViContent(viContent);
 
-            long questionID = (long) questionJSon.get("id");
-            question.setQuestionID(questionID);
+                String enContent = (String) questionJSon.get("enQuestion");
+                question.setEnContent(enContent);
 
-            boolean enable = (boolean) questionJSon.get("enable");
-            question.setEnable(enable);
+                long questionID = (long) questionJSon.get("id");
+                question.setQuestionID(questionID);
 
-            long ord = getOrderQuestion(survey.getIdSurvey(), question.getQuestionID(), enable);
-            question.setOrd(ord);
+                boolean enable = (boolean) questionJSon.get("enable");
+                question.setEnable(enable);
 
-            String typeQuestion = format(String.valueOf(questionJSon.get("type")));
-            question.setType(typeQuestion);
+                long ord = getOrderQuestion(survey.getIdSurvey(), question.getQuestionID(), enable);
+                question.setOrd(ord);
 
+                String typeQuestion = format(String.valueOf(questionJSon.get("type")));
+                question.setType(typeQuestion);
 
+                boolean require = (boolean) ques.get("require");
+                question.setRequire(require);
 
+                //adding choice depends on type of question
+                ArrayList<JSONObject> sampleAnswerArr = (ArrayList<JSONObject>) ques.get("sampleAnswers");
 
-            //adding choice depends on type of question
-            ArrayList<JSONObject> sampleAnswerArr = (ArrayList<JSONObject>) ques.get("sampleAnswers");
+                ArrayList<Choice> listChoice = new ArrayList<>();;
+                if (sampleAnswerArr != null) {
+                    for(JSONObject sampleAnswer :sampleAnswerArr){
+                        if(question.getType().equals("MULTIPLE_CHOICE")) {
 
-            ArrayList<Choice> listChoice = new ArrayList<>();;
-            if (sampleAnswerArr != null) {
-                for(JSONObject sampleAnswer :sampleAnswerArr){
-                    if(question.getType().equals("MULTIPLE_CHOICE")) {
-                        MutipleChoice choice = new MutipleChoice();
+                            MutipleChoice choice = new MutipleChoice();
 
-                        String enMultiContent = (String) sampleAnswer.get("enTitle");
-                        choice.setEnContentChoice(enMultiContent);
+                            String enMultiContent = (String) sampleAnswer.get("enTitle");
+                            choice.setEnContentChoice(enMultiContent);
 
-                        String viMultiContent = (String) sampleAnswer.get("viTitle");
-                        choice.setViContentChoice(viMultiContent);
+                            String viMultiContent = (String) sampleAnswer.get("viTitle");
+                            choice.setViContentChoice(viMultiContent);
 
-                        long sampleAnswerID = (long) sampleAnswer.get("id");
-                        choice.setSampleAnswerID(sampleAnswerID);
-
-
-                        long ordSampleAnswer = (long) sampleAnswer.get("ord");
-                        choice.setOrd(ordSampleAnswer);
-
-                        listChoice.add(choice);
-                    } else if(question.getType().equals("SINGLE_CHOICE")){
-                        SingleChoice choice = new SingleChoice();
-
-                        String enCESContent = (String) sampleAnswer.get("enTitle");
-                        choice.setEnContentChoice(enCESContent);
-
-                        String viCESContent = (String) sampleAnswer.get("viTitle");
-                        choice.setViContentChoice(viCESContent);
-
-                        long sampleAnswerID = (long) sampleAnswer.get("id");
-                        choice.setSampleAnswerID(sampleAnswerID);
+                            long sampleAnswerID = (long) sampleAnswer.get("id");
+                            choice.setSampleAnswerID(sampleAnswerID);
 
 
-                        long ordSampleAnswer = (long) sampleAnswer.get("ord");
-                        choice.setOrd(ordSampleAnswer);
+                            long ordSampleAnswer = (long) sampleAnswer.get("ord");
+                            choice.setOrd(ordSampleAnswer);
+
+                            listChoice.add(choice);
+                        } else if(question.getType().equals("SINGLE_CHOICE")){
+                            SingleChoice choice = new SingleChoice();
+
+                            String enCESContent = (String) sampleAnswer.get("enTitle");
+                            choice.setEnContentChoice(enCESContent);
+
+                            String viCESContent = (String) sampleAnswer.get("viTitle");
+                            choice.setViContentChoice(viCESContent);
+
+                            long sampleAnswerID = (long) sampleAnswer.get("id");
+                            choice.setSampleAnswerID(sampleAnswerID);
 
 
-                        listChoice.add(choice);
+                            long ordSampleAnswer = (long) sampleAnswer.get("ord");
+                            choice.setOrd(ordSampleAnswer);
+
+
+                            listChoice.add(choice);
+                        }
+
                     }
-
                 }
-            }
-            question.setChoice(listChoice);
+                question.setChoice(listChoice);
 
-            if(question.getType().equals("FLX")){
-                long i = (long) questionJSon.get("maxLevel");
-                question.setMaxLevel(i);
+                if(question.getType().equals("FLX")){
+                    long i = (long) questionJSon.get("maxLevel");
+                    question.setMaxLevel(i);
+                }
+                listQuestions.add(question);
             }
-            listQuestions.add(question);
+
+            survey.setListQuestion(listQuestions);
+
+            Path path = Paths.get("Data", "Survey");
+            Files.createDirectories(path);
+
+            File surveyFile = new File(path.toAbsolutePath().toString() + "\\SurveyData.json");
+            if(!surveyFile.exists()){
+                surveyFile.createNewFile();
+            }
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(surveyFile, survey);
+
+            return survey;
+        }catch (IOException | ParseException er){
+            return null;
         }
-        survey.setListQuestion(listQuestions);
 
-        return survey;
-    }
-
-    public ArrayList<Question> getCSATQuestion(Survey survey) {
-        ArrayList<Question> listCsatQuestion = new ArrayList<>(survey.getListQuestion());
-        return listCsatQuestion;
     }
 
 

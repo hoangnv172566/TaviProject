@@ -6,86 +6,115 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="314285a2-7f62-4722-907f-7700fea31450" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/TaviSRSProject_jar.xml" beforeDir="false" />
+    <list default="true" id="314285a2-7f62-4722-907f-7700fea31450" name="Default Changelist" comment="&quot;Hoang Commit&quot;">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/c5a1a5d7-a71c-41a7-afa5-58cf845a197c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c5a1a5d7-a71c-41a7-afa5-58cf845a197c.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Answer/NotBeUpdated/answerTotal_20h50m22.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Answer/NotBeUpdated/answerTotal_20h52m16.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Answer/NotBeUpdated/answerTotal_20h52m20.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Answer/UpdatedAnswer/answerTotal_10h4m37.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Answer/UpdatedAnswer/answerTotal_15h28m45.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Answer/UpdatedAnswer/answerTotal_16h17m31.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Answer/UpdatedAnswer/answerTotal_20h53m45.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Answer/UpdatedAnswer/answerTotal_20h54m28.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Answer/UpdatedAnswer/answerTotal_22h36m8.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Answer/UpdatedAnswer/answerTotal_22h40m51.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Collection/Image/545000000patrick-pellegrini-IBt5j35OIj4-unsplash.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Collection/Image/default.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Collection/Video/File_introIT.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Company/Logo/hignland.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/User/UserData.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/TaviSRSProject_jar/TaviSRSProject.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Data/Answer/UserData.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Data/Answer/java_tutorial.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Data/Answer/ll.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Data/Collection/Image/545000000patrick-pellegrini-IBt5j35OIj4-unsplash.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Data/Collection/Image/default.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Data/Collection/Video/File_introIT.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Data/Company/Company.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Data/Company/Logo/hignland.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Data/Survey/readme.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Data/Survey/surveyData.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Data/UserData.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Data/WaitingScene/WaitingSceneData.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Data/demoData.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Config/URLApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Config/URLApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Models/Survey/Choice/CESChoice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Survey/Choice/CESChoice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Models/Survey/Choice/CSATChoice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Survey/Choice/CSATChoice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Models/Survey/Choice/Choice.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Models/Survey/Choice/FLXChoice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Survey/Choice/FLXChoice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Models/Survey/Choice/MutipleChoice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Survey/Choice/MutipleChoice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Models/Survey/Choice/NPSChoice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Survey/Choice/NPSChoice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Models/Survey/Choice/SingleChoice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Survey/Choice/SingleChoice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Models/Survey/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Survey/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Models/Survey/Survey.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Survey/Survey.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Models/User/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/User/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Service/impl/AnswerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Service/impl/AnswerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Service/impl/CollectionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Service/impl/CollectionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Service/impl/CompanyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Service/impl/CompanyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Service/impl/SurveyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Service/impl/SurveyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Service/impl/ThankService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Service/impl/ThankService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Service/impl/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Service/impl/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Utils/FileMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/FileMethod.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/Design/Client/Questions/CQuestionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Design/Client/Questions/CQuestionsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/Design/Client/Questions/Index/QIndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Design/Client/Questions/Index/QIndexController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Design/Client/Questions/Index/QSyncdataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Design/Client/Questions/Index/QSyncdataController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Design/Client/Thanks/CThanksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Design/Client/Thanks/CThanksController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/Design/Common/CompanyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Design/Common/CompanyController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/Design/Common/FormLoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Design/Common/FormLoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Design/Common/HeadFunctionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Design/Common/HeadFunctionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Design/Common/LoginV2Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Design/Common/LoginV2Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Design/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/Design/ResisterController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/LoginController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/MainController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Design/Client/Questions/CSAT/C-Question-CSAT-Choice.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/View/Design/Client/Questions/CSAT/C-Question-CSAT-Choice.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Design/Common/VideoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Design/Common/VideoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/Design/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/Design/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FixedSetting/Icon/CSAT/icon_1.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FixedSetting/Icon/CSAT/icon_2.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FixedSetting/Icon/CSAT/icon_3.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FixedSetting/Icon/CSAT/icon_4.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FixedSetting/Icon/CSAT/icon_5.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Design/Client/Questions/C-Questions.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/View/Design/Client/Questions/C-Questions.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Design/Client/Questions/CES/C-Question-CES.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/View/Design/Client/Questions/CES/C-Question-CES.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Design/Client/Questions/CSAT/C-Questions-CSAT.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/View/Design/Client/Questions/CSAT/C-Questions-CSAT.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Design/Client/Questions/Contact/C-Question-Contact.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/View/Design/Client/Questions/Contact/C-Question-Contact.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Design/Client/Questions/FLX/C-Question-FLX.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/View/Design/Client/Questions/FLX/C-Question-FLX.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/View/Design/Client/Questions/Index/Q-Index.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/View/Design/Client/Questions/Index/Q-Index.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Design/Client/Questions/desktop.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Design/Client/Thanks/C-Thanks.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/View/Design/Client/Thanks/C-Thanks.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Design/Client/Questions/NPS/C-Question-NPS-Choice.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/View/Design/Client/Questions/NPS/C-Question-NPS-Choice.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Design/Client/Questions/Open/C-Question-Open.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/View/Design/Client/Questions/Open/C-Question-Open.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Design/Client/Questions/Star/C-Question-Star.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/View/Design/Client/Questions/Star/C-Question-Star.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/View/Design/Common/Form-Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/View/Design/Common/Form-Login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Design/Css/Client/QIndex.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/View/Design/Css/Client/QIndex.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Design/Index.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Design/Resister.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Image/SRS.mwb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Image/back.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Image/cauvang.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Image/hear.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Image/icons8-company-96.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Image/icons8-empty-flag-20.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Image/icons8-file-40.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Image/icons8-fraction-96.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Image/icons8-new-company-20.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Image/icons8-new-message-64.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Image/icons8-salary-male-20.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Image/icons8-staff-128.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Image/icons8-strike-96.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Image/icons8-user-64.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Image/icons8-video-editing-20.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Image/icons8-voice-recognition-96.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Image/loadQues.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Image/quest.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Login.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Design/Common/Video.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/View/Design/Common/Video.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Design/Css/Client/Question.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/View/Design/Css/Client/Question.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Design/Css/Common/Index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/View/Design/Css/Common/Index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Image/emptyStar.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/View/Image/fullStar.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/DownloadFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/DownloadFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Data/Answer/ll.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/TaviSRSProject.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Config/URLApi.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Config/URLApi.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/FixedSetting/Icon/CSAT/icon_1.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/FixedSetting/Icon/CSAT/icon_2.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/FixedSetting/Icon/CSAT/icon_3.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/FixedSetting/Icon/CSAT/icon_4.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/FixedSetting/Icon/CSAT/icon_5.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Models/Survey/Choice/CESChoice.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Models/Survey/Choice/CESChoice.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Models/Survey/Choice/CSATChoice.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Models/Survey/Choice/CSATChoice.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Models/Survey/Choice/Choice.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Models/Survey/Choice/Choice.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Models/Survey/Choice/FLXChoice.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Models/Survey/Choice/FLXChoice.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Models/Survey/Choice/MutipleChoice.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Models/Survey/Choice/MutipleChoice.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Models/Survey/Choice/NPSChoice.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Models/Survey/Choice/NPSChoice.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Models/Survey/Choice/SingleChoice.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Models/Survey/Choice/SingleChoice.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Models/Survey/Question.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Models/Survey/Question.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Models/Survey/Survey.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Models/Survey/Survey.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Models/User/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Models/User/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Service/impl/AnswerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Service/impl/AnswerService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Service/impl/CollectionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Service/impl/CollectionService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Service/impl/CompanyService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Service/impl/CompanyService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Service/impl/SurveyService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Service/impl/SurveyService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Service/impl/ThankService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Service/impl/ThankService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Service/impl/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Service/impl/UserService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/View/Design/Client/Questions/C-Questions.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Design/Client/Questions/C-Questions.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/View/Design/Client/Questions/CQuestionsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Design/Client/Questions/CQuestionsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Design/Client/Questions/CSAT/C-Question-CSAT-Choice.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Design/Client/Questions/CSAT/C-Question-CSAT-Choice.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/View/Design/Client/Questions/CSAT/C-Questions-CSAT.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Design/Client/Questions/CSAT/C-Questions-CSAT.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/View/Design/Client/Questions/Index/Q-Index.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Design/Client/Questions/Index/Q-Index.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/View/Design/Client/Questions/Index/QIndexController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Design/Client/Questions/Index/QIndexController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Design/Client/Questions/desktop.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Design/Client/Thanks/C-Thanks.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Design/Client/Thanks/C-Thanks.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/View/Design/Client/Questions/Index/QSyncdataController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Design/Client/Questions/Index/QSyncdataController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/View/Design/Client/Questions/NPS/C-Question-NPS-Choice.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Design/Client/Questions/NPS/C-Question-NPS-Choice.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/View/Design/Client/Thanks/CThanksController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Design/Client/Thanks/CThanksController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/View/Design/Common/CompanyController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Design/Common/CompanyController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/View/Design/Common/Form-Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Design/Common/Form-Login.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/View/Design/Common/FormLoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Design/Common/FormLoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Design/Common/HeadFunctionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Design/Common/HeadFunctionController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Design/Common/LoginV2Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Design/Common/LoginV2Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Design/Index.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/View/Design/Common/Video.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Design/Common/Video.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/View/Design/Common/VideoController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Design/Common/VideoController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/View/Design/Common/VideoController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Design/Common/VideoController$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/View/Design/Common/VideoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Design/Common/VideoController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/View/Design/Css/Client/Question.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Design/Css/Client/Question.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/View/Design/Css/Common/Index.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Design/Css/Common/Index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/View/Design/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/View/Design/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Design/Resister.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Design/ResisterController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/Login.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/LoginController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/View/MainController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/View/Image/emptyStar.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/View/Image/fullStar.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/DownloadFile.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/DownloadFile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/META-INF/TaviSRSProject.kotlin_module" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,9 +163,9 @@
       <list>
         <option value="Interface" />
         <option value="CSS File" />
+        <option value="JavaFXApplication" />
         <option value="FxmlFile" />
         <option value="Class" />
-        <option value="JavaFXApplication" />
       </list>
     </option>
   </component>
@@ -178,8 +207,8 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/View/Design/Client/Questions/Index" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/Setting/Icon/CSAT" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/View/Design/Common" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/FixedSetting/DefaultWaitingScene" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -188,13 +217,6 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="F:\Project\TaviSRSProject\src\main\resources" />
-      <recent name="F:\Project\TaviSRSProject\src\main\resources\View\Image" />
-      <recent name="F:\Project\TaviSRSProject\src\main\resources\View\Design\Client\Questions\Index" />
-      <recent name="F:\Project\TaviSRSProject\src\main\resources\View\Design\Client\Questions\CSAT" />
-      <recent name="F:\Project\TaviSRSProject\src\main\resources\View\Image\Questions" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="View.Design" />
       <recent name="" />
@@ -202,14 +224,28 @@
       <recent name="View.Design.Client.Questions.CSAT" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Project\TaviSRSProject\FixedSetting\DefaultWaitingScene" />
+      <recent name="F:\Project\TaviSRSProject\src\main\resources\View\Image\Common" />
       <recent name="F:\Project\TaviSRSProject\src\main\resources\Setting\Icon\CSAT" />
       <recent name="F:\Project\TaviSRSProject\src\main\java\Data\Survey\Image\CSAT" />
       <recent name="F:\Project\TaviSRSProject\src\main\resources\View\Image\QIndex" />
-      <recent name="F:\Project\TaviSRSProject\src\main\resources\View\Image\Common" />
-      <recent name="F:\Project\TaviSRSProject\src\main\java\Data\Answer" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\Project\TaviSRSProject\src\main\resources\Data" />
+      <recent name="F:\Project\TaviSRSProject\src\main\resources" />
+      <recent name="F:\Project\TaviSRSProject\src\main\resources\View\Image" />
+      <recent name="F:\Project\TaviSRSProject\src\main\resources\View\Design\Client\Questions\Index" />
+      <recent name="F:\Project\TaviSRSProject\src\main\resources\View\Design\Client\Questions\CSAT" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">
+    <configuration name="DownloadFile" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="DownloadFile" />
+      <module name="TaviSRSProject" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="View.Design.Main" />
       <module name="TaviSRSProject" />
@@ -230,8 +266,50 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SplashScreenController" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="View.Design.Common.SplashScreenController" />
+      <module name="TaviSRSProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="View.Design.Common.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VideoController" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="View.Design.Common.VideoController" />
+      <module name="TaviSRSProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="View.Design.Common.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WaitingSceneController" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="View.Design.Common.WaitingSceneController" />
+      <module name="TaviSRSProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="View.Design.Common.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.SplashScreenController" />
+        <item itemvalue="Application.WaitingSceneController" />
+        <item itemvalue="Application.VideoController" />
         <item itemvalue="Application.QIndexController" />
       </list>
     </recent_temporary>
@@ -306,7 +384,20 @@
       <workItem from="1584423481575" duration="54811000" />
       <workItem from="1584609116034" duration="912000" />
       <workItem from="1584624618819" duration="7906000" />
-      <workItem from="1584671983874" duration="16160000" />
+      <workItem from="1584671983874" duration="21699000" />
+      <workItem from="1584720476892" duration="19356000" />
+      <workItem from="1584782418565" duration="8394000" />
+      <workItem from="1584805719366" duration="957000" />
+      <workItem from="1584845912687" duration="25763000" />
+      <workItem from="1584917714053" duration="5909000" />
+      <workItem from="1584932893324" duration="5772000" />
+      <workItem from="1584945864624" duration="14249000" />
+      <workItem from="1584963596755" duration="6002000" />
+      <workItem from="1584979102488" duration="4483000" />
+      <workItem from="1585020828218" duration="4243000" />
+      <workItem from="1585032509749" duration="8475000" />
+      <workItem from="1585058560312" duration="897000" />
+      <workItem from="1585069253572" duration="9354000" />
     </task>
     <task id="LOCAL-00001" summary="&quot;Hoang Commit&quot;">
       <created>1584416580250</created>
@@ -356,26 +447,26 @@
     <state x="274" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728/1366.0.1600.860@0.0.1366.728" timestamp="1578969827991" />
     <state x="1687" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728/1366.0.1600.860@1366.0.1600.860" timestamp="1581563764773" />
     <state x="274" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1584552148135" />
-    <state x="-1297" y="-11" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1584535679893">
-      <screen x="-1920" y="-251" width="1920" height="1040" />
+    <state x="443" y="168" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1584917921879">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="-1297" y="-11" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728/-1920.-251.1920.1040@-1920.-251.1920.1040" timestamp="1584535679893" />
     <state x="-1297" y="-12" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728/-1920.-252.1920.1040@-1920.-252.1920.1040" timestamp="1584179067189" />
     <state x="1885" y="198" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728/1366.0.1600.860@1366.0.1600.860" timestamp="1581391378180" />
-    <state x="443" y="168" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1583854055965" />
+    <state x="443" y="168" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1584917921879" />
     <state x="360" y="162" key="#com.intellij.ide.actions.ChooseComponentsToExportDialog" timestamp="1584551735442">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="360" y="162" key="#com.intellij.ide.actions.ChooseComponentsToExportDialog/0.0.1366.728@0.0.1366.728" timestamp="1584551735442" />
-    <state x="513" y="0" key="#com.intellij.ide.util.MemberChooser" timestamp="1584554551078">
+    <state x="513" y="0" key="#com.intellij.ide.util.MemberChooser" timestamp="1584922448786">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="-1199" y="-252" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728/-1920.-252.1920.1040@-1920.-252.1920.1040" timestamp="1584351203948" />
     <state x="513" y="0" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728/1366.-60.1920.1040@0.0.1366.728" timestamp="1584017228237" />
     <state x="2087" y="103" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728/1366.-60.1920.1040@1366.-60.1920.1040" timestamp="1583495759531" />
-    <state x="513" y="0" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728/1366.0.1600.860@0.0.1366.728" timestamp="1581490477961" />
-    <state x="1967" y="0" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728/1366.0.1600.860@1366.0.1600.860" timestamp="1581603079707" />
-    <state x="513" y="0" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1584554551078" />
+    <state x="513" y="0" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728/1366.0.1600.860@0.0.1366.728" timestamp="1584774944351" />
+    <state x="1967" y="0" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728/1366.0.1600.860@1366.0.1600.860" timestamp="1584796814747" />
+    <state x="513" y="0" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1584922448786" />
     <state x="422" y="167" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1584552141134">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -401,17 +492,17 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="320" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1366.728@0.0.1366.728" timestamp="1580963300051" />
-    <state x="-1293" y="-118" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1584519495407">
-      <screen x="-1920" y="-251" width="1920" height="1040" />
+    <state x="446" y="93" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1584921807684">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="-1293" y="-118" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728/-1920.-251.1920.1040@-1920.-251.1920.1040" timestamp="1584519495407" />
     <state x="446" y="93" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728/1366.-60.1920.1040@0.0.1366.728" timestamp="1583590806956" />
     <state x="1993" y="142" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728/1366.-60.1920.1040@1366.-60.1920.1040" timestamp="1581664247488" />
-    <state x="446" y="93" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1581780614445" />
-    <state x="229" y="0" key="CommitChangelistDialog2" timestamp="1584416579321">
+    <state x="446" y="93" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1584921807684" />
+    <state x="229" y="0" key="CommitChangelistDialog2" timestamp="1584968429964">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="229" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1584416579321" />
+    <state x="229" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1584968429964" />
     <state width="304" height="242" key="DatabaseViewActions_Filter" timestamp="1582096455857">
       <screen x="1366" y="-60" width="1920" height="1040" />
     </state>
@@ -420,86 +511,90 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="92" y="92" width="1182" height="544" key="DiffContextDialog/0.0.1366.728/1366.0.1600.860@0.0.1366.728" timestamp="1578971323888" />
-    <state x="491" y="79" key="FileChooserDialogImpl" timestamp="1584590493552">
+    <state x="491" y="79" key="FileChooserDialogImpl" timestamp="1585051988492">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="-1014" y="-130" key="FileChooserDialogImpl/0.0.1366.728/-1920.-251.1920.1040@-1920.-251.1920.1040" timestamp="1584532058610" />
     <state x="2056" y="135" key="FileChooserDialogImpl/0.0.1366.728/1366.-60.1920.1040@1366.-60.1920.1040" timestamp="1583395554549" />
     <state x="491" y="79" key="FileChooserDialogImpl/0.0.1366.728/1366.0.1600.860@0.0.1366.728" timestamp="1578974443490" />
     <state x="1941" y="93" key="FileChooserDialogImpl/0.0.1366.728/1366.0.1600.860@1366.0.1600.860" timestamp="1581407613609" />
-    <state x="491" y="79" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1584590493552" />
-    <state width="1311" height="115" key="GridCell.Tab.0.bottom" timestamp="1584714649059">
+    <state x="491" y="79" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1585051988492" />
+    <state width="1311" height="222" key="GridCell.Tab.0.bottom" timestamp="1585078737253">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state width="1311" height="238" key="GridCell.Tab.0.bottom/-1366.0.1366.728/0.0.1600.860@-1366.0.1366.728" timestamp="1584960618135" />
     <state width="1865" height="224" key="GridCell.Tab.0.bottom/0.0.1366.728/-1920.-251.1920.1040@-1920.-251.1920.1040" timestamp="1584548808455" />
     <state width="1311" height="133" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.-60.1920.1040@0.0.1366.728" timestamp="1583825249244" />
     <state width="1865" height="122" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.-60.1920.1040@1366.-60.1920.1040" timestamp="1584019041910" />
     <state width="1311" height="122" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1024.728@0.0.1366.728" timestamp="1584081359867" />
-    <state width="1311" height="181" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1600.860@0.0.1366.728" timestamp="1581412355772" />
-    <state width="1545" height="133" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1600.860@1366.0.1600.860" timestamp="1581608514368" />
+    <state width="1311" height="238" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1600.860@0.0.1366.728" timestamp="1584959814007" />
+    <state width="1545" height="142" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1600.860@1366.0.1600.860" timestamp="1584954479022" />
     <state width="1865" height="225" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1584633429535" />
-    <state width="1311" height="115" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1584714649059" />
-    <state width="1311" height="115" key="GridCell.Tab.0.center" timestamp="1584714649058">
+    <state width="1311" height="222" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1585078737253" />
+    <state width="1311" height="222" key="GridCell.Tab.0.center" timestamp="1585078737252">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state width="1311" height="238" key="GridCell.Tab.0.center/-1366.0.1366.728/0.0.1600.860@-1366.0.1366.728" timestamp="1584960618135" />
     <state width="1865" height="224" key="GridCell.Tab.0.center/0.0.1366.728/-1920.-251.1920.1040@-1920.-251.1920.1040" timestamp="1584548808455" />
     <state width="1311" height="133" key="GridCell.Tab.0.center/0.0.1366.728/1366.-60.1920.1040@0.0.1366.728" timestamp="1583825249244" />
     <state width="1865" height="122" key="GridCell.Tab.0.center/0.0.1366.728/1366.-60.1920.1040@1366.-60.1920.1040" timestamp="1584019041910" />
     <state width="1311" height="122" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1024.728@0.0.1366.728" timestamp="1584081359867" />
-    <state width="1311" height="181" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1600.860@0.0.1366.728" timestamp="1581412355771" />
-    <state width="1545" height="133" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1600.860@1366.0.1600.860" timestamp="1581608514368" />
+    <state width="1311" height="238" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1600.860@0.0.1366.728" timestamp="1584959814007" />
+    <state width="1545" height="142" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1600.860@1366.0.1600.860" timestamp="1584954479022" />
     <state width="1865" height="225" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1584633429534" />
-    <state width="1311" height="115" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1584714649058" />
-    <state width="1311" height="115" key="GridCell.Tab.0.left" timestamp="1584714649058">
+    <state width="1311" height="222" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1585078737252" />
+    <state width="1311" height="222" key="GridCell.Tab.0.left" timestamp="1585078737252">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state width="1311" height="238" key="GridCell.Tab.0.left/-1366.0.1366.728/0.0.1600.860@-1366.0.1366.728" timestamp="1584960618135" />
     <state width="1865" height="224" key="GridCell.Tab.0.left/0.0.1366.728/-1920.-251.1920.1040@-1920.-251.1920.1040" timestamp="1584548808455" />
     <state width="1311" height="133" key="GridCell.Tab.0.left/0.0.1366.728/1366.-60.1920.1040@0.0.1366.728" timestamp="1583825249244" />
     <state width="1865" height="122" key="GridCell.Tab.0.left/0.0.1366.728/1366.-60.1920.1040@1366.-60.1920.1040" timestamp="1584019041910" />
     <state width="1311" height="122" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1024.728@0.0.1366.728" timestamp="1584081359867" />
-    <state width="1311" height="181" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1600.860@0.0.1366.728" timestamp="1581412355771" />
-    <state width="1545" height="133" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1600.860@1366.0.1600.860" timestamp="1581608514367" />
+    <state width="1311" height="238" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1600.860@0.0.1366.728" timestamp="1584959814007" />
+    <state width="1545" height="142" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1600.860@1366.0.1600.860" timestamp="1584954479022" />
     <state width="1865" height="225" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1584633429534" />
-    <state width="1311" height="115" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1584714649058" />
-    <state width="1311" height="115" key="GridCell.Tab.0.right" timestamp="1584714649058">
+    <state width="1311" height="222" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1585078737252" />
+    <state width="1311" height="222" key="GridCell.Tab.0.right" timestamp="1585078737252">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state width="1311" height="238" key="GridCell.Tab.0.right/-1366.0.1366.728/0.0.1600.860@-1366.0.1366.728" timestamp="1584960618135" />
     <state width="1865" height="224" key="GridCell.Tab.0.right/0.0.1366.728/-1920.-251.1920.1040@-1920.-251.1920.1040" timestamp="1584548808455" />
     <state width="1311" height="133" key="GridCell.Tab.0.right/0.0.1366.728/1366.-60.1920.1040@0.0.1366.728" timestamp="1583825249244" />
     <state width="1865" height="122" key="GridCell.Tab.0.right/0.0.1366.728/1366.-60.1920.1040@1366.-60.1920.1040" timestamp="1584019041910" />
     <state width="1311" height="122" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1024.728@0.0.1366.728" timestamp="1584081359867" />
-    <state width="1311" height="181" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1600.860@0.0.1366.728" timestamp="1581412355772" />
-    <state width="1545" height="133" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1600.860@1366.0.1600.860" timestamp="1581608514368" />
+    <state width="1311" height="238" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1600.860@0.0.1366.728" timestamp="1584959814007" />
+    <state width="1545" height="142" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1600.860@1366.0.1600.860" timestamp="1584954479022" />
     <state width="1865" height="225" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1584633429535" />
-    <state width="1311" height="115" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1584714649058" />
-    <state width="1865" height="622" key="GridCell.Tab.1.bottom" timestamp="1583929701007">
+    <state width="1311" height="222" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1585078737252" />
+    <state width="1311" height="182" key="GridCell.Tab.1.bottom" timestamp="1585076398801">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1311" height="388" key="GridCell.Tab.1.bottom/0.0.1366.728/1366.-60.1920.1040@0.0.1366.728" timestamp="1583595091626" />
     <state width="1865" height="622" key="GridCell.Tab.1.bottom/0.0.1366.728/1366.-60.1920.1040@1366.-60.1920.1040" timestamp="1583831011946" />
-    <state width="1545" height="233" key="GridCell.Tab.1.bottom/0.0.1366.728/1366.0.1600.860@1366.0.1600.860" timestamp="1581596572073" />
-    <state width="1865" height="622" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1583929701007" />
-    <state width="1865" height="622" key="GridCell.Tab.1.center" timestamp="1583929701007">
+    <state width="1545" height="236" key="GridCell.Tab.1.bottom/0.0.1366.728/1366.0.1600.860@1366.0.1600.860" timestamp="1584803567127" />
+    <state width="1311" height="182" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1585076398801" />
+    <state width="1311" height="182" key="GridCell.Tab.1.center" timestamp="1585076398801">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1311" height="388" key="GridCell.Tab.1.center/0.0.1366.728/1366.-60.1920.1040@0.0.1366.728" timestamp="1583595091626" />
     <state width="1865" height="622" key="GridCell.Tab.1.center/0.0.1366.728/1366.-60.1920.1040@1366.-60.1920.1040" timestamp="1583831011946" />
-    <state width="1545" height="233" key="GridCell.Tab.1.center/0.0.1366.728/1366.0.1600.860@1366.0.1600.860" timestamp="1581596572073" />
-    <state width="1865" height="622" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1583929701007" />
-    <state width="1865" height="622" key="GridCell.Tab.1.left" timestamp="1583929701007">
+    <state width="1545" height="236" key="GridCell.Tab.1.center/0.0.1366.728/1366.0.1600.860@1366.0.1600.860" timestamp="1584803567127" />
+    <state width="1311" height="182" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1585076398801" />
+    <state width="1311" height="182" key="GridCell.Tab.1.left" timestamp="1585076398801">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1311" height="388" key="GridCell.Tab.1.left/0.0.1366.728/1366.-60.1920.1040@0.0.1366.728" timestamp="1583595091626" />
     <state width="1865" height="622" key="GridCell.Tab.1.left/0.0.1366.728/1366.-60.1920.1040@1366.-60.1920.1040" timestamp="1583831011946" />
-    <state width="1545" height="233" key="GridCell.Tab.1.left/0.0.1366.728/1366.0.1600.860@1366.0.1600.860" timestamp="1581596572073" />
-    <state width="1865" height="622" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1583929701007" />
-    <state width="1865" height="622" key="GridCell.Tab.1.right" timestamp="1583929701007">
+    <state width="1545" height="236" key="GridCell.Tab.1.left/0.0.1366.728/1366.0.1600.860@1366.0.1600.860" timestamp="1584803567127" />
+    <state width="1311" height="182" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1585076398801" />
+    <state width="1311" height="182" key="GridCell.Tab.1.right" timestamp="1585076398801">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1311" height="388" key="GridCell.Tab.1.right/0.0.1366.728/1366.-60.1920.1040@0.0.1366.728" timestamp="1583595091626" />
     <state width="1865" height="622" key="GridCell.Tab.1.right/0.0.1366.728/1366.-60.1920.1040@1366.-60.1920.1040" timestamp="1583831011946" />
-    <state width="1545" height="233" key="GridCell.Tab.1.right/0.0.1366.728/1366.0.1600.860@1366.0.1600.860" timestamp="1581596572073" />
-    <state width="1865" height="622" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1583929701007" />
+    <state width="1545" height="236" key="GridCell.Tab.1.right/0.0.1366.728/1366.0.1600.860@1366.0.1600.860" timestamp="1584803567127" />
+    <state width="1311" height="182" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1585076398801" />
     <state width="310" height="590" key="HiddenNamespacesPopup" timestamp="1584173948187">
       <screen x="-1920" y="-252" width="1920" height="1040" />
     </state>
@@ -521,21 +616,23 @@
     <state x="1448" y="0" key="SettingsEditor/0.0.1366.728/1366.0.1600.860@1366.0.1600.860" timestamp="1581424567594" />
     <state x="1464" y="0" key="SettingsEditor/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1584630707431" />
     <state x="70" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1584552678904" />
-    <state width="798" height="565" key="SwitcherDM" timestamp="1584712852763">
+    <state width="798" height="590" key="SwitcherDM" timestamp="1585026304405">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1122" height="808" key="SwitcherDM/0.0.1366.728/-1920.-251.1920.1040@-1920.-251.1920.1040" timestamp="1584538073352" />
     <state width="1122" height="808" key="SwitcherDM/0.0.1366.728/-1920.-252.1920.1040@-1920.-252.1920.1040" timestamp="1584354612162" />
+    <state width="799" height="566" key="SwitcherDM/0.0.1366.728/1366.0.1600.860@0.0.1366.728" timestamp="1584958993509" />
+    <state width="935" height="668" key="SwitcherDM/0.0.1366.728/1366.0.1600.860@1366.0.1600.860" timestamp="1584954123125" />
     <state width="1122" height="808" key="SwitcherDM/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1584632645012" />
-    <state width="798" height="565" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1584712852763" />
-    <state x="-1176" y="27" key="chooseDestDirectoryDialog" timestamp="1584346737887">
-      <screen x="-1920" y="-252" width="1920" height="1040" />
+    <state width="798" height="590" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1585026304405" />
+    <state x="1986" y="230" key="chooseDestDirectoryDialog" timestamp="1584795491302">
+      <screen x="1366" y="0" width="1600" height="860" />
     </state>
     <state x="-1176" y="27" key="chooseDestDirectoryDialog/0.0.1366.728/-1920.-252.1920.1040@-1920.-252.1920.1040" timestamp="1584346737887" />
     <state x="529" y="195" key="chooseDestDirectoryDialog/0.0.1366.728/1366.-60.1920.1040@0.0.1366.728" timestamp="1583495030596" />
     <state x="2110" y="219" key="chooseDestDirectoryDialog/0.0.1366.728/1366.-60.1920.1040@1366.-60.1920.1040" timestamp="1580873169448" />
-    <state x="529" y="195" key="chooseDestDirectoryDialog/0.0.1366.728/1366.0.1600.860@0.0.1366.728" timestamp="1581490897745" />
-    <state x="1986" y="230" key="chooseDestDirectoryDialog/0.0.1366.728/1366.0.1600.860@1366.0.1600.860" timestamp="1581582686427" />
+    <state x="529" y="195" key="chooseDestDirectoryDialog/0.0.1366.728/1366.0.1600.860@0.0.1366.728" timestamp="1584757193200" />
+    <state x="1986" y="230" key="chooseDestDirectoryDialog/0.0.1366.728/1366.0.1600.860@1366.0.1600.860" timestamp="1584795491302" />
     <state x="529" y="195" key="chooseDestDirectoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1583677940241" />
     <state x="-1359" y="118" key="classpath-attribute-editor" timestamp="1584519666205">
       <screen x="-1920" y="-251" width="1920" height="1040" />
@@ -556,27 +653,31 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="350" y="78" key="extract.method.dialog/0.0.1366.728/1366.0.1600.860@0.0.1366.728" timestamp="1581133901413" />
-    <state x="0" y="0" key="new project wizard" timestamp="1584590496104">
+    <state x="0" y="0" key="new project wizard" timestamp="1585051991191">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="-1920" y="-252" key="new project wizard/0.0.1366.728/-1920.-252.1920.1040@-1920.-252.1920.1040" timestamp="1584252235171" />
     <state x="1366" y="-60" key="new project wizard/0.0.1366.728/1366.-60.1920.1040@1366.-60.1920.1040" timestamp="1583395556549" />
-    <state x="0" y="0" key="new project wizard/0.0.1366.728@0.0.1366.728" timestamp="1584590496104" />
+    <state x="0" y="0" key="new project wizard/0.0.1366.728@0.0.1366.728" timestamp="1585051991191" />
+    <state x="237" y="23" width="875" height="663" key="recent.locations.popup" timestamp="1584849917579">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="237" y="23" width="875" height="663" key="recent.locations.popup/0.0.1366.728@0.0.1366.728" timestamp="1584849917579" />
     <state x="365" y="0" key="refactoring.ChangeSignatureDialog" timestamp="1581650279099">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="365" y="0" key="refactoring.ChangeSignatureDialog/0.0.1366.728@0.0.1366.728" timestamp="1581650279099" />
-    <state x="255" y="159" key="run.anything.popup" timestamp="1584701096951">
+    <state x="255" y="159" key="run.anything.popup" timestamp="1585021736639">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="-1562" y="-25" key="run.anything.popup/0.0.1366.728/-1920.-252.1920.1040@-1920.-252.1920.1040" timestamp="1584153739642" />
-    <state x="255" y="159" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1584701096951" />
-    <state x="262" y="0" width="841" height="727" key="search.everywhere.popup" timestamp="1584111171633">
+    <state x="255" y="159" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1585021736639" />
+    <state x="262" y="0" width="841" height="727" key="search.everywhere.popup" timestamp="1584849006518">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="262" y="0" width="841" height="727" key="search.everywhere.popup/0.0.1366.728/1366.-60.1920.1040@0.0.1366.728" timestamp="1583823968041" />
     <state x="262" y="-1" width="840" height="1034" key="search.everywhere.popup/0.0.1366.728/1366.0.1600.860@0.0.1366.728" timestamp="1578976723945" />
     <state x="1673" y="0" width="984" height="858" key="search.everywhere.popup/0.0.1366.728/1366.0.1600.860@1366.0.1600.860" timestamp="1581606502453" />
-    <state x="262" y="0" width="841" height="727" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1584111171633" />
+    <state x="262" y="0" width="841" height="727" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1584849006518" />
   </component>
 </project>

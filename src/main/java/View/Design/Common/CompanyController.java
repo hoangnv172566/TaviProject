@@ -5,6 +5,9 @@ import Models.Company.Company;
 import Models.User.User;
 import Service.impl.CompanyService;
 import Utils.FileMethod;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -26,56 +29,77 @@ public class CompanyController implements Initializable {
     @FXML private ImageView logoImg;
     @FXML private Label name;
 
-    private User getUserData(){
-        User user = new User();
-        try{
-            Path path = Paths.get("Data", "User");
-            File file = new File(path.toAbsolutePath().toString() + "\\UserData.txt");
-            FileReader fileReader = new FileReader(file);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            String userData = bufferedReader.readLine();
-            JSONObject userJson = (JSONObject) new JSONParser().parse(userData);
-            String password = (String) userJson.get("password");
-            String username = (String) userJson.get("username");
-            user.setPassword(password);
-            user.setUsername(username);
-        } catch (FileNotFoundException e) {
-            System.out.println("Không tìm thấy thông tin tài khoản");
-        } catch (IOException e) {
-            System.out.println("không tìm thấy thông tin tài khoản");
-        } catch (ParseException e) {
-            System.out.println("không tìm thấy thông tin tài khoản");
-        }
-        return user;
-    }
-    private Company syncDataAndReturnCompanyData(){
-        User user = getUserData();
+
+    private void syncLogo() throws IOException {
+        //get CompanyId
+        Path path = Paths.get("Data", "User");
+        File file = new File(path.toAbsolutePath().toString() + "\\UserData.json");
+        ObjectMapper objectMapper = new ObjectMapper();
+        User userData = objectMapper.readValue(file, User.class);
+        //get company data from api
         CompanyService companyService = new CompanyService();
-        Company company = companyService.getCompanyInfor(user);
-        Path companyDataPath = Paths.get("Data", "Company\\Logo");
-        String urlLogo = URLApi.HOST + "/" + company.getImgLogo();
-        try{
-            Files.createDirectories(companyDataPath);
-            FileMethod.saveFileFromURL(companyDataPath.toAbsolutePath().toString() + "\\" + company.getImgLogo(), urlLogo);
-        } catch (MalformedURLException e) {
-            System.out.println("Lỗi tại CompanyController");
-        } catch (IOException e) {
-            System.out.println("Lỗi tại company controller");
+        int stt = companyService.getCompanyInfor(userData.getCompanyID());
+        if(stt == 200){
+            Path companyLogoPath = Paths.get("Data", "Company\\Logo");
+            Path companyDataDir = Paths.get("Data", "Company\\Info");
+            File companyFile = new File(companyDataDir.toAbsolutePath().toString() + "\\CompanyData.json");
+
+            Company company = objectMapper.readValue(companyFile, Company.class);
+            //mapping Data to label
+            String urlLogo = URLApi.HOST + "/" + company.getImgLogo();
+            try{
+                Files.createDirectories(companyLogoPath);
+                FileMethod.saveFileFromURL(companyLogoPath.toAbsolutePath().toString() + "\\" + company.getImgLogo(), urlLogo);
+
+            } catch (MalformedURLException e) {
+                System.out.println("Lỗi tại CompanyController");
+            } catch (IOException e) {
+                System.out.println("Lỗi tại company controller");
+            }
         }
-        return company;
+    }
+
+    private boolean checkExistData(String fileDir){
+        File file = new File(fileDir);
+        if(file.exists()){
+            return new File(fileDir).listFiles()!=null;
+        }else{
+            return false;
+        }
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Company company = syncDataAndReturnCompanyData();
-        //setting logo and name of company
-        name.setText(company.getNameOfCompany());
         try {
+            Path path = Paths.get("Data", "Company\\Logo");
+            if(!checkExistData(path.toAbsolutePath().toString())){
+                syncLogo();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        Path companyDataDir = Paths.get("Data", "Company\\Info");
+        File companyFile = new File(companyDataDir.toAbsolutePath().toString() + "\\CompanyData.json");
+
+        try {
+            Company company = new ObjectMapper().readValue(companyFile, Company.class);
             Path companyLogo = Paths.get("Data", "Company\\Logo");
             Image image = new Image(new FileInputStream(companyLogo.toAbsolutePath().toString() + "\\" + company.getImgLogo()));
             logoImg.setImage(image);
+            name.setText(company.getNameOfCompany());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        } catch (JsonParseException e) {
+            e.printStackTrace();
+        } catch (JsonMappingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
+
     }
 }

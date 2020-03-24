@@ -8,3 +8,17 @@
     -fx-background-radius: 7;
     -fx-border-radius: 7;
 }
+
+.normalStyle{
+    -fx-background-color: white;
+    -fx-border-radius: 4px;
+    -fx-border-color: #12e200;
+    -fx-text-fill: #4b4b4b;
+}
+
+.chosenStyle{
+    -fx-background-color: #12e200;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+
+}

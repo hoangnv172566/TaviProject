@@ -3,6 +3,7 @@ package View.Design.Client.Thanks;
 import Models.Thanks.Thanks;
 import Service.impl.ThankService;
 import View.Design.Client.Questions.CQuestionsController;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,11 +16,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
-public class CThanksController extends Application implements Initializable {
+public class CThanksController implements Initializable {
     @FXML private Label thankContent;
     @FXML private Button back;
 
@@ -38,22 +42,26 @@ public class CThanksController extends Application implements Initializable {
         stage.show();
     }
 
-    private void setThank(Thanks thank){
-        thankContent.setText(thank.getContent());
+    private Thanks getThankData() throws IOException {
+        Path path = Paths.get("Data","Thanks");
+        File file = new File(path.toAbsolutePath().toString() + "\\ThankData.json");
+        return new ObjectMapper().readValue(file, Thanks.class);
+
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ThankService thankService = new ThankService();
-        thankContent.setText(thankService.gettingContentThank());
+        try{
+            Thanks thanks = getThankData();
+            thankContent.setText(thanks.getContent());
+        } catch (IOException e) {
+            thankContent.setText("Thank You");
+        }
+
 
         back.setOnAction(e->{
             setScene(CQuestionsController.getParent(), e);
         });
     }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        primaryStage.setScene(new Scene(getParent()));
-        primaryStage.show();
-    }
+
 }

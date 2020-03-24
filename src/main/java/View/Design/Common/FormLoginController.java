@@ -9,6 +9,9 @@ import Service.impl.UserService;
 import Utils.FileMethod;
 import Utils.StageConfigure;
 import View.Design.Client.Questions.Index.QIndexController;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,11 +20,12 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Screen;
@@ -32,6 +36,7 @@ import java.awt.*;
 import java.io.*;
 import java.net.URL;
 import java.nio.file.*;
+import java.sql.SQLOutput;
 import java.util.ResourceBundle;
 
 public class FormLoginController implements Initializable{
@@ -42,6 +47,7 @@ public class FormLoginController implements Initializable{
     @FXML private TextField usernameTF;
     @FXML private PasswordField passwordTF;
     @FXML private Label announcement;
+    @FXML private HBox loginHBox;
 
     public Parent getParent(){
         try{
@@ -67,64 +73,76 @@ public class FormLoginController implements Initializable{
 
     }
 
+    private boolean checkLocalInfo(String pathFile){
+        return new File(pathFile).listFiles()!=null;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resourceBundle) {
-        Desktop desktop = Desktop.getDesktop();
+        autoLoginNextTime();
+        ProgressIndicator progressIndicator = new ProgressIndicator();
+        progressIndicator.setPrefHeight(25.0);
+        progressIndicator.setPrefWidth(25.0);
+        progressIndicator.setProgress(-1);
+        progressIndicator.setVisible(false);
+        loginHBox.getChildren().add(progressIndicator);
 
         UserService userService = new UserService();
         resisterBtn.setDisable(true);
         forgettingPassBtn.setDisable(true);
+
+
+        //login function
+
+
+
         loginBtn.setOnAction(event ->{
-            User user = getUserData();
-
-            //announce login status in case login fails
-            try {
-                // if login success, load question index
-                if(userService.login(user, URLApi.LOGIN) == 200){
-
-                //create a temporary file to store user Information to logout
-                    Path path = Paths.get("Data", "User");
-                    Files.createDirectories(path);
-                    File file = new File(path.toAbsolutePath().toString()+"\\UserData.txt");
-                    if(!file.exists()){
-                        file.createNewFile();
+            Path path = Paths.get("Data", "User");
+            if(!checkLocalInfo(path.toAbsolutePath().toString())){
+                progressIndicator.setVisible(true);
+                User user = getUserData();
+                //announce login status in case login fails
+                try {
+                    // if login success, load question index
+                    if(userService.login(user, URLApi.LOGIN) == 200){
+                        //open Stage, full scene
+                        progressIndicator.setVisible(true);
+                        setScene(QIndexController.getParent(), event);
+                    }else{
+                        progressIndicator.setVisible(false);
+                        announcement.setVisible(true);
+                        announcement.setText("Tài khoản hoặc mật khẩu không chính xác");
                     }
-                    FileWriter fileWriter = new FileWriter(file);
-                    BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-
-                    JSONObject userDataJS = new JSONObject();
-                    userDataJS.put("password", user.getPassword());
-                    userDataJS.put("username", user.getUsername());
-
-                    bufferedWriter.write(userDataJS.toString());
-
-                    bufferedWriter.close();
-                    fileWriter.close();
-
-                    //open Stage, full scene
-                    setScene(QIndexController.getParent(), event);
-
-                }else{
+                } catch (IOException er) {
+                    progressIndicator.setVisible(false);
                     announcement.setVisible(true);
-                    announcement.setText("Tài khoản hoặc mật khẩu không chính xác");
+                    announcement.setText("Mất kết nối! Vui lòng thử lại");
                 }
+            }else{
+                File userFileData = new File(path.toAbsolutePath().toString() + "\\UserData.json");
+                try{
+                    User userInfo = new ObjectMapper().readValue(userFileData, User.class);
+                    User userFromKeyboard = getUserData();
+                    if(userInfo.getUsername().equals(userFromKeyboard.getUsername())&&userInfo.getPassword().equals(userFromKeyboard.getPassword())){
+                        setScene(QIndexController.getParent(), event);
+                    }
 
-            } catch (IOException ignored) {
 
+                } catch (JsonParseException | JsonMappingException e) {
+                    System.out.println("Lỗi mapping username Data!");
+                } catch (IOException e) {
+                    System.out.println("File not found!");
+                }
             }
 
-            //getting company data and save to file
-            try{
-                Path companyPath = Paths.get("Data", "Company");
-                Files.createDirectories(companyPath);
-                CompanyService companyService = new CompanyService();
-                Company company = companyService.getCompanyInfor(user);
-                FileMethod.saveFile(companyPath.toAbsolutePath().toString(), "\\Company.json", company);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
 
+        });
 
+        usernameTF.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            announcement.setVisible(false);
+        });
+        passwordTF.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            announcement.setVisible(false);
         });
 
         resisterBtn.setOnAction(event -> {
@@ -149,6 +167,26 @@ public class FormLoginController implements Initializable{
             }
 
         });
+
+    }
+
+    private void autoLoginNextTime() {
+        Path path  = Paths.get("Data", "User");
+        if(checkLocalInfo(path.toAbsolutePath().toString())){
+            File file = new File(path.toAbsolutePath().toString() + "\\UserData.json");
+            try{
+                User user = new ObjectMapper().readValue(file, User.class);
+                usernameTF.setText(user.getUsername());
+                passwordTF.setText(user.getPassword());
+            } catch (JsonParseException e) {
+                System.out.println("auto login failed");
+            } catch (JsonMappingException e) {
+                System.out.println("auto login failed");
+            } catch (IOException e) {
+                System.out.println("auto login failed");
+            }
+
+        }
 
     }
 

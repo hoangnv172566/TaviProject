@@ -3,42 +3,53 @@ package Models.Survey.Choice;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class CESChoice implements Choice{
-    private SimpleStringProperty enContentChoice;
-    private SimpleStringProperty viContentChoice;
+import java.io.Serializable;
 
-    public String getEnContentChoice(){
-        return enContentChoiceProperty().get();
-    }
-    public void setEnContentChoice(String data){
-        enContentChoiceProperty().set(data);
-    }
+public class CESChoice extends Choice implements Serializable {
+    private String enContentChoice;
+    private String viContentChoice;
 
-    public StringProperty enContentChoiceProperty(){
-        if(enContentChoice == null){
-            enContentChoice = new SimpleStringProperty();
-        }
+    public String getEnContentChoice() {
         return enContentChoice;
     }
-    public String getViContentChoice(){
-        return viContentChoiceProperty().get();
-    }
-    public void setViContentChoice(String data){
-        viContentChoiceProperty().set(data);
+
+    public void setEnContentChoice(String enContentChoice) {
+        this.enContentChoice = enContentChoice;
     }
 
-    public StringProperty viContentChoiceProperty(){
-        if(viContentChoice == null){
-            viContentChoice = new SimpleStringProperty();
-        }
+    public String getViContentChoice() {
         return viContentChoice;
     }
 
-
-
-
-    @Override
-    public void getChoice() {
-
+    public void setViContentChoice(String viContentChoice) {
+        this.viContentChoice = viContentChoice;
     }
+
+    //    public String getEnContentChoice(){
+//        return enContentChoiceProperty().get();
+//    }
+//    public void setEnContentChoice(String data){
+//        enContentChoiceProperty().set(data);
+//    }
+//
+//    public StringProperty enContentChoiceProperty(){
+//        if(enContentChoice == null){
+//            enContentChoice = new SimpleStringProperty();
+//        }
+//        return enContentChoice;
+//    }
+//    public String getViContentChoice(){
+//        return viContentChoiceProperty().get();
+//    }
+//    public void setViContentChoice(String data){
+//        viContentChoiceProperty().set(data);
+//    }
+//
+//    public StringProperty viContentChoiceProperty(){
+//        if(viContentChoice == null){
+//            viContentChoice = new SimpleStringProperty();
+//        }
+//        return viContentChoice;
+//    }
+
 }

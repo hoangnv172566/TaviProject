@@ -1,6 +1,7 @@
 .dangnhapTitile{
     -fx-text-fill: #1C53A0;
     -fx-font-weight: bold;
+    -fx-font-size: 30;
 }
 .backgroundTF{
     -fx-border-radius: 5;
@@ -30,4 +31,5 @@
     -fx-background-radius: 30;
     -fx-background-color: white;
     -fx-border-color: #4044ED;
+    -fx-text-fill: #1C53A0;
 }

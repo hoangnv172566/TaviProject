@@ -1,6 +1,6 @@
 package Models.Survey.Choice;
 
-public interface Choice {
-    void getChoice();
+import java.io.Serializable;
 
+public class Choice  implements Serializable {
 }

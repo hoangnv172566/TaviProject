@@ -1,7 +1,10 @@
 package View.Design.Client.Questions.Index;
 
+import Models.Setting.WaitingScene;
+import View.Design.Common.WaitingSceneController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -15,12 +18,12 @@ import java.util.ResourceBundle;
 public class QSyncdataController implements Initializable {
     @FXML private Button syncDataButton;
     @FXML private Button setWaitingSceneButton;
-
+    @FXML private Button syncQuestion;
     private Desktop desktop = Desktop.getDesktop();
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
 
         syncDataButton.setOnAction(event -> {
             try{
@@ -35,38 +38,12 @@ public class QSyncdataController implements Initializable {
             }
         });
 
+        syncDataButton.setDisable(true);
+        syncQuestion.setDisable(true);
         setWaitingSceneButton.setOnAction(event -> {
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("mp4", "*.mp4"));
-            File initDirectory = new File("src/main/java/Data/Collection");
             Stage stage = new Stage();
-            stage.centerOnScreen();
-            fileChooser.setTitle("Chọn màn hình chờ");
-
-            if(initDirectory.isDirectory()){
-                fileChooser.setInitialDirectory(initDirectory);
-            }
-
-            File selectectedFile = fileChooser.showOpenDialog(stage);
-
-
-            if(selectectedFile!=null){
-                String path = selectectedFile.getPath();
-                try {
-                   BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(new File("src/main/java/Data/WaitingScene/WaitingSceneData.txt")));
-                   bufferedWriter.write(selectectedFile.getAbsolutePath());
-                    bufferedWriter.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-
-            }
-
-
-
-
-
+            stage.setScene(new Scene(WaitingSceneController.getParent()));
+            stage.show();
         });
 
     }

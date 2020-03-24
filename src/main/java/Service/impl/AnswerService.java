@@ -54,38 +54,6 @@ public class AnswerService {
         return idAnswer;
     }
 
-    public String format(String data){
-        if(data.equals("1")){
-            return "CSAT";
-        }
-        if(data.equals("2")){
-            return "NPS";
-        }
-        if(data.equals("3")){
-            return "CES";
-        }
-        if(data.equals("4")){
-            return "FLX";
-        }
-        if(data.equals("5")){
-            return "MULTIPLE_CHOICE";
-        }
-        if(data.equals("6")){
-            return "SINGLE_CHOICE";
-        }
-        if(data.equals("7")){
-            return "STAR";
-        }
-        if(data.equals("8")){
-            return "OPEN";
-        }
-        if(data.equals("9")){
-            return "CONTACT";
-        }
-        return null;
-    }
-
-
     public long getTypeAnswerAsCode(long code) {
         long result = 0;
         String URL = "http://103.9.86.61:8080/admin_srs/api/v1/public/survey/find-by-id?id=" + code;
@@ -109,14 +77,10 @@ public class AnswerService {
 
     public long uploadAnswerTotal(AnswerTotal data){
 
-//        System.out.println(data.getListAnswer().get(1).getSubAnswerID());
-
-        long stt = 400;
         JSONObject answerTotalJson = new JSONObject();
         answerTotalJson.put("answerTotalId", data.getAnswerTotalID());
 
         ArrayList<SubAnswer> listSubAnswer = data.getListAnswer();
-
 
         ArrayList<JSONObject> listLevelAnswer = new ArrayList<>();
         ArrayList<JSONObject> listContactAnswer = new ArrayList<>();
@@ -126,7 +90,6 @@ public class AnswerService {
 
         listSubAnswer.forEach(subAnswer -> {
             long typeSubAnswerAsCode = getTypeAnswerAsCode(subAnswer.getSubAnswerID());
-//            long typeSubAnswerAsCode = 1;
             if(typeSubAnswerAsCode==1||typeSubAnswerAsCode==2||typeSubAnswerAsCode==3||typeSubAnswerAsCode==4||typeSubAnswerAsCode==7){
                 JSONObject levelAnswerJson = new JSONObject();
                 levelAnswerJson.put("level", ((AnswerLevel) subAnswer).getLevel());
@@ -181,15 +144,11 @@ public class AnswerService {
         HttpPost request = new HttpPost(URLApi.UPLOAD_ANSWER);
 
         try{
-            StringEntity answerEntity = new StringEntity(answerTotalJson.toJSONString());
             request.addHeader("content-type", "application/json");
+            StringEntity answerEntity = new StringEntity(answerTotalJson.toJSONString(), "UTF-8");
             request.setEntity(answerEntity);
             HttpResponse response = httpClient.execute(request);//executing the request
-            System.out.println(response.getStatusLine().getStatusCode());
             return response.getStatusLine().getStatusCode();
-
-        }catch (UnsupportedEncodingException e){
-
         } catch (ClientProtocolException e) {
             e.printStackTrace();
         } catch (IOException e) {

@@ -1,0 +1,40 @@
+{
+  "collectionID" : 2,
+  "nameOfCollection" : null,
+  "listCollection" : [ {
+    "collectionItemID" : 16,
+    "url" : "545000000patrick-pellegrini-IBt5j35OIj4-unsplash.jpg",
+    "stt" : 0,
+    "video" : false
+  }, {
+    "collectionItemID" : 6,
+    "url" : "default.jpg",
+    "stt" : 1,
+    "video" : false
+  }, {
+    "collectionItemID" : 9,
+    "url" : "File_introIT.mp4",
+    "stt" : 2,
+    "video" : true
+  }, {
+    "collectionItemID" : 28,
+    "url" : "http://103.9.86.61:8080/resources/upload/srs/File_introIT.mp4",
+    "stt" : 6,
+    "video" : true
+  }, {
+    "collectionItemID" : 32,
+    "url" : "https://r8---sn-42u-i5oe7.googlevideo.com/videoplayback?id=d11d48afa7432bff&itag=18&source=youtube&requiressl=yes&ei=pN13XsieH7qumLAPuc62oAc&susc=ytcp&mime=video/mp4&dur=625.963&lmt=1582617155699195&txp=2211222&ip=0.0.0.0&ipbits=0&expire=1584942628&sparams=dur,ei,expire,id,ip,ipbits,itag,lmt,mh,mime,mip,mm,mn,ms,mv,mvi,pl,requiressl,source,susc&signature=5CA2DAEE09CE8C63F7D7883449901E342586584E.4D2F1997734A5726595939D496A9ADA5CCB5F616&key=cms1&cms_redirect=yes&mh=W6&mip=42.113.220.69&mm=31&mn=sn-42u-i5oe7&ms=au&mt=1584933280&mv=m&mvi=7&pl=24",
+    "stt" : 7,
+    "video" : true
+  }, {
+    "collectionItemID" : 30,
+    "url" : "http://103.9.86.61:8080/resources/upload/srs/File_introIT.mp4",
+    "stt" : 8,
+    "video" : true
+  }, {
+    "collectionItemID" : 31,
+    "url" : "http://103.9.86.61:8080/resources/upload/srs/File_introIT.mp4",
+    "stt" : 9,
+    "video" : true
+  } ]
+}

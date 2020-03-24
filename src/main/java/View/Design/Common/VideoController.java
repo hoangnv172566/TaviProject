@@ -1,6 +1,11 @@
 package View.Design.Common;
 
+import Models.Setting.WaitingScene;
 import View.Design.Client.Questions.CQuestionsController;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jfoenix.controls.JFXToggleButton;
 import javafx.application.Application;
 import javafx.beans.binding.DoubleBinding;
 import javafx.event.ActionEvent;
@@ -11,6 +16,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -19,15 +25,21 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.*;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 public class VideoController extends Application implements Initializable {
 
     @FXML private Pane parentVideo;
     @FXML private AnchorPane coverLayout;
+    @FXML private MediaView mediaViewVideo;
+    @FXML private JFXToggleButton switchConfig;
+
     private Pane coverVideo;
 
     public static Parent getParent() {
@@ -92,69 +104,81 @@ public class VideoController extends Application implements Initializable {
 
         return mediaView;
     }
-    private String getPathVideo(){
+    private WaitingScene getWaitingScene(){
+        Alert alert;
+        Path path = Paths.get("Setting", "WaitingScene");
+        File videoFile = new File(path.toAbsolutePath().toString() + "\\WaitingScene.json");
         try{
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("src/main/java/Data/WaitingScene/WaitingSceneData.txt")));
-            String pathVideo = bufferedReader.readLine();
-            bufferedReader.close();
-            return pathVideo;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            ObjectMapper objectMapper = new ObjectMapper();
+            return objectMapper.readValue(videoFile, WaitingScene.class);
+        } catch (JsonParseException e) {
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Không mapping được dữ liệu waitingScene");
+            alert.showAndWait();
+        } catch (JsonMappingException e) {
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Không mapping được dữ liệu waitingScene");
+            alert.showAndWait();
         } catch (IOException e) {
-            e.printStackTrace();
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("ko đọc được file!");
+            alert.show();
         }
         return null;
     }
+    private WaitingScene getDefaultSettingWaitingScene(){
+        Path path = Paths.get("FixedSetting","DefaultWaitingScene");
+        File video = new File(path.toAbsolutePath().toString() + "\\WaitingScene.json");
+        try{
+            return new ObjectMapper().readValue(video, WaitingScene.class);
+        } catch (JsonParseException | JsonMappingException e) {
+            System.out.println("Không thể mapping dữ liệu tại videoController");
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Không có cài đặt cho màn hình chờ!");
+            alert.showAndWait();
+        }
+        return null;
+    }
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         coverVideo = new Pane();
-        String pathVideo = getPathVideo();
-        System.out.println(pathVideo);
+        WaitingScene waitingScene = getWaitingScene();
+        if(waitingScene == null){
+            waitingScene = getDefaultSettingWaitingScene();
+        }
+
+        String pathVideo = waitingScene.getPath().get(0);
 
         File file = new File(pathVideo);
 
-        MediaView mediaView = createMediaView(coverVideo);
+        mediaViewVideo = createMediaView(coverVideo);
         Media media = new Media(file.toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setAutoPlay(true);
-        mediaView.setSmooth(true);
-        mediaView.setMediaPlayer(mediaPlayer);
+        mediaPlayer.setCycleCount(javafx.scene.media.MediaPlayer.INDEFINITE);
+        mediaViewVideo.setSmooth(true);
+        mediaViewVideo.setMediaPlayer(mediaPlayer);
 
         parentVideo.setPadding(new Insets(20.0));
-        coverVideo.getChildren().add(mediaView);
+        coverVideo.getChildren().add(mediaViewVideo);
         parentVideo.getChildren().add(coverVideo);
 
-        double horizontalPadding = (parentVideo.getWidth() - coverVideo.getWidth())/2;
-        parentVideo.widthProperty().addListener((observable, oldValue, newValue) -> {
-            double newWidth = (double) newValue;
-            System.out.println((newWidth - coverVideo.getWidth())/2);
-        });
 //        parentVideo.setPadding(new Insets());
-        coverLayout.setOnMouseClicked(e->{
-//            setScene(CQuestionsController.getParent(), e);
+        mediaViewVideo.setOnMouseClicked(e->{
+            mediaPlayer.stop();
+            setScene(CQuestionsController.getParent(), e);
         });
 
-        coverLayout.setOnTouchPressed(e->{
 
-        });
     }
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-//        String content_Url = "<iframe width=\"560\" height=\"315\" src=\"https://vuighe.net/onmyou-taisenki/tap-1-ha-than-bach-ho-kogenta\" frameborder=\"0\" allowfullscreen></iframe>";
-//        WebView webView = new WebView();
-//
-//        webView.getEngine().loadContent(content_Url);
-//
-//        StackPane root = new StackPane();
-//        root.getChildren().add(webView);
-//
-//        Scene scene = new Scene(root, 300, 250);
-//
-//        primaryStage.setTitle("http://java-buddy.blogspot.com/");
-//        primaryStage.setScene(scene);
         primaryStage.setScene(new Scene(getParent()));
         primaryStage.show();
-
-   }
+    }
 }

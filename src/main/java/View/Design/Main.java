@@ -26,8 +26,9 @@ public class Main extends Application {
         primaryStage.setHeight(bounds.getHeight());
 
         primaryStage.setScene(new Scene(LoginV2Controller.getParent()));
-        primaryStage.initStyle(StageStyle.TRANSPARENT);
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.show();
+
 
     }
 }

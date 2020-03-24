@@ -4,95 +4,90 @@ import Config.URLApi;
 import Models.Collection.Collection;
 import Models.Collection.CollectionItem;
 import Models.User.User;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.client.fluent.Request;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.util.EntityUtils;
+import org.apache.http.client.fluent.Response;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class CollectionService {
-    public long getIDCollection(User user){
 
-        long id = 0;
-
-        HttpClient httpClient = HttpClientBuilder.create().build();
-        HttpPost httpPost = new HttpPost(URLApi.LOGIN);
-
-        JSONObject userJs = new JSONObject();
-        userJs.put("username", user.getUsername());
-        userJs.put("password", user.getPassword());
-
+    public int getCollectionInfo(long id){
         try{
-            StringEntity params = new StringEntity(userJs.toString());
-            httpPost.setHeader("content-type", "application/json");
-            httpPost.setEntity(params);
-            HttpResponse response = httpClient.execute(httpPost);
+            //get collectionID
+            Path userDir = Paths.get("Data", "User");
+            File userData = new File(userDir.toAbsolutePath().toString() + "\\UserData.json");
+            ObjectMapper objectMapper = new ObjectMapper();
+            User userInfo = objectMapper.readValue(userData, User.class);
+            System.out.println(userInfo.getCollectionID());
+            Response response = Request.Get("http://103.9.86.61:8080/admin_srs/api/v1/public/collection-item/find-by-collection?collection-id=" + id + "&enable=true").execute();
+            byte[] responseByte = response.returnContent().asBytes();
+            String responseString = new String(responseByte, StandardCharsets.UTF_8);
             JSONParser jsonParser = new JSONParser();
-            JSONObject responseJson = (JSONObject) jsonParser.parse(EntityUtils.toString(response.getEntity()));
-            JSONObject dataJs = (JSONObject) responseJson.get("data");
-            JSONObject appCollection = (JSONObject) dataJs.get("appCollection");
-            id = (long) appCollection.get("id");
+            JSONObject responseJs = (JSONObject) jsonParser.parse(responseString);
+            JSONArray data = (JSONArray) responseJs.get("data");
 
-        } catch (UnsupportedEncodingException | ClientProtocolException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+            ArrayList<CollectionItem> listCollectionItem = new ArrayList<>();
 
+            data.forEach(dataE -> {
+                long idCollectionItem = (long) ((JSONObject) dataE).get("id");
+                long stt = (long) ((JSONObject) dataE).get("stt");
+                boolean video = (boolean)((JSONObject) dataE).get("video") ;
+                String url = (String) ((JSONObject) dataE).get("url");
 
-        return id;
-    }
-
-    public Collection getCollectionInfor(User user) throws IOException {
-        Collection collection = new Collection();
-        ArrayList<CollectionItem> listCollectionItem = new ArrayList<>();
-        long idCollection = getIDCollection(user);
-        collection.setCollectionID(idCollection);
-
-        String response = Request.Get("http://103.9.86.61:8080/admin_srs/api/v1/public/collection-item/find-by-collection?collection-id="+idCollection+"&enable=true").execute().returnContent().asString();
-        JSONParser jsonParser = new JSONParser();
-        try{
-            JSONObject jsonObject = (JSONObject) jsonParser.parse(response);
-
-            ArrayList<JSONObject> listJson = (ArrayList<JSONObject>) jsonObject.get("data");
-
-            listJson.forEach(collectionItemJson->{
                 CollectionItem collectionItem = new CollectionItem();
-
-                //getting Info
-                long stt = (long) collectionItemJson.get("stt");
-                long id = (long) collectionItemJson.get("id");
-                String url = (String) collectionItemJson.get("url");
-                boolean isVideo = (boolean) collectionItemJson.get("video");
-
-                //mapping data
-                collectionItem.setCollectionItemID(id);
-                collectionItem.setStt(stt);
+                collectionItem.setCollectionItemID(idCollectionItem);
+                collectionItem.setVideo(video);
                 collectionItem.setUrl(url);
-                collectionItem.setVideo(isVideo);
+                collectionItem.setStt(stt);
 
                 listCollectionItem.add(collectionItem);
+
             });
 
+
+
+            Collection collection = new Collection();
+            collection.setCollectionID(id);
+            collection.setListCollection(listCollectionItem);
+
+            Path collectionDir = Paths.get("Data","Collection\\Info");
+            Files.createDirectories(collectionDir);
+            File collectionDataFile = new File(collectionDir.toAbsolutePath().toString() + "\\CollectionData.json");
+
+            if(!collectionDataFile.exists()){
+                collectionDataFile.createNewFile();
+            }
+
+            ObjectMapper collectionObM = new ObjectMapper();
+            collectionObM.writerWithDefaultPrettyPrinter().writeValue(collectionDataFile, collection);
+
+
+
+
+            return 200;
+        } catch (JsonParseException e) {
+            e.printStackTrace();
+        } catch (JsonMappingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            return 400;
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-        collection.setListCollection(listCollectionItem);
-        return collection;
-
+        return 500;
     }
 
 

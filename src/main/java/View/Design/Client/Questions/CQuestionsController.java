@@ -8,13 +8,14 @@ import Models.Answer.AnswerOpen.AnswerOpen;
 import Models.Answer.AnswerSingleChoice.AnswerSingleChoice;
 import Models.Answer.AnswerTotal;
 import Models.Answer.SubAnswer;
+import Models.Setting.WaitingScene;
 import Models.Survey.Choice.Choice;
 import Models.Survey.Choice.MutipleChoice;
 import Models.Survey.Choice.SingleChoice;
 import Models.Survey.Question;
 import Models.Survey.Survey;
+import Models.User.User;
 import Service.impl.AnswerService;
-import Service.impl.SurveyService;
 import View.Design.Client.Questions.CES.CQuestionsCESController;
 import View.Design.Client.Questions.CSAT.CQuestionCSATChoiceController;
 import View.Design.Client.Questions.CSAT.CQuestionsCSATController;
@@ -29,18 +30,17 @@ import View.Design.Client.Questions.Star.CQuestionStarController;
 import View.Design.Client.Thanks.CThanksController;
 import View.Design.Common.VideoController;
 import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jfoenix.controls.JFXToggleButton;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Cursor;
@@ -48,6 +48,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -56,16 +57,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -75,13 +72,16 @@ import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class CQuestionsController extends Application implements Initializable {
+public class CQuestionsController implements Initializable {
 
     //inject element
+    @FXML private AnchorPane bigBackground;
     @FXML private VBox listQuestions;
     @FXML private Button back;
     @FXML private Label contentSurvey;
@@ -89,10 +89,10 @@ public class CQuestionsController extends Application implements Initializable {
     @FXML private AnchorPane parentListAnswer;
     @FXML private ScrollPane scrollParent;
     @FXML private JFXToggleButton languageSwitch;
+    @FXML private Button undo;
+    @FXML private HBox listFinishedAnswer;
 
-    private int second = 10;
-    private SurveyService surveyService;
-
+    private WaitingScene waitingScene;
 
     //configure layout
     public static Parent getParent() {
@@ -111,10 +111,17 @@ public class CQuestionsController extends Application implements Initializable {
     }
 
     //create layout for each type of question
+    private void setFullQuestionLayout(){
+        Screen screen = Screen.getPrimary();
+        Rectangle2D rectangle2D = screen.getVisualBounds();
+        parentListAnswer.setPrefWidth(rectangle2D.getWidth()-200.0);
+    }
+
     private AnchorPane createMutipleChoiceLayout(Question question, boolean vi){
         AnchorPane questionLayout = (AnchorPane) CQuestionsCSATController.getParent();
         //setContentQuestion
-        Label content = (Label) questionLayout.getChildren().get(0);
+        HBox parentContentQuestion = (HBox) questionLayout.getChildren().get(0);
+        Label content = (Label) parentContentQuestion.getChildren().get(0);
         if (vi == true){
             content.setText(question.getViContent());
         }else{
@@ -144,86 +151,7 @@ public class CQuestionsController extends Application implements Initializable {
 
 
 
-        ArrayList<Choice> listMultiplechoice = question.getChoice();
-        ArrayList<AnswerChoice> listAnswerMultipleChoice = new ArrayList<>();
 
-        ObservableList<Node> listChildrenChoice = listChoice.getChildren();
-
-        for(int i = 0; i<question.getChoice().size(); i++){
-            int finalI = i;
-            ((CheckBox) listChildrenChoice.get(i)).selectedProperty().addListener((observable, oldValue, newValue) -> {
-                //open file
-                //create Path
-                String fileName = question.getType()+ "_" + question.getOrd();
-                Path path = Paths.get("Data", "SubAnswer");
-                try {
-                    Files.createDirectories(path);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-
-                File multipleAnswerData = new File( path.toAbsolutePath().toString() + "\\" + fileName +".json");
-
-                if(!multipleAnswerData.exists()){
-                    try {
-                        multipleAnswerData.createNewFile();
-                    } catch (IOException ex) {
-                        System.out.println("can't open file");
-                    }
-                }
-
-                //getting data if customers changes any choice
-                AnswerMultipleChoice answerMultipleChoice = new AnswerMultipleChoice();
-                answerMultipleChoice.setOrd(question.getOrd());
-                answerMultipleChoice.setSubAnswerID(question.getQuestionID());
-                AnswerChoice answerChoice = new AnswerChoice();
-
-                if(newValue){
-
-                    answerChoice.setOrd(((MutipleChoice) listMultiplechoice.get(finalI)).getOrd());
-                    answerChoice.setSampleAnswerID(((MutipleChoice) listMultiplechoice.get(finalI)).getSampleAnswerID());
-
-                    listAnswerMultipleChoice.add(answerChoice);
-                    answerMultipleChoice.setListAnswerMultiChoice(listAnswerMultipleChoice);
-
-                    ObjectMapper objectMapper = new ObjectMapper();
-                    try {
-                        objectMapper.writerWithDefaultPrettyPrinter().writeValue(multipleAnswerData, answerMultipleChoice);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                }else{
-                    Iterator itr = listAnswerMultipleChoice.iterator();
-
-                    try{
-                        while(itr.hasNext()){
-
-                            AnswerChoice choiceElement = (AnswerChoice) itr.next();
-                            if(choiceElement.getOrd() == Integer.parseInt(listChildrenChoice.get(finalI).getId())){
-                                itr.remove();
-                            }
-
-                            answerMultipleChoice.setListAnswerMultiChoice(listAnswerMultipleChoice);
-                            ObjectMapper objectMapper = new ObjectMapper();
-                            try {
-                                objectMapper.writerWithDefaultPrettyPrinter().writeValue(multipleAnswerData, answerMultipleChoice);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-
-                        }
-
-                    }catch(ConcurrentModificationException ignored){
-
-                    }
-
-
-                }
-
-            });
-        }
         return questionLayout;
 
     }
@@ -232,7 +160,8 @@ public class CQuestionsController extends Application implements Initializable {
         AnchorPane questionLayout = (AnchorPane) CQuestionsCSATController.getParent();
 
         //setContentQuestion
-        Label content = (Label) questionLayout.getChildren().get(0);
+        HBox parentContentQuestion = (HBox) questionLayout.getChildren().get(0);
+        Label content = (Label) parentContentQuestion.getChildren().get(0);
         if (vi){
             content.setText(question.getViContent());
         }else{
@@ -258,8 +187,6 @@ public class CQuestionsController extends Application implements Initializable {
         }
 
         //writeData
-
-
 
         for(int i = 0; i<question.getChoice().size(); i++) {
             SingleChoice singleChoice = (SingleChoice) question.getChoice().get(i);
@@ -314,11 +241,23 @@ public class CQuestionsController extends Application implements Initializable {
         AnchorPane questionLayout = (AnchorPane) CQuestionsCSATController.getParent();
 
         //setContentQuestion
-        Label content = (Label) questionLayout.getChildren().get(0);
+        assert questionLayout != null;
+        HBox parentContentQuestion = (HBox) questionLayout.getChildren().get(0);
+        Label content = (Label) parentContentQuestion.getChildren().get(0);
         if (vi){
             content.setText(question.getViContent());
+            if(question.isRequire()){
+                Label require = (Label) parentContentQuestion.getChildren().get(1);
+                require.setText("(*) Bắt buộc!");
+                require.setVisible(true);
+            }
         }else{
             content.setText(question.getEnContent());
+            if(question.isRequire()){
+                Label require = (Label) parentContentQuestion.getChildren().get(1);
+                require.setText("(*) Required!");
+                require.setVisible(true);
+            }
         }
 
         //set Choices
@@ -329,10 +268,8 @@ public class CQuestionsController extends Application implements Initializable {
             AnchorPane questionChoice = (AnchorPane) CQuestionCSATChoiceController.getParent();
             ImageView imageChoice = (ImageView) questionChoice.getChildren().get(0);
 
-
-
             try{
-                String fileName = "src/main/resources/FixedSetting/Icon/CSAT/icon_"+(i+1)+ ".gif";
+                String fileName = "src/main/resources/FixedSetting/Icon/CSAT/icon_"+(i+1)+ ".png";
                 File file = new File(fileName);
                 Image image = new Image(new FileInputStream(file));
                 imageChoice.setImage(image);
@@ -381,11 +318,27 @@ public class CQuestionsController extends Application implements Initializable {
             listChoice.getChildren().add(questionChoice);
         }
 
-
+        ObservableList<Node> listChildren = listChoice.getChildren();
         for(int i = 0; i<5; i++){
-            ObservableList<Node> listChildrent = listChoice.getChildren();
+
             int level = i+1;
-            listChildrent.get(i).setOnMouseClicked(e->{
+            listChildren.get(i).setOnMouseClicked(e->{
+                //set Effect
+                ((AnchorPane)listChildren.get(level-1)).setStyle("-fx-background-color: #cecece");
+                Label contentChoiceLb = (Label) ((AnchorPane)listChildren.get(level-1)).getChildren().get(1);
+                String textStyle = "-fx-text-fill: green";
+                contentChoiceLb.setStyle("-fx-text-fill: green");
+
+                for(int sibling = 0; sibling < 5; sibling++){
+                    if(sibling!=level-1){
+                        ((AnchorPane)listChildren.get(sibling)).setStyle(null);
+                        Label contentChoiceLbSiblings = (Label) ((AnchorPane)listChildren.get(sibling)).getChildren().get(1);
+                        contentChoiceLbSiblings.setStyle("-fx-text-fill: black");
+                    }
+                }
+
+
+                //write data
                 String fileName = question.getType()+ "_" + question.getOrd();
                 Path path = Paths.get("Data", "SubAnswer");
                 try {
@@ -418,9 +371,10 @@ public class CQuestionsController extends Application implements Initializable {
                     ex.printStackTrace();
                 }
 
-
             });
+
         }
+
         listChoice.setSpacing(15.0);
 
         return questionLayout;
@@ -428,9 +382,10 @@ public class CQuestionsController extends Application implements Initializable {
 
     private AnchorPane createNPSLayout(Question question, boolean vi) {
         AnchorPane questionLayout = (AnchorPane) CQuestionsCSATController.getParent();
-
         //setContentQuestion
-        Label content = (Label) questionLayout.getChildren().get(0);
+        assert questionLayout != null;
+        HBox parentContentQuestion = (HBox) questionLayout.getChildren().get(0);
+        Label content = (Label) parentContentQuestion.getChildren().get(0);
         if (vi){
             content.setText(question.getViContent());
         }else{
@@ -439,56 +394,15 @@ public class CQuestionsController extends Application implements Initializable {
 
         //set Choices
         HBox listChoice = (HBox) questionLayout.getChildren().get(1);
-        ToggleGroup toggleGroup = new ToggleGroup();
         for(int i = 0; i<5; i++){
             AnchorPane questionChoice = (AnchorPane) CQuestionsNPSChoiceController.getParent();
+            assert questionChoice != null;
             Label labelContent = (Label) questionChoice.getChildren().get(0);
-            questionChoice.setId(String.valueOf((i+1)));
             labelContent.setText(String.valueOf(i+1));
             listChoice.getChildren().add(questionChoice);
         }
 
-        ObservableList<Node> listChildren = listChoice.getChildren();
-
-        for(int i =0; i<5; i++){
-            int level = i+1;
-            listChildren.get(i).setOnMouseClicked(e-> {
-                String fileName = question.getType() + "_" + question.getOrd();
-                Path path = Paths.get("Data", "SubAnswer");
-                try {
-                    Files.createDirectories(path);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-                File csatData = new File(path.toAbsolutePath().toString()+"\\" + fileName + ".json");
-                if (!csatData.exists()) {
-                    try {
-                        csatData.createNewFile();
-                    } catch (IOException ex) {
-                        System.out.println("can't open file");
-                    }
-                }
-                AnswerLevel levelAnswer = new AnswerLevel();
-                levelAnswer.setLevel(level);
-                levelAnswer.setOrd(question.getOrd());
-                levelAnswer.setSubAnswerID(question.getQuestionID());
-
-                ObjectMapper mapper = new ObjectMapper();
-                try {
-                    mapper.writerWithDefaultPrettyPrinter().writeValue(csatData, levelAnswer);
-                } catch (JsonGenerationException ex) {
-                    ex.printStackTrace();
-                } catch (JsonMappingException ex) {
-                    ex.printStackTrace();
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-            });
-        }
-
         listChoice.setSpacing(15.0);
-
-
         return questionLayout;
 
     }
@@ -496,8 +410,10 @@ public class CQuestionsController extends Application implements Initializable {
     private AnchorPane createFLXLayout(Question question, boolean vi){
         AnchorPane questionLayout = (AnchorPane) CQuestionFLXController.getParent();
 
+
         //setContentQuestion
-        Label content = (Label) questionLayout.getChildren().get(0);
+        HBox contentHb = (HBox) questionLayout.getChildren().get(0);
+        Label content = (Label) contentHb.getChildren().get(0);
         if (vi){
             content.setText(question.getViContent());
         }else{
@@ -506,8 +422,8 @@ public class CQuestionsController extends Application implements Initializable {
 
         //set Choices
         HBox listChoice = (HBox) questionLayout.getChildren().get(1);
-
-
+        String normalStyle = "-fx-background-color: white;\n"
+                + "-fx-border-color: yellow;\n";
         for(int i = 0; i< question.getMaxLevel(); i++){
             Label level = new Label();
             level.setText(String.valueOf(i+1));
@@ -515,49 +431,12 @@ public class CQuestionsController extends Application implements Initializable {
             level.setPrefWidth(60.0);
             level.setPrefHeight(60.0);
             level.setAlignment(Pos.CENTER);
-            level.setBackground(new Background(new BackgroundFill(Color.YELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
+            level.setCursor(Cursor.HAND);
+            level.setStyle(normalStyle);
             listChoice.getChildren().add(level);
         }
 
-        for(int i = 0; i<5; i++){
-            ObservableList<Node> listChildrent = listChoice.getChildren();
-            int level = i+1;
-            listChildrent.get(i).setOnMouseClicked(e->{
-                String fileName = question.getType()+ "_" + question.getOrd();
-                Path path = Paths.get("Data","SubAnswer");
-                try {
-                    Files.createDirectories(path);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-                File csatData = new File(path.toAbsolutePath().toString()+"\\" + fileName +".json");
-                if(!csatData.exists()){
-                    try {
-                        csatData.createNewFile();
-                    } catch (IOException ex) {
-                        System.out.println("can't open file");
-                    }
-                }
-                AnswerLevel levelAnswer = new AnswerLevel();
-                levelAnswer.setLevel(level);
-                levelAnswer.setOrd(question.getOrd());
-                levelAnswer.setSubAnswerID(question.getQuestionID());
 
-                ObjectMapper mapper = new ObjectMapper();
-                try
-                {
-                    mapper.writerWithDefaultPrettyPrinter().writeValue(csatData, levelAnswer);
-                } catch (JsonGenerationException ex) {
-                    ex.printStackTrace();
-                } catch (JsonMappingException ex) {
-                    ex.printStackTrace();
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-
-
-            });
-        }
         listChoice.setSpacing(15.0);
 
         return questionLayout;
@@ -566,8 +445,9 @@ public class CQuestionsController extends Application implements Initializable {
     private AnchorPane createCESLayout(Question question, boolean vi){
         AnchorPane questionLayout = (AnchorPane) CQuestionsCESController.getParent();
 
+        HBox contentHb = (HBox) questionLayout.getChildren().get(0);
         //setContentQuestion
-        Label content = (Label) questionLayout.getChildren().get(0);
+        Label content = (Label) contentHb.getChildren().get(0);
         if (vi){
             content.setText(question.getViContent());
         }else{
@@ -577,6 +457,9 @@ public class CQuestionsController extends Application implements Initializable {
         //set Choices
         HBox listChoice = (HBox) questionLayout.getChildren().get(1);
 
+        String normalStyle = "-fx-background-color: white;\n"
+                + "-fx-border-color: yellow;\n";
+
         for(int i = 0; i<7; i++){
             Label level = new Label();
             level.setPrefHeight(50.0);
@@ -584,58 +467,35 @@ public class CQuestionsController extends Application implements Initializable {
             level.setAlignment(Pos.CENTER);
             level.setFont(new Font(18.0));
             level.setCursor(Cursor.HAND);
-            level.setBackground(new Background(new BackgroundFill(Color.YELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
             level.setText(String.valueOf(i+1));
             level.setId(String.valueOf(i));
+            level.setCursor(Cursor.HAND);
+            level.setStyle(normalStyle);
             listChoice.getChildren().add(level);
         }
 
-        ObservableList<Node> listChildren = listChoice.getChildren();
-        for(int i =0; i<7; i++){
-            int level = i+1;
-            listChildren.get(i).setOnMouseClicked(e-> {
-                String fileName = question.getType() + "_" + question.getOrd();
-                Path path = Paths.get("Data", "SubAnswer");
-                try {
-                    Files.createDirectories(path);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-                File csatData = new File(path.toAbsolutePath().toString()+"\\" + fileName + ".json");
-                if (!csatData.exists()) {
-                    try {
-                        csatData.createNewFile();
-                    } catch (IOException ex) {
-                        System.out.println("can't open file");
-                    }
-                }
-                AnswerLevel levelAnswer = new AnswerLevel();
-                levelAnswer.setLevel(level);
-                levelAnswer.setOrd(question.getOrd());
-                levelAnswer.setSubAnswerID(question.getQuestionID());
 
-                ObjectMapper mapper = new ObjectMapper();
-                try {
-                    mapper.writerWithDefaultPrettyPrinter().writeValue(csatData, levelAnswer);
-                } catch (JsonGenerationException ex) {
-                    ex.printStackTrace();
-                } catch (JsonMappingException ex) {
-                    ex.printStackTrace();
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-            });
-        }
 
-        listChoice.setSpacing(15.0);
+
 
         return questionLayout;
     }
 
+    private ImageView configureStar(String pathOfImageIcon) throws FileNotFoundException {
+        Image emptyStarImage = new Image(new FileInputStream(new File(pathOfImageIcon)));
+        ImageView starLevel = new ImageView(emptyStarImage);
+        starLevel.setFitWidth(100.0);
+        starLevel.setFitHeight(100.0);
+        starLevel.setCursor(Cursor.HAND);
+        return starLevel;
+    }
+
     private AnchorPane createStarLayout(Question question, boolean vi){
         AnchorPane starAnchorPane = (AnchorPane) CQuestionStarController.getParent();
-        Label contentQuestion = (Label) starAnchorPane.getChildren().get(0);
+        HBox contentQuestionHb = (HBox) starAnchorPane.getChildren().get(0);
         HBox listChoice = (HBox) starAnchorPane.getChildren().get(1);
+
+        Label contentQuestion = (Label) contentQuestionHb.getChildren().get(0);
 
         //set content
         if(vi){
@@ -646,134 +506,52 @@ public class CQuestionsController extends Application implements Initializable {
         }
 
         //set Choice
-        String emptyStarPath = "src/main/resources/View/Image/emptyStar.png";
-        String fullStarPath = "src/main/resources/View/Image/fullStar.png";
-        File fileEmptyStar = new File(emptyStarPath);
-        File fileFullStar = new File(fullStarPath);
-        if(fileEmptyStar.exists()&&fileFullStar.exists()){;
-
-        }
-
-        Image emptyStarImage = new Image(fileEmptyStar.toURI().toString());
-        Image fullStarImage = new Image(fileFullStar.toURI().toString());
+        String emptyStarRootPath = "src/main/resources/FixedSetting/Icon/Star/whiteStar.png";
+        String filledStarRootPath = "src/main/resources/FixedSetting/Icon/Star/filledStar.png";
 
         for(int i = 0; i<5; i++){
-            ImageView starLevel = new ImageView(emptyStarImage);
-            starLevel.setFitWidth(100.0);
-            starLevel.setFitHeight(100.0);
-            starLevel.setCursor(Cursor.HAND);
-            starLevel.setId(String.valueOf(i+1));
-            listChoice.getChildren().add(starLevel);
-        }
-        ObservableList<Node> listImageStar = listChoice.getChildren();
+           ImageView imageView;
+           try{
+               imageView = configureStar(emptyStarRootPath);
+               listChoice.getChildren().add(imageView);
+           } catch (FileNotFoundException e) {
+               Path emptyStarPath = Paths.get("FixedSetting", "Icon\\Star");
+               try{
+                   imageView = configureStar(emptyStarPath.toAbsolutePath().toString() + "\\emptyStar.png");
+                   listChoice.getChildren().add(imageView);
+               } catch (FileNotFoundException ex) {
+                   Alert.AlertType alertAlertType = AlertType.ERROR;
+                   Alert alert = new Alert(alertAlertType);
+                   alert.setContentText("File Star không tồn tại");
+                   alert.showAndWait();
+               }
+           }
 
-        for(int i = 0; i<5; i++){
-            int level = i +1;
-            listImageStar.get(i).setOnMouseClicked(e->{
-                String fileName = question.getType()+ "_" + question.getOrd();
-                Path path = Paths.get("Data", "SubAnswer");
-                try {
-                    Files.createDirectories(path);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-                File starData = new File(path.toAbsolutePath().toString()+"\\" + fileName +".json");
-                if(!starData.exists()){
-                    try {
-                        starData.createNewFile();
-                    } catch (IOException ex) {
-                        System.out.println("can't open file");
-                    }
-                }
-
-                AnswerLevel levelAnswer = new AnswerLevel();
-                levelAnswer.setLevel(level);
-                levelAnswer.setOrd(question.getOrd());
-                levelAnswer.setSubAnswerID(question.getQuestionID());
-
-                ObjectMapper mapper = new ObjectMapper();
-                try
-                {
-                    mapper.writerWithDefaultPrettyPrinter().writeValue(starData, levelAnswer);
-                } catch (JsonGenerationException ex) {
-                    ex.printStackTrace();
-                } catch (JsonMappingException ex) {
-                    ex.printStackTrace();
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-
-            });
-        }
-
-
+       }
 
         return starAnchorPane;
     }
 
     private AnchorPane createOpenLayout(Question question, boolean vi){
         AnchorPane openLayout = (AnchorPane) CQuestionOpenController.getParent();
-        Label contentQuestion = (Label) openLayout.getChildren().get(0);
+
+        HBox contentHb = (HBox) openLayout.getChildren().get(0);
+        Label contentQuestion = (Label) contentHb.getChildren().get(0);
         if(vi){
             contentQuestion.setText(question.getViContent());
+
         }else{
             contentQuestion.setText(question.getEnContent());
         }
-        TextArea contentAnswer = (TextArea) openLayout.getChildren().get(1);
 
-        AnswerOpen answerOpen = new AnswerOpen();
-        answerOpen.setSubAnswerID(question.getQuestionID());
-        answerOpen.setOrd(question.getOrd());
-        contentAnswer.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if(!newValue){
-                //open and write data to file
-                String fileName = question.getType()+ "_" + question.getOrd();
-                Path path = Paths.get("Data", "SubAnswer");
-                try {
-                    Files.createDirectories(path);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                File openData = new File(path.toAbsolutePath().toString()+"\\" + fileName +".json");
-
-                if(!openData.exists()){
-                    try {
-                        openData.createNewFile();
-                    } catch (IOException ex) {
-                        System.out.println("can't open file");
-                    }
-                }
-                answerOpen.setContentAnswer(contentAnswer.getText());
-                ObjectMapper objectMapper = new ObjectMapper();
-                try {
-                    objectMapper.writerWithDefaultPrettyPrinter().writeValue(openData, answerOpen);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
         return openLayout;
     }
 
     private AnchorPane createContactLayout(Question question, boolean vi){
         AnchorPane contactLayout = (AnchorPane) CQuestionContactController.getParent();
-        Label contentQuestion = (Label) contactLayout.getChildren().get(0);
+        HBox contentQuestionHb = (HBox) contactLayout.getChildren().get(0);
 
-        AnchorPane parentListInfor = (AnchorPane) contactLayout.getChildren().get(1);
-        ObservableList<Node> listInfor = parentListInfor.getChildren();
-        HBox parentOfName = (HBox) listInfor.get(0);
-        HBox parentOfPhone = (HBox) listInfor.get(1);
-        HBox parentOfEmail = (HBox) listInfor.get(2);
-
-        Label emailAnnoucement = (Label) listInfor.get(3);
-        Label nameAnnoucement = (Label) listInfor.get(4);
-        Label phoneAnnoucement = (Label) listInfor.get(5);
-
-
-
-        TextField name = (TextField) parentOfName.getChildren().get(1);
-        TextField phone = (TextField) parentOfPhone.getChildren().get(1);
-        TextField email = (TextField) parentOfEmail.getChildren().get(1);
+        Label contentQuestion = (Label) contentQuestionHb.getChildren().get(0);
 
         if(vi){
             contentQuestion.setText(question.getViContent());
@@ -781,117 +559,7 @@ public class CQuestionsController extends Application implements Initializable {
             contentQuestion.setText(question.getEnContent());
         }
 
-        AnswerContact answerContact = new AnswerContact();
 
-        answerContact.setSubAnswerID(question.getQuestionID());
-        answerContact.setOrd(question.getOrd());
-
-
-
-        name.focusedProperty().addListener(((observable, oldValue, newValue) -> {
-            String fileName = question.getType()+ "_" + question.getOrd();
-            Path path = Paths.get("Data", "SubAnswer");
-            try {
-                Files.createDirectories(path);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            File contactData = new File(path.toAbsolutePath().toString() + "\\" + fileName +".json");
-            if(!contactData.exists()){
-                try {
-                    contactData.createNewFile();
-                } catch (IOException ex) {
-                    System.out.println("can't open file");
-                }
-            }
-            if(!newValue){
-                if(name.getText().equals("")){
-                    nameAnnoucement.setText("(*) Tên không được để trống");
-                    nameAnnoucement.setVisible(true);
-                }else{
-
-                    answerContact.setName(name.getText());
-
-                }
-            }else{
-                nameAnnoucement.setVisible(false);
-            }
-            ObjectMapper objectMapper = new ObjectMapper();
-            try {
-                objectMapper.writerWithDefaultPrettyPrinter().writeValue(contactData, answerContact);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }));
-
-        email.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            String fileName = question.getType()+ "_" + question.getOrd();
-            File contactData = new File("src/main/java/Data/SubAnswer/" + fileName +".json");
-            if(!contactData.exists()){
-                try {
-                    contactData.createNewFile();
-                } catch (IOException ex) {
-                    System.out.println("can't open file");
-                }
-            }
-            if(!newValue){
-
-                if(checkValidateEmail(email.getText())){
-                    answerContact.setEmail(email.getText());
-
-                }else{
-                    if(email.getText().equals("")){
-                        emailAnnoucement.setText("(*) Email không được để trống");
-                    } else{
-                        emailAnnoucement.setText("(*) Email không hợp lệ");
-                    }
-                    emailAnnoucement.setVisible(true);
-                }
-            }else{
-                emailAnnoucement.setVisible(false);
-            }
-            ObjectMapper objectMapper = new ObjectMapper();
-            try {
-                objectMapper.writerWithDefaultPrettyPrinter().writeValue(contactData, answerContact);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-
-        phone.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            String fileName = question.getType()+ "_" + question.getOrd();
-            File contactData = new File("src/main/java/Data/SubAnswer/" + fileName +".json");
-            if(!contactData.exists()){
-                try {
-                    contactData.createNewFile();
-                } catch (IOException ex) {
-                    System.out.println("can't open file");
-                }
-            }
-
-            if(!newValue){
-
-                if(checkValidatePhone(phone.getText())){
-                    answerContact.setPhone(phone.getText());
-
-                }else{
-                    if(phone.getText().equals("")){
-                        phoneAnnoucement.setText("(*) số điện thoại không được để trống");
-                    } else{
-                        phoneAnnoucement.setText("(*) số điện thoại không hợp lệ");
-                    }
-                    phoneAnnoucement.setVisible(true);
-                }
-            }else{
-                phoneAnnoucement.setVisible(false);
-            }
-            ObjectMapper objectMapper = new ObjectMapper();
-            try {
-                objectMapper.writerWithDefaultPrettyPrinter().writeValue(contactData, answerContact);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
 
         return contactLayout;
     }
@@ -915,24 +583,856 @@ public class CQuestionsController extends Application implements Initializable {
         return false;
     }
 
+    private WaitingScene getWaitingScene(){
+        Alert alert;
+        Path path = Paths.get("Setting", "WaitingScene");
+        File videoFile = new File(path.toAbsolutePath().toString() + "\\WaitingScene.json");
+        try{
+            ObjectMapper objectMapper = new ObjectMapper();
+            return objectMapper.readValue(videoFile, WaitingScene.class);
+        } catch (JsonParseException | JsonMappingException e) {
+            alert = new Alert(AlertType.INFORMATION);
+            alert.setContentText("Không mapping được dữ liệu waitingScene");
+            alert.showAndWait();
+        } catch (IOException e) {
+            Path pathDefault = Paths.get("FixedSetting","DefaultWaitingScene");
+            File defaultVideoFile = new File(pathDefault.toAbsolutePath().toString() + "\\WaitingScene.json");
+            try{
+                return new ObjectMapper().readValue(defaultVideoFile, WaitingScene.class);
+            } catch (JsonParseException | JsonMappingException er) {
+                System.out.println("Không thể mapping dữ liệu tại videoController");
+            } catch (IOException er) {
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setContentText("Không có cài đặt mặc định cho màn hình chờ!");
+                alert.showAndWait();
+            }
+            return null;
+        }
+        return null;
+    }
+
+    //userInfo
+    private User getUserData(){
+        try{
+            Path userPath = Paths.get("Data",  "User");
+            File userFile = new File(userPath.toAbsolutePath().toString() + "\\UserData.json");
+            ObjectMapper userObM = new ObjectMapper();
+            User userData = userObM.readValue(userFile, User.class);
+            return userData;
+        } catch (JsonParseException | JsonMappingException e) {
+            System.out.println("cann't mapping Data");
+        } catch (IOException e) {
+            System.out.println("cannot read userFile");
+        }
+        return null;
+    }
+
+    private Survey getSurveyData(){
+        Path path = Paths.get("Data", "Survey");
+        try{
+            Files.createDirectories(path);
+            File file = new File(path.toAbsolutePath().toString() + "\\SurveyData.txt");
+            FileInputStream fis = new FileInputStream(file);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            Survey survey = (Survey) ois.readObject();
+
+            ois.close();
+            return survey;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    //generating finished Question
+    private String normalStyle = "    -fx-background-color: white;\n" +
+            "    -fx-border-radius: 4px;\n" +
+            "    -fx-border-color: #12e200;\n" +
+            "    -fx-text-fill: #4b4b4b;";
+
+    private String chosenStyle = "-fx-background-color: #12e200;\n" +
+            "    -fx-background-radius: 4px;\n" +
+            "    -fx-border-radius: 4px;";
+
+    private void generate(long numOfQuestions){
+        for(int i = 0; i < numOfQuestions; i++){
+            Label label = new Label();
+            label.setText(String.valueOf(i+1));
+            label.setFont(new Font(18.0));
+            label.setPrefHeight(30.0);
+            label.setPrefWidth(30.0);
+            label.setAlignment(Pos.CENTER);
+            label.setStyle(normalStyle);
+            listFinishedAnswer.getChildren().add(label);
+
+        }
+    }
+
+
+    private void setFinishAnswerLight(){
+
+    }
+
+
+    private void displayData(boolean vi){
+        Survey survey = getSurveyData();
+        assert survey != null;
+        contentSurvey.setText(survey.getContentSurvey());
+        ArrayList<Question> listQuestionOfSurvey = survey.getListQuestion();
+        for(int index = 0; index<listQuestionOfSurvey.size(); index++){
+            AnchorPane questionAnchorPane = new AnchorPane();
+            Question question = listQuestionOfSurvey.get(index);
+
+            if (question.getType().equals("CSAT")) {
+                questionAnchorPane = createCSATLayout(question, vi);
+                HBox parentContent = (HBox) questionAnchorPane.getChildren().get(0);
+                Label announcement = (Label) parentContent.getChildren().get(1);
+                HBox listChoicePr = (HBox) questionAnchorPane.getChildren().get(1);
+                HBox surveyNumPr = (HBox) questionAnchorPane.getChildren().get(2);
+                Label surveyNum = (Label) surveyNumPr.getChildren().get(0);
+                if(vi){
+                    surveyNum.setText("Khảo sát số "+ (index+1));
+                }else{
+                    surveyNum.setText("Survey No." + (index+1));
+                }
+
+                //set eff for each choice node
+                ObservableList<Node> listChoice = listChoicePr.getChildren();
+                for(int choiceIndex = 0; choiceIndex < listChoice.size(); choiceIndex++){
+                    Node choiceAnchorPane = listChoice.get(choiceIndex);
+                    int finalIndex = choiceIndex;
+                    int finalBigIndex = index;
+                    choiceAnchorPane.setOnMouseClicked(event -> {
+                        //set Effect
+                        listChoice.get(finalIndex).setStyle("-fx-background-color: #cecece");
+                        Label contentChoiceLb = (Label) ((AnchorPane)listChoice.get(finalIndex)).getChildren().get(1);
+                        String textStyle = "-fx-text-fill: green; \n"
+                                +"-fx-font-weight: bold;\n";
+                        contentChoiceLb.setStyle(textStyle);
+
+                        for(int sibling = 0; sibling < listChoice.size(); sibling++){
+                            if(sibling!=finalIndex){
+                                ((AnchorPane)listChoice.get(sibling)).setStyle(null);
+                                Label contentChoiceLbSiblings = (Label) ((AnchorPane)listChoice.get(sibling)).getChildren().get(1);
+                                contentChoiceLbSiblings.setStyle("-fx-text-fill: black");
+                            }
+                        }
+
+                        listFinishedAnswer.getChildren().get(finalBigIndex).setStyle(chosenStyle);
+
+                        //write data
+                        String fileName = question.getType()+ "_" + question.getOrd();
+                        Path path = Paths.get("Data", "SubAnswer");
+                        try {
+                            Files.createDirectories(path);
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                        File csatData = new File(path.toAbsolutePath().toString() + "\\" + fileName +".json");
+                        if(!csatData.exists()){
+                            try {
+                                csatData.createNewFile();
+                            } catch (IOException ex) {
+                                System.out.println("can't open file");
+                            }
+                        }
+                        AnswerLevel levelAnswer = new AnswerLevel();
+                        levelAnswer.setLevel(finalIndex+1);
+                        levelAnswer.setOrd(question.getOrd());
+                        levelAnswer.setSubAnswerID(question.getQuestionID());
+
+                        ObjectMapper mapper = new ObjectMapper();
+                        try
+                        {
+                            mapper.writerWithDefaultPrettyPrinter().writeValue(csatData, levelAnswer);
+                        } catch (JsonGenerationException ex) {
+                            ex.printStackTrace();
+                        } catch (JsonMappingException ex) {
+                            ex.printStackTrace();
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    });
+                }
+
+            } else if(question.getType().equals("NPS")){
+                questionAnchorPane = createNPSLayout(question, vi);
+                HBox parentContent = (HBox) questionAnchorPane.getChildren().get(0);
+                Label announcement = (Label) parentContent.getChildren().get(1);
+                HBox listChoicePr = (HBox) questionAnchorPane.getChildren().get(1);
+                HBox surveyNumPr = (HBox) questionAnchorPane.getChildren().get(2);
+                Label surveyNum = (Label) surveyNumPr.getChildren().get(0);
+                if(vi){
+                    surveyNum.setText("Khảo sát số "+ (index+1));
+                }else{
+                    surveyNum.setText("Survey No." + (index+1));
+                }
+
+                //set eff for each choice node
+                ObservableList<Node> listChoice = listChoicePr.getChildren();
+                for(int choiceIndex = 0; choiceIndex < listChoice.size(); choiceIndex++){
+                    AnchorPane choiceAnchorPane = (AnchorPane) listChoice.get(choiceIndex);
+                    Label numberLb = (Label) choiceAnchorPane.getChildren().get(0);
+                    int finalIndex = choiceIndex;
+                    int finalBigIndex = index;
+
+                    choiceAnchorPane.setOnMouseClicked(event -> {
+                        //set Effect
+                        String normalStyle = "-fx-background-color: white;\n"
+                                + "-fx-border-color: yellow;\n";
+                        String clickedStyle = "-fx-background-color: yellow;\n"
+                                +"-fx-font-weight: bold;\n";
+                        numberLb.setStyle(clickedStyle);
+                        for(int sibling = 0; sibling < listChoice.size(); sibling++){
+                          if(sibling!=finalIndex){
+                             Label numE = (Label) ((AnchorPane)listChoice.get(sibling)).getChildren().get(0);
+                             numE.setStyle(normalStyle);
+                          }
+                        }
+
+                        listFinishedAnswer.getChildren().get(finalBigIndex).setStyle(chosenStyle);
+
+                        //write data
+                        String fileName = question.getType()+ "_" + question.getOrd();
+                        Path path = Paths.get("Data", "SubAnswer");
+                        try {
+                            Files.createDirectories(path);
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                        File csatData = new File(path.toAbsolutePath().toString() + "\\" + fileName +".json");
+                        if(!csatData.exists()){
+                            try {
+                                csatData.createNewFile();
+                            } catch (IOException ex) {
+                                System.out.println("can't open file");
+                            }
+                        }
+                        AnswerLevel levelAnswer = new AnswerLevel();
+                        levelAnswer.setLevel(finalIndex+1);
+                        levelAnswer.setOrd(question.getOrd());
+                        levelAnswer.setSubAnswerID(question.getQuestionID());
+
+                        ObjectMapper mapper = new ObjectMapper();
+                        try
+                        {
+                            mapper.writerWithDefaultPrettyPrinter().writeValue(csatData, levelAnswer);
+                        } catch (JsonGenerationException ex) {
+                            ex.printStackTrace();
+                        } catch (JsonMappingException ex) {
+                            ex.printStackTrace();
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    });
+                }
+
+            } else if(question.getType().equals("MULTIPLE_CHOICE")){
+                questionAnchorPane = createMutipleChoiceLayout(question, vi);
+                HBox parentContent = (HBox) questionAnchorPane.getChildren().get(0);
+                Label announcement = (Label) parentContent.getChildren().get(1);
+                HBox listChoicePr = (HBox) questionAnchorPane.getChildren().get(1);
+                HBox surveyNumPr = (HBox) questionAnchorPane.getChildren().get(2);
+                Label surveyNum = (Label) surveyNumPr.getChildren().get(0);
+                if(vi){
+                    surveyNum.setText("Khảo sát số "+ (index+1));
+                }else{
+                    surveyNum.setText("Survey No." + (index+1));
+                }
+
+
+                HBox listChoice = (HBox) questionAnchorPane.getChildren().get(1);
+                ArrayList<Choice> listMultiplechoice = question.getChoice();
+                ArrayList<AnswerChoice> listAnswerMultipleChoice = new ArrayList<>();
+
+                ObservableList<Node> listChildrenChoice = listChoice.getChildren();
+
+                for(int i = 0; i<question.getChoice().size(); i++){
+                    int finalI = i;
+                    int bigIndex = index;
+                    ((CheckBox) listChildrenChoice.get(i)).selectedProperty().addListener((observable, oldValue, newValue) -> {
+                        //set effect
+                        listFinishedAnswer.getChildren().get(bigIndex).setStyle(chosenStyle);
+
+                        //open file
+                        //create Path
+                        String fileName = question.getType()+ "_" + question.getOrd();
+                        Path path = Paths.get("Data", "SubAnswer");
+                        try {
+                            Files.createDirectories(path);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        File multipleAnswerData = new File( path.toAbsolutePath().toString() + "\\" + fileName +".json");
+
+                        if(!multipleAnswerData.exists()){
+                            try {
+                                multipleAnswerData.createNewFile();
+                            } catch (IOException ex) {
+                                System.out.println("can't open file");
+                            }
+                        }
+
+                        //getting data if customers changes any choice
+                        AnswerMultipleChoice answerMultipleChoice = new AnswerMultipleChoice();
+                        answerMultipleChoice.setOrd(question.getOrd());
+                        answerMultipleChoice.setSubAnswerID(question.getQuestionID());
+                        AnswerChoice answerChoice = new AnswerChoice();
+
+                        if(newValue){
+
+                            answerChoice.setOrd(((MutipleChoice) listMultiplechoice.get(finalI)).getOrd());
+                            answerChoice.setSampleAnswerID(((MutipleChoice) listMultiplechoice.get(finalI)).getSampleAnswerID());
+
+                            listAnswerMultipleChoice.add(answerChoice);
+                            answerMultipleChoice.setListAnswerMultiChoice(listAnswerMultipleChoice);
+
+                            ObjectMapper objectMapper = new ObjectMapper();
+                            try {
+                                objectMapper.writerWithDefaultPrettyPrinter().writeValue(multipleAnswerData, answerMultipleChoice);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                        }else{
+                            Iterator itr = listAnswerMultipleChoice.iterator();
+
+                            try{
+                                while(itr.hasNext()){
+
+                                    AnswerChoice choiceElement = (AnswerChoice) itr.next();
+                                    if(choiceElement.getOrd() == Integer.parseInt(listChildrenChoice.get(finalI).getId())){
+                                        itr.remove();
+                                    }
+
+                                    answerMultipleChoice.setListAnswerMultiChoice(listAnswerMultipleChoice);
+                                    ObjectMapper objectMapper = new ObjectMapper();
+                                    try {
+                                        objectMapper.writerWithDefaultPrettyPrinter().writeValue(multipleAnswerData, answerMultipleChoice);
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                }
+
+                            }catch(ConcurrentModificationException ignored){
+
+                            }
+
+
+                        }
+
+                    });
+                }
+
+
+            }else if(question.getType().equals("SINGLE_CHOICE")){
+                questionAnchorPane = createSingleChoiceLayout(question, vi);
+                HBox surveyNumHb = (HBox) questionAnchorPane.getChildren().get(2);
+                Label surveyNum = (Label) surveyNumHb.getChildren().get(0);
+                if(vi){
+                    surveyNum.setText("Khảo sát số " + (index+1));
+                }else{
+                    surveyNum.setText("Survey No." + (index+1));
+                }
+
+                HBox listChoice = (HBox) questionAnchorPane.getChildren().get(1);
+
+                for(int i = 0; i<question.getChoice().size(); i++) {
+                    SingleChoice singleChoice = (SingleChoice) question.getChoice().get(i);
+                    int bigIndex = index;
+                    listChoice.getChildren().get(i).focusedProperty().addListener((observable, oldValue, newValue) -> {
+                        //set effect
+                        listFinishedAnswer.getChildren().get(bigIndex).setStyle(chosenStyle);
+
+                        //write Data
+                        String fileName = question.getType()+ "_" + question.getOrd();
+
+                        //create Path
+                        Path path = Paths.get("Data", "SubAnswer");
+                        try {
+                            Files.createDirectories(path);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        // create file to save data
+
+                        File singleData = new File(path.toAbsolutePath().toString() + "\\" + fileName +".json");
+                        if(!singleData.exists()){
+                            try {
+                                singleData.createNewFile();
+                            } catch (IOException ex) {
+                                System.out.println("can't open file");
+                            }
+                        }
+                        if(newValue){
+                            AnswerSingleChoice singleAnswer = new AnswerSingleChoice();
+                            singleAnswer.setOrd(question.getOrd());
+                            singleAnswer.setSubAnswerID(question.getQuestionID());
+                            singleAnswer.setSampleAnswerID(singleChoice.getSampleAnswerID());
+                            ObjectMapper mapper = new ObjectMapper();
+                            try
+                            {
+                                mapper.writerWithDefaultPrettyPrinter().writeValue(singleData, singleAnswer);
+                            } catch (JsonGenerationException ex) {
+                                ex.printStackTrace();
+                            } catch (JsonMappingException ex) {
+                                ex.printStackTrace();
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                            }
+                        }
+
+                    });
+
+                }
+            }else if(question.getType().equals("FLX")){
+                questionAnchorPane = createFLXLayout(question, vi);
+                HBox surveyNumHb = (HBox) questionAnchorPane.getChildren().get(2);
+                Label surveyNum = (Label) surveyNumHb.getChildren().get(0);
+                if(vi){
+                    surveyNum.setText("Khảo sát số " + (index + 1));
+                }else{
+                    surveyNum.setText("Survey No." + (index + 1));
+                }
+                HBox listChoice = (HBox) questionAnchorPane.getChildren().get(1);
+                for(int i = 0; i<5; i++){
+                    ObservableList<Node> listChildren = listChoice.getChildren();
+                    int level = i+1;
+                    int bigIndex = index;
+                    listChildren.get(i).setOnMouseClicked(e->{
+                        //set eff
+                        String normalStyle = "-fx-background-color: white;\n"
+                                + "-fx-border-color: yellow;\n";
+                        String clickedStyle = "-fx-background-color: yellow;\n"
+                                +"-fx-font-weight: bold;\n";
+
+                        listChildren.get(level-1).setStyle(clickedStyle);
+                        for(int sibling = 0; sibling < listChildren.size(); sibling++){
+                            if(sibling!=level-1){
+                                Label numE = (Label) listChildren.get(sibling);
+                                numE.setStyle(normalStyle);
+                            }
+                        }
+
+
+                        listFinishedAnswer.getChildren().get(bigIndex).setStyle(chosenStyle);
+                        //write data
+                        String fileName = question.getType()+ "_" + question.getOrd();
+                        Path path = Paths.get("Data","SubAnswer");
+                        try {
+                            Files.createDirectories(path);
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                        File csatData = new File(path.toAbsolutePath().toString()+"\\" + fileName +".json");
+                        if(!csatData.exists()){
+                            try {
+                                csatData.createNewFile();
+                            } catch (IOException ex) {
+                                System.out.println("can't open file");
+                            }
+                        }
+                        AnswerLevel levelAnswer = new AnswerLevel();
+                        levelAnswer.setLevel(level);
+                        levelAnswer.setOrd(question.getOrd());
+                        levelAnswer.setSubAnswerID(question.getQuestionID());
+
+                        ObjectMapper mapper = new ObjectMapper();
+                        try
+                        {
+                            mapper.writerWithDefaultPrettyPrinter().writeValue(csatData, levelAnswer);
+                        } catch (JsonGenerationException ex) {
+                            ex.printStackTrace();
+                        } catch (JsonMappingException ex) {
+                            ex.printStackTrace();
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+
+
+                    });
+                }
+
+            }else if(question.getType().equals("CES")){
+                questionAnchorPane = createCESLayout(question, vi);
+                HBox surveyNumHb = (HBox) questionAnchorPane.getChildren().get(2);
+                Label surveyNum = (Label) surveyNumHb.getChildren().get(0);
+                if(vi){
+                    surveyNum.setText("Khảo sát số " + (index + 1));
+                }else{
+                    surveyNum.setText("Survey No." + (index + 1));
+                }
+
+
+                HBox listChoice = (HBox) questionAnchorPane.getChildren().get(1);
+
+                ObservableList<Node> listChildren = listChoice.getChildren();
+                for(int i =0; i<7; i++){
+                    int level = i+1;
+                    int bigIndex = index;
+                    listChildren.get(i).setOnMouseClicked(e-> {
+                        //set effect
+                        String normalStyle = "-fx-background-color: white;\n"
+                                + "-fx-border-color: yellow;\n";
+                        String clickedStyle = "-fx-background-color: yellow;\n"
+                                +"-fx-font-weight: bold;\n";
+
+                        listChildren.get(level-1).setStyle(clickedStyle);
+                        for(int sibling = 0; sibling < listChildren.size(); sibling++){
+                            if(sibling!=level-1){
+                                Label numE = (Label) listChildren.get(sibling);
+                                numE.setStyle(normalStyle);
+                            }
+                        }
+                        listFinishedAnswer.getChildren().get(bigIndex).setStyle(chosenStyle);
+                        //write Data
+                        String fileName = question.getType() + "_" + question.getOrd();
+                        Path path = Paths.get("Data", "SubAnswer");
+                        try {
+                            Files.createDirectories(path);
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                        File csatData = new File(path.toAbsolutePath().toString()+"\\" + fileName + ".json");
+                        if (!csatData.exists()) {
+                            try {
+                                csatData.createNewFile();
+                            } catch (IOException ex) {
+                                System.out.println("can't open file");
+                            }
+                        }
+                        AnswerLevel levelAnswer = new AnswerLevel();
+                        levelAnswer.setLevel(level);
+                        levelAnswer.setOrd(question.getOrd());
+                        levelAnswer.setSubAnswerID(question.getQuestionID());
+
+                        ObjectMapper mapper = new ObjectMapper();
+                        try {
+                            mapper.writerWithDefaultPrettyPrinter().writeValue(csatData, levelAnswer);
+                        } catch (JsonGenerationException ex) {
+                            ex.printStackTrace();
+                        } catch (JsonMappingException ex) {
+                            ex.printStackTrace();
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    });
+                }
+            }else if(question.getType().equals("CONTACT")){
+                questionAnchorPane = createContactLayout(question, vi);
+
+                HBox surveyNumHb = (HBox) questionAnchorPane.getChildren().get(2);
+                Label surveyNum = (Label) surveyNumHb.getChildren().get(0);
+                if(vi){
+                    surveyNum.setText("Khảo sát số "+(index+1));
+                }else{
+                    surveyNum.setText("Survey No."+(index+1));
+                }
+
+                AnswerContact answerContact = new AnswerContact();
+
+                answerContact.setSubAnswerID(question.getQuestionID());
+                answerContact.setOrd(question.getOrd());
+
+                HBox infoHb = (HBox) questionAnchorPane.getChildren().get(1);
+                AnchorPane parentListInfor = (AnchorPane) infoHb.getChildren().get(0);
+                ObservableList<Node> listInfor = parentListInfor.getChildren();
+
+                HBox parentOfName = (HBox) listInfor.get(0);
+                HBox parentOfPhone = (HBox) listInfor.get(1);
+                HBox parentOfEmail = (HBox) listInfor.get(2);
+
+                Label emailAnnoucement = (Label) listInfor.get(3);
+                Label nameAnnoucement = (Label) listInfor.get(4);
+                Label phoneAnnoucement = (Label) listInfor.get(5);
+
+                TextField name = (TextField) parentOfName.getChildren().get(1);
+                TextField phone = (TextField) parentOfPhone.getChildren().get(1);
+                TextField email = (TextField) parentOfEmail.getChildren().get(1);
+
+                int bigIndex = index;
+                name.focusedProperty().addListener(((observable, oldValue, newValue) -> {
+                    String fileName = question.getType()+ "_" + question.getOrd();
+                    Path path = Paths.get("Data", "SubAnswer");
+                    try {
+                        Files.createDirectories(path);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    File contactData = new File(path.toAbsolutePath().toString() + "\\" + fileName +".json");
+                    if(!contactData.exists()){
+                        try {
+                            contactData.createNewFile();
+                        } catch (IOException ex) {
+                            System.out.println("can't open file");
+                        }
+                    }
+                    if(!newValue){
+                        if(name.getText().equals("")){
+                            nameAnnoucement.setText("(*) Tên không được để trống");
+                            nameAnnoucement.setVisible(true);
+                            listFinishedAnswer.getChildren().get(bigIndex).setStyle(normalStyle);
+                        }else{
+                            answerContact.setName(name.getText());
+                            listFinishedAnswer.getChildren().get(bigIndex).setStyle(chosenStyle);
+                        }
+                    }else{
+                        nameAnnoucement.setVisible(false);
+                        listFinishedAnswer.getChildren().get(bigIndex).setStyle(normalStyle);
+                    }
+                    ObjectMapper objectMapper = new ObjectMapper();
+                    try {
+                        objectMapper.writerWithDefaultPrettyPrinter().writeValue(contactData, answerContact);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }));
+
+                email.focusedProperty().addListener((observable, oldValue, newValue) -> {
+                    String fileName = question.getType()+ "_" + question.getOrd();
+                    Path path = Paths.get("Data", "SubAnswer");
+                    try {
+                        Files.createDirectories(path);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    File contactData = new File(path.toAbsolutePath().toString() +"\\"+ fileName +".json");
+                    if(!contactData.exists()){
+                        try {
+                            contactData.createNewFile();
+                        } catch (IOException ex) {
+                            System.out.println("can't open file");
+                        }
+                    }
+                    if(!newValue){
+
+                        if(checkValidateEmail(email.getText())){
+                            answerContact.setEmail(email.getText());
+                            listFinishedAnswer.getChildren().get(bigIndex).setStyle(chosenStyle);
+
+                        }else{
+                            if(email.getText().equals("")){
+                                emailAnnoucement.setText("(*) Email không được để trống");
+                            } else{
+                                emailAnnoucement.setText("(*) Email không hợp lệ");
+                            }
+                            emailAnnoucement.setVisible(true);
+                            listFinishedAnswer.getChildren().get(bigIndex).setStyle(normalStyle);
+                        }
+                    }else{
+                        emailAnnoucement.setVisible(false);
+                    }
+                    ObjectMapper objectMapper = new ObjectMapper();
+                    try {
+                        objectMapper.writerWithDefaultPrettyPrinter().writeValue(contactData, answerContact);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+
+                phone.focusedProperty().addListener((observable, oldValue, newValue) -> {
+                    String fileName = question.getType()+ "_" + question.getOrd();
+                    Path path = Paths.get("Data", "SubAnswer");
+                    try {
+                        Files.createDirectories(path);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    File contactData = new File(path.toAbsolutePath().toString() +"\\"+ fileName +".json");
+                    if(!contactData.exists()){
+                        try {
+                            contactData.createNewFile();
+                        } catch (IOException ex) {
+                            System.out.println("can't open file");
+                        }
+                    }
+
+                    if(!newValue){
+
+                        if(checkValidatePhone(phone.getText())){
+                            answerContact.setPhone(phone.getText());
+                            listFinishedAnswer.getChildren().get(bigIndex).setStyle(chosenStyle);
+
+                        }else{
+                            if(phone.getText().equals("")){
+                                phoneAnnoucement.setText("(*) số điện thoại không được để trống");
+                            } else{
+                                phoneAnnoucement.setText("(*) số điện thoại không hợp lệ");
+                            }
+                            phoneAnnoucement.setVisible(true);
+                            listFinishedAnswer.getChildren().get(bigIndex).setStyle(normalStyle);
+                        }
+                    }else{
+                        phoneAnnoucement.setVisible(false);
+                    }
+                    ObjectMapper objectMapper = new ObjectMapper();
+                    try {
+                        objectMapper.writerWithDefaultPrettyPrinter().writeValue(contactData, answerContact);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+            }else if(question.getType().equals("OPEN")){
+                questionAnchorPane = createOpenLayout(question, vi);
+                HBox contentHb = (HBox) questionAnchorPane.getChildren().get(0);
+                HBox textHb = (HBox) questionAnchorPane.getChildren().get(1);
+                HBox contentNumHb = (HBox) questionAnchorPane.getChildren().get(2);
+                Label surveyNum = (Label) contentNumHb.getChildren().get(0);
+                if(vi){
+                    surveyNum.setText("Khảo sát số "+(index+1));
+                }else{
+                    surveyNum.setText("Survey No."+(index+1));
+                }
+
+
+                TextArea contentAnswer = (TextArea) textHb.getChildren().get(0);
+                AnswerOpen answerOpen = new AnswerOpen();
+                answerOpen.setSubAnswerID(question.getQuestionID());
+                answerOpen.setOrd(question.getOrd());
+                int bigIndex = index;
+                contentAnswer.focusedProperty().addListener((observable, oldValue, newValue) -> {
+                    //set eff
+                    listFinishedAnswer.getChildren().get(bigIndex).setStyle(chosenStyle);
+                    if(!newValue){
+
+                        //open and write data to file
+                        String fileName = question.getType()+ "_" + question.getOrd();
+                        Path path = Paths.get("Data", "SubAnswer");
+                        try {
+                            Files.createDirectories(path);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        File openData = new File(path.toAbsolutePath().toString()+"\\" + fileName +".json");
+
+                        if(!openData.exists()){
+                            try {
+                                openData.createNewFile();
+                            } catch (IOException ex) {
+                                System.out.println("can't open file");
+                            }
+                        }
+                        answerOpen.setContentAnswer(contentAnswer.getText());
+                        ObjectMapper objectMapper = new ObjectMapper();
+                        try {
+                            objectMapper.writerWithDefaultPrettyPrinter().writeValue(openData, answerOpen);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }else if(question.getType().equals("STAR")){
+                questionAnchorPane = createStarLayout(question, vi);
+                HBox surveyNumHb = (HBox) questionAnchorPane.getChildren().get(2);
+                HBox listChoice = (HBox) questionAnchorPane.getChildren().get(1);
+
+                Label surveyNum = (Label) surveyNumHb.getChildren().get(0);
+                if(vi){
+                    surveyNum.setText("Khảo sát số " +(index+1));
+                }else{
+                    surveyNum.setText("Survey No." + (index+1));
+                }
+
+                String emptyStarRootPath = "src/main/resources/FixedSetting/Icon/Star/whiteStar.png";
+                String filledStarRootPath = "src/main/resources/FixedSetting/Icon/Star/filledStar.png";
+                ObservableList<Node> listImageStar = listChoice.getChildren();
+
+                int bigIndex = index;
+                for(int i = 0; i<5; i++){
+                    int level = i +1;
+                    listImageStar.get(i).setOnMouseClicked(e->{
+                        //set eff
+                        listFinishedAnswer.getChildren().get(bigIndex).setStyle(chosenStyle);
+
+                        //set event
+                        for(int j = 0; j<level; j++){
+                            try {
+                                ((ImageView)listImageStar.get(j)).setImage(new Image(new FileInputStream(filledStarRootPath)));
+                            } catch (FileNotFoundException ex) {
+                                ex.printStackTrace();
+                            }
+                        }
+                        for(int j = level; j<5; j++){
+                            try {
+                                ((ImageView)listImageStar.get(j)).setImage(new Image(new FileInputStream(emptyStarRootPath)));
+                            } catch (FileNotFoundException ex) {
+                                ex.printStackTrace();
+                            }
+                        }
+
+
+
+                        //write Data to file
+                        String fileName = question.getType()+ "_" + question.getOrd();
+                        Path path = Paths.get("Data", "SubAnswer");
+                        try {
+                            Files.createDirectories(path);
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                        File starData = new File(path.toAbsolutePath().toString()+"\\" + fileName +".json");
+                        if(!starData.exists()){
+                            try {
+                                starData.createNewFile();
+                            } catch (IOException ex) {
+                                System.out.println("can't open file");
+                            }
+                        }
+
+                        AnswerLevel levelAnswer = new AnswerLevel();
+                        levelAnswer.setLevel(level);
+                        levelAnswer.setOrd(question.getOrd());
+                        levelAnswer.setSubAnswerID(question.getQuestionID());
+
+                        ObjectMapper mapper = new ObjectMapper();
+                        try
+                        {
+                            mapper.writerWithDefaultPrettyPrinter().writeValue(starData, levelAnswer);
+                        } catch (JsonGenerationException ex) {
+                            ex.printStackTrace();
+                        } catch (JsonMappingException ex) {
+                            ex.printStackTrace();
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+
+                        //set effect
+
+                    });
+                }
+
+            }
+            listQuestions.getChildren().add(questionAnchorPane);
+        }
+
+    }
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        //set full scene for question
-        Screen screen = Screen.getPrimary();
-        Rectangle2D rectangle2D = screen.getVisualBounds();
-        parentListAnswer.setPrefWidth(rectangle2D.getWidth()-200.0);
+        //set full scene for question layout
+        setFullQuestionLayout();
 
         AnswerService answerService = new AnswerService();
 
         //create timeline for waiting video
+        waitingScene = getWaitingScene();
+
+        assert waitingScene != null;
+        AtomicLong second = new AtomicLong(waitingScene.getTime());
+
         Timeline time = new Timeline();
         time.setCycleCount(Timeline.INDEFINITE);
 
-        KeyFrame frame = new KeyFrame(Duration.seconds(100), event -> {
-            second--;
-            System.out.println(second);
-            if(second == 0){
+        KeyFrame frame = new KeyFrame(Duration.seconds(1), event -> {
+            second.getAndDecrement();
+            if(second.get() == 0){
                 time.stop();
                 Stage stage = (Stage) back.getScene().getWindow();
                 stage.setScene(new Scene(VideoController.getParent()));
@@ -944,86 +1444,34 @@ public class CQuestionsController extends Application implements Initializable {
         time.playFromStart();
 
         //mapping Data
-        surveyService = new SurveyService();
-        Survey survey = surveyService.getSurvey();
+        Survey survey = getSurveyData();
 
-        contentSurvey.setText(survey.getContentSurvey());
-
-        for(Question question:survey.getListQuestion()){
-            if (question.getType().equals("CSAT")) {
-                listQuestions.getChildren().add(createCSATLayout(question, true));
-            } else if(question.getType().equals("NPS")){
-                listQuestions.getChildren().add(createNPSLayout(question, true));
-            } else if(question.getType().equals("MULTIPLE_CHOICE")){
-                listQuestions.getChildren().add(createMutipleChoiceLayout(question, true));
-            }else if(question.getType().equals("SINGLE_CHOICE")){
-                listQuestions.getChildren().add(createSingleChoiceLayout(question, true));
-            }else if(question.getType().equals("FLX")){
-                listQuestions.getChildren().add(createFLXLayout(question, true));
-            }else if(question.getType().equals("CES")){
-                listQuestions.getChildren().add(createCESLayout(question, true));
-            }else if(question.getType().equals("CONTACT")){
-                listQuestions.getChildren().add(createContactLayout(question, true));
-            }else if(question.getType().equals("OPEN")){
-                listQuestions.getChildren().add(createOpenLayout(question, true));
-            }else if(question.getType().equals("STAR")){
-                listQuestions.getChildren().add(createStarLayout(question, true));
-            }
-        }
-
+        displayData(true);
+        AtomicBoolean languageFlag = new AtomicBoolean(true);
         //Tieng viet by default
         languageSwitch.selectedProperty().addListener((observable, oldValue, newValue) ->
         {
-            if (newValue) {
-                languageSwitch.setText("English");
-                listQuestions.getChildren().clear();
-                for(Question question:survey.getListQuestion()){
-                    if (question.getType().equals("CSAT")) {
-                        listQuestions.getChildren().add(createCSATLayout(question, false));
-                    } else if(question.getType().equals("NPS")){
-                        listQuestions.getChildren().add(createNPSLayout(question, false));
-                    } else if(question.getType().equals("MULTIPLE_CHOICE")){
-                        listQuestions.getChildren().add(createMutipleChoiceLayout(question, false));
-                    }else if(question.getType().equals("SINGLE_CHOICE")){
-                        listQuestions.getChildren().add(createSingleChoiceLayout(question, false));
-                    }else if(question.getType().equals("FLX")){
-                        listQuestions.getChildren().add(createFLXLayout(question, false));
-                    }else if(question.getType().equals("CES")){
-                        listQuestions.getChildren().add(createCESLayout(question, false));
-                    }else if(question.getType().equals("CONTACT")){
-                        listQuestions.getChildren().add(createContactLayout(question, false));
-                    }else if(question.getType().equals("OPEN")){
-                        listQuestions.getChildren().add(createOpenLayout(question, false));
-                    }else if(question.getType().equals("STAR")){
-                        listQuestions.getChildren().add(createStarLayout(question, false));
+                if (newValue) {
+                    languageSwitch.setText("English");
+                    listQuestions.getChildren().clear();
+                    displayData(false);
+                    languageFlag.set(false);
+                    for(int i = 0; i<listFinishedAnswer.getChildren().size(); i++){
+                        listFinishedAnswer.getChildren().get(i).setStyle(normalStyle);
+                    }
+                }else{
+                    languageSwitch.setText("Tiếng Việt");
+                    listQuestions.getChildren().clear();
+                    displayData(true);
+                    languageFlag.set(true);
+                    for(int i = 0; i<listFinishedAnswer.getChildren().size(); i++){
+                        listFinishedAnswer.getChildren().get(i).setStyle(normalStyle);
                     }
                 }
-            }else{
-                languageSwitch.setText("Tiếng Việt");
-                listQuestions.getChildren().clear();
-                for(Question question:survey.getListQuestion()){
-                    if (question.getType().equals("CSAT")) {
-                        listQuestions.getChildren().add(createCSATLayout(question, true));
-                    } else if(question.getType().equals("NPS")){
-                        listQuestions.getChildren().add(createNPSLayout(question, true));
-                    } else if(question.getType().equals("MULTIPLE_CHOICE")){
-                        listQuestions.getChildren().add(createMutipleChoiceLayout(question, true));
-                    }else if(question.getType().equals("SINGLE_CHOICE")){
-                        listQuestions.getChildren().add(createSingleChoiceLayout(question, true));
-                    }else if(question.getType().equals("FLX")){
-                        listQuestions.getChildren().add(createFLXLayout(question, true));
-                    }else if(question.getType().equals("CES")){
-                        listQuestions.getChildren().add(createCESLayout(question, true));
-                    }else if(question.getType().equals("CONTACT")){
-                        listQuestions.getChildren().add(createContactLayout(question, true));
-                    }else if(question.getType().equals("OPEN")){
-                        listQuestions.getChildren().add(createOpenLayout(question, true));
-                    }else if(question.getType().equals("STAR")){
-                        listQuestions.getChildren().add(createStarLayout(question, true));
-                    }
-                }
-            }
-        });
+            });
+
+        assert survey != null;
+        generate(survey.getListQuestion().size());
 
         //set Event for buttons
         sendingSurvey.setOnAction(e->{
@@ -1078,6 +1526,7 @@ public class CQuestionsController extends Application implements Initializable {
                         ObjectMapper objectMapper = new ObjectMapper();
                         try {
                             answerOpen = objectMapper.readValue(child, AnswerOpen.class);
+
                             listAnswer.add(answerOpen);
                         } catch (IOException ex) {
                             ex.printStackTrace();
@@ -1130,6 +1579,7 @@ public class CQuestionsController extends Application implements Initializable {
 
                 File[] listDatafile = parentListData.listFiles();
                 for(int i = 0; i <listAnswer.size(); i++){
+                    assert listDatafile != null;
                     listDatafile[i].delete();
                 }
                 setScene(CThanksController.getParent(), e);
@@ -1163,23 +1613,25 @@ public class CQuestionsController extends Application implements Initializable {
             }
         });
 
+        undo.setOnAction(event -> {
+            listQuestions.getChildren().clear();
+            displayData(languageFlag.get());
+            for(int i = 0; i<listFinishedAnswer.getChildren().size(); i++){
+                listFinishedAnswer.getChildren().get(i).setStyle(normalStyle);
+            }
+        });
+
         back.setOnAction(e->{
             setScene(QIndexController.getParent(), e);
             time.stop();
         });
 
         //when customer touch on the scene, second set to 10 and recount
-        back.getParent().getParent().setOnMouseClicked(e->{
-            second = 10;
+        bigBackground.setOnMouseClicked(e->{
+            second.set(waitingScene.getTime());
         });
 
-
-        //testing
     }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        primaryStage.setScene(new Scene(getParent()));
-        primaryStage.show();
-    }
+
 }

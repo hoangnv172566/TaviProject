@@ -4,9 +4,12 @@ import Config.URLApi;
 import Models.Company.Company;
 import Models.User.User;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.fluent.Request;
+import org.apache.http.client.fluent.Response;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -15,64 +18,50 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class CompanyService {
     private UserService userService;
 
-    public Company getCompanyInfor(User user){
-        Company company;
-        HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
-        HttpPost request = new HttpPost(URLApi.LOGIN);//connect to api
-        JSONObject jsonObject = new JSONObject();// create jsonOb to pass as a para of StringEntity
-
-        jsonObject.put("password", user.getPassword());
-        jsonObject.put("username", user.getUsername());
-
+    public int getCompanyInfor(long idCompany) {
+        Company company = new Company();
         try{
-            StringEntity params =new StringEntity(jsonObject.toString());
+            Response response = Request.Get(URLApi.COMPANY + idCompany).execute();
+            byte[] responseBye = response.returnContent().asBytes();
+            String responseString = new String(responseBye, StandardCharsets.UTF_8);
+            JSONParser parser = new JSONParser();
+            JSONObject responseJs = (JSONObject) parser.parse(responseString);
+            JSONObject data = (JSONObject) responseJs.get("data");
 
-            request.addHeader("content-type", "application/json");
-            request.setEntity(params);
+            String imgLogo = (String) data.get("imgLogo");
+            String name = (String) data.get("name");
 
-            HttpResponse response = httpClient.execute(request);//executing the request
-
-            StringEntity data = new StringEntity(EntityUtils.toString(response.getEntity()));
-
-            JSONParser jsonParser = new JSONParser();
-            JSONObject dataJson = (JSONObject) jsonParser.parse(EntityUtils.toString(data));
-            String rawData = dataJson.toString();
-
-            byte[] dataAsByte = rawData.getBytes();
-            String newDataAfterChanging = new String(dataAsByte, StandardCharsets.UTF_8);
-            JSONObject newDataAsJsonObject = (JSONObject) jsonParser.parse(newDataAfterChanging);
-            JSONObject infor = (JSONObject) newDataAsJsonObject.get("data");
-            JSONObject companyInfor = (JSONObject) infor.get("company");
-            String name = (String) companyInfor.get("name");
-            long idCompany = (long) companyInfor.get("id");
-            String imgLogo = (String) companyInfor.get("imgLogo");
-
-            //mapping data to Company object
-            company = new Company();
-            company.setNameOfCompany(name);
             company.setCompanyID(idCompany);
-            company.setImgLogo(imgLogo.trim());
+            company.setNameOfCompany(name);
+            company.setImgLogo(imgLogo);
 
-            return company;
 
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (ClientProtocolException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
+            Path path = Paths.get("Data", "Company\\Info");
+            Files.createDirectories(path);
+            File companyFile = new File(path.toAbsolutePath().toString() + "\\CompanyData.json");
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(companyFile, company);
+
+            return 200;
+        }catch (ParseException er){
+            er.getMessage();
+        }catch (IOException er){
+            er.getMessage();
+            return 400;
         }
-        return null;
 
+        return 500;
     }
 
 }
