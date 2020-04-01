@@ -17,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -39,8 +40,6 @@ public class VideoController extends Application implements Initializable {
     @FXML private AnchorPane coverLayout;
     @FXML private MediaView mediaViewVideo;
     @FXML private JFXToggleButton switchConfig;
-
-    private Pane coverVideo;
 
     public static Parent getParent() {
         try{
@@ -74,7 +73,7 @@ public class VideoController extends Application implements Initializable {
         };
 
         mediaView.fitWidthProperty().bind(widthProperty);
-//        mediaView.fitHeightProperty().bind(heightProperty);
+        mediaView.fitHeightProperty().bind(heightProperty);
 
         root.widthProperty().addListener(observable -> {
             widthProperty.invalidate();
@@ -104,74 +103,63 @@ public class VideoController extends Application implements Initializable {
 
         return mediaView;
     }
-    private WaitingScene getWaitingScene(){
-        Alert alert;
+    private WaitingScene getWaitingScene() throws IOException {
+
         Path path = Paths.get("Setting", "WaitingScene");
         File videoFile = new File(path.toAbsolutePath().toString() + "\\WaitingScene.json");
-        try{
-            ObjectMapper objectMapper = new ObjectMapper();
-            return objectMapper.readValue(videoFile, WaitingScene.class);
-        } catch (JsonParseException e) {
-            alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("Không mapping được dữ liệu waitingScene");
-            alert.showAndWait();
-        } catch (JsonMappingException e) {
-            alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("Không mapping được dữ liệu waitingScene");
-            alert.showAndWait();
-        } catch (IOException e) {
-            alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("ko đọc được file!");
-            alert.show();
-        }
-        return null;
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.readValue(videoFile, WaitingScene.class);
+
     }
-    private WaitingScene getDefaultSettingWaitingScene(){
+    private WaitingScene getDefaultSettingWaitingScene() throws IOException {
         Path path = Paths.get("FixedSetting","DefaultWaitingScene");
         File video = new File(path.toAbsolutePath().toString() + "\\WaitingScene.json");
-        try{
-            return new ObjectMapper().readValue(video, WaitingScene.class);
-        } catch (JsonParseException | JsonMappingException e) {
-            System.out.println("Không thể mapping dữ liệu tại videoController");
-        } catch (IOException e) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("Không có cài đặt cho màn hình chờ!");
-            alert.showAndWait();
-        }
-        return null;
+        return new ObjectMapper().readValue(video, WaitingScene.class);
     }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        coverVideo = new Pane();
-        WaitingScene waitingScene = getWaitingScene();
-        if(waitingScene == null){
-            waitingScene = getDefaultSettingWaitingScene();
+        Pane coverVideo = new Pane();
+        WaitingScene waitingScene=null;
+        try{
+            waitingScene = getWaitingScene();
+        } catch (IOException e) {
+            try{
+                waitingScene = getDefaultSettingWaitingScene();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
 
+        assert waitingScene != null;
         String pathVideo = waitingScene.getPath().get(0);
 
         File file = new File(pathVideo);
 
         mediaViewVideo = createMediaView(coverVideo);
-        Media media = new Media(file.toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
-        mediaPlayer.setAutoPlay(true);
-        mediaPlayer.setCycleCount(javafx.scene.media.MediaPlayer.INDEFINITE);
-        mediaViewVideo.setSmooth(true);
-        mediaViewVideo.setMediaPlayer(mediaPlayer);
+        if(file.exists()){
+            Media media = new Media(file.toURI().toString());
+            MediaPlayer mediaPlayer = new MediaPlayer(media);
+            mediaPlayer.setAutoPlay(true);
+            mediaPlayer.setCycleCount(javafx.scene.media.MediaPlayer.INDEFINITE);
+            mediaViewVideo.setSmooth(true);
+            mediaViewVideo.setMediaPlayer(mediaPlayer);
+            parentVideo.setPadding(new Insets(20.0));
+            coverVideo.getChildren().add(mediaViewVideo);
+            parentVideo.getChildren().add(coverVideo);
+            parentVideo.setPadding(new Insets(10));
+            mediaViewVideo.setOnMouseClicked(e->{
+                mediaPlayer.stop();
+                setScene(CQuestionsController.getParent(), e);
+            });
 
-        parentVideo.setPadding(new Insets(20.0));
-        coverVideo.getChildren().add(mediaViewVideo);
-        parentVideo.getChildren().add(coverVideo);
-
-//        parentVideo.setPadding(new Insets());
-        mediaViewVideo.setOnMouseClicked(e->{
-            mediaPlayer.stop();
-            setScene(CQuestionsController.getParent(), e);
-        });
-
+        }else{
+            Alert.AlertType alertAlertType = AlertType.INFORMATION;
+            Alert alert = new Alert(alertAlertType);
+            alert.setContentText("Không tìm thấy file video");
+            alert.show();
+        }
 
     }
 

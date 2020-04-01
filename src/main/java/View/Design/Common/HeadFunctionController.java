@@ -3,6 +3,7 @@ package View.Design.Common;
 import Config.URLApi;
 import Models.User.User;
 import Service.impl.UserService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,23 +36,15 @@ public class HeadFunctionController implements Initializable {
             Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
             try{
                 Path path = Paths.get("Data", "User");
-                File file = new File(path.toAbsolutePath().toString(), "\\UserData.txt");
-                FileReader fileReader = new FileReader(file);
-                BufferedReader bufferedReader = new BufferedReader(fileReader);
-                JSONParser jsonParser = new JSONParser();
-                JSONObject userDataJson = (JSONObject) jsonParser.parse(bufferedReader.readLine());
+                File file = new File(path.toAbsolutePath().toString(), "\\UserData.json");
+                User user = new ObjectMapper().readValue(file, User.class);
 
-                User user = new User();
-                user.setPassword((String) userDataJson.get("password"));
-                user.setUsername((String) userDataJson.get("username"));
                 userService.logout(user, URLApi.LOGOUT);
-
-                bufferedReader.close();
-                fileReader.close();
 
                 Path listPathFile = Paths.get("Data");
                 File[] listFiles = new File(listPathFile.toAbsolutePath().toString()).listFiles();
 
+                assert listFiles != null;
                 for (File fileE:listFiles){
                     if(fileE.isDirectory()){
                         File[] listFileData = fileE.listFiles();
@@ -63,8 +56,6 @@ public class HeadFunctionController implements Initializable {
 
             } catch (IOException ex) {
                 stage.close();
-            } catch (ParseException ex) {
-                ex.printStackTrace();
             }
 
             stage.close();

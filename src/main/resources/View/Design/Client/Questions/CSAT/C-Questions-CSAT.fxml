@@ -23,7 +23,7 @@
          <padding>
             <Insets top="20.0" />
          </padding></HBox>
-      <HBox AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox spacing="7.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label style="-fx-font-weight: bold; -fx-font-size: 18;" text="Khảo sát 1" textFill="#2e37e8">
                <font>

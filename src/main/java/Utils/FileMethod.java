@@ -1,5 +1,7 @@
 package Utils;
 
+import Models.Survey.Question;
+import Models.Temp.CheckRequireQuestion;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -7,8 +9,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
-public class FileMethod {
+public abstract class FileMethod {
     public static void saveFile(String directoryPath, String fileName, Object data){
         try{
             String filePath = directoryPath + fileName;
@@ -36,7 +41,7 @@ public class FileMethod {
             directory.mkdirs();
         }
     }
-    public static void saveFileFromURL(String fileName, String fileUrl) throws MalformedURLException, IOException{
+    public void saveFileFromURL(String fileName, String fileUrl) throws MalformedURLException, IOException{
         BufferedInputStream bufferedInputStream = null;
         FileOutputStream fileOutputStream = null;
 
@@ -46,6 +51,7 @@ public class FileMethod {
             int count;
             while ((count = bufferedInputStream .read(data, 0, 1024)) != -1) {
                 fileOutputStream.write(data, 0, count);
+                showInfoProcess();
             }
         }  finally {
             if ( bufferedInputStream != null)
@@ -53,5 +59,9 @@ public class FileMethod {
             if (fileOutputStream != null)
                 fileOutputStream.close();
         }
+    }
+    public abstract void showInfoProcess();
+    public void writeCheckData(CheckRequireQuestion checkRequireQuestion, Question question){
+
     }
 }

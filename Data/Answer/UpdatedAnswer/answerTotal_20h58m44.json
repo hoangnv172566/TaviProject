@@ -1,0 +1,55 @@
+{
+  "answerTotalID" : 1585,
+  "nameOfAnswerTotal" : null,
+  "surveyTotalID" : 0,
+  "deviceKioskID" : 0,
+  "listAnswer" : [ {
+    "subAnswerID" : 1,
+    "ord" : 1,
+    "ordInList" : 0,
+    "filled" : true,
+    "required" : true,
+    "level" : 4
+  }, {
+    "subAnswerID" : 23,
+    "ord" : 5,
+    "ordInList" : 4,
+    "filled" : true,
+    "required" : true,
+    "level" : 4
+  }, {
+    "subAnswerID" : 6,
+    "ord" : 2,
+    "ordInList" : 0,
+    "filled" : false,
+    "required" : false,
+    "listAnswerMultiChoice" : [ {
+      "sampleAnswerID" : 3,
+      "ord" : 4
+    }, {
+      "sampleAnswerID" : 2,
+      "ord" : 2
+    } ]
+  }, {
+    "subAnswerID" : 30,
+    "ord" : 8,
+    "ordInList" : 7,
+    "filled" : true,
+    "required" : true,
+    "contentAnswer" : "av"
+  }, {
+    "subAnswerID" : 7,
+    "ord" : 6,
+    "ordInList" : 5,
+    "filled" : true,
+    "required" : true,
+    "sampleAnswerID" : 45
+  }, {
+    "subAnswerID" : 29,
+    "ord" : 7,
+    "ordInList" : 6,
+    "filled" : true,
+    "required" : true,
+    "level" : 4
+  } ]
+}

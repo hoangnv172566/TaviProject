@@ -49,7 +49,13 @@ public class CompanyController implements Initializable {
             String urlLogo = URLApi.HOST + "/" + company.getImgLogo();
             try{
                 Files.createDirectories(companyLogoPath);
-                FileMethod.saveFileFromURL(companyLogoPath.toAbsolutePath().toString() + "\\" + company.getImgLogo(), urlLogo);
+                FileMethod fileMethod = new FileMethod() {
+                    @Override
+                    public void showInfoProcess() {
+
+                    }
+                };
+                fileMethod.saveFileFromURL(companyLogoPath.toAbsolutePath().toString() + "\\" + company.getImgLogo(), urlLogo);
 
             } catch (MalformedURLException e) {
                 System.out.println("Lỗi tại CompanyController");

@@ -10,6 +10,9 @@ public class SubAnswer {
 //    private SimpleIntegerProperty answerTotalID;
 //    private SimpleIntegerProperty surveyID;
     private SimpleLongProperty ord;
+    private int ordInList;
+    private boolean filled;
+    private boolean required;
 
 
     //subAnswerID
@@ -24,6 +27,31 @@ public class SubAnswer {
     }
     public void setSubAnswerID(long value){
         subAnswerIDProperty().set(value);
+    }
+
+
+    public int getOrdInList() {
+        return ordInList;
+    }
+
+    public void setOrdInList(int ordInList) {
+        this.ordInList = ordInList;
+    }
+
+    public boolean isRequired() {
+        return required;
+    }
+
+    public void setRequired(boolean required) {
+        this.required = required;
+    }
+
+    public boolean isFilled() {
+        return filled;
+    }
+
+    public void setFilled(boolean filled) {
+        this.filled = filled;
     }
 
 

@@ -97,9 +97,9 @@ public class FormLoginController implements Initializable{
 
 
         loginBtn.setOnAction(event ->{
+            progressIndicator.setVisible(true);
             Path path = Paths.get("Data", "User");
             if(!checkLocalInfo(path.toAbsolutePath().toString())){
-                progressIndicator.setVisible(true);
                 User user = getUserData();
                 //announce login status in case login fails
                 try {
@@ -127,11 +127,27 @@ public class FormLoginController implements Initializable{
                         setScene(QIndexController.getParent(), event);
                     }
 
-
                 } catch (JsonParseException | JsonMappingException e) {
                     System.out.println("Lỗi mapping username Data!");
                 } catch (IOException e) {
-                    System.out.println("File not found!");
+                    User user = getUserData();
+                    //announce login status in case login fails
+                    try {
+                        // if login success, load question index
+                        if(userService.login(user, URLApi.LOGIN) == 200){
+                            //open Stage, full scene
+                            progressIndicator.setVisible(true);
+                            setScene(QIndexController.getParent(), event);
+                        }else{
+                            progressIndicator.setVisible(false);
+                            announcement.setVisible(true);
+                            announcement.setText("Tài khoản hoặc mật khẩu không chính xác");
+                        }
+                    } catch (IOException er) {
+                        progressIndicator.setVisible(false);
+                        announcement.setVisible(true);
+                        announcement.setText("Mất kết nối! Vui lòng thử lại");
+                    }
                 }
             }
 
@@ -178,12 +194,10 @@ public class FormLoginController implements Initializable{
                 User user = new ObjectMapper().readValue(file, User.class);
                 usernameTF.setText(user.getUsername());
                 passwordTF.setText(user.getPassword());
-            } catch (JsonParseException e) {
+            } catch (JsonParseException | JsonMappingException e) {
                 System.out.println("auto login failed");
-            } catch (JsonMappingException e) {
-                System.out.println("auto login failed");
-            } catch (IOException e) {
-                System.out.println("auto login failed");
+            } catch (IOException e){
+                System.out.println("File user's not found");
             }
 
         }

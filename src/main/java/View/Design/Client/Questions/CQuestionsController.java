@@ -12,10 +12,14 @@ import Models.Setting.WaitingScene;
 import Models.Survey.Choice.Choice;
 import Models.Survey.Choice.MutipleChoice;
 import Models.Survey.Choice.SingleChoice;
+import Models.Survey.ContactField;
 import Models.Survey.Question;
 import Models.Survey.Survey;
+import Models.Temp.CheckRequireQuestion;
 import Models.User.User;
 import Service.impl.AnswerService;
+import Service.impl.RewardService;
+import Utils.FileMethod;
 import View.Design.Client.Questions.CES.CQuestionsCESController;
 import View.Design.Client.Questions.CSAT.CQuestionCSATChoiceController;
 import View.Design.Client.Questions.CSAT.CQuestionsCSATController;
@@ -29,6 +33,7 @@ import View.Design.Client.Questions.SingleChoice.CQuestionSingleChoiceChoiceCont
 import View.Design.Client.Questions.Star.CQuestionStarController;
 import View.Design.Client.Thanks.CThanksController;
 import View.Design.Common.VideoController;
+import View.Design.Common.WaitingSceneSlideController;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -122,10 +127,20 @@ public class CQuestionsController implements Initializable {
         //setContentQuestion
         HBox parentContentQuestion = (HBox) questionLayout.getChildren().get(0);
         Label content = (Label) parentContentQuestion.getChildren().get(0);
-        if (vi == true){
+        if (vi){
             content.setText(question.getViContent());
+            if(question.isRequire()){
+                Label require = (Label) parentContentQuestion.getChildren().get(1);
+                require.setText("(*) Bắt buộc!");
+                require.setVisible(true);
+            }
         }else{
             content.setText(question.getEnContent());
+            if(question.isRequire()){
+                Label require = (Label) parentContentQuestion.getChildren().get(1);
+                require.setText("(*) Required!");
+                require.setVisible(true);
+            }
         }
 
         //set Choices
@@ -164,8 +179,18 @@ public class CQuestionsController implements Initializable {
         Label content = (Label) parentContentQuestion.getChildren().get(0);
         if (vi){
             content.setText(question.getViContent());
+            if(question.isRequire()){
+                Label require = (Label) parentContentQuestion.getChildren().get(1);
+                require.setText("(*) Bắt buộc!");
+                require.setVisible(true);
+            }
         }else{
             content.setText(question.getEnContent());
+            if(question.isRequire()){
+                Label require = (Label) parentContentQuestion.getChildren().get(1);
+                require.setText("(*) Required!");
+                require.setVisible(true);
+            }
         }
 
         //set Choices
@@ -187,52 +212,7 @@ public class CQuestionsController implements Initializable {
         }
 
         //writeData
-
-        for(int i = 0; i<question.getChoice().size(); i++) {
-            SingleChoice singleChoice = (SingleChoice) question.getChoice().get(i);
-            listChoice.getChildren().get(i).focusedProperty().addListener((observable, oldValue, newValue) -> {
-                String fileName = question.getType()+ "_" + question.getOrd();
-
-                //create Path
-                Path path = Paths.get("Data", "SubAnswer");
-                try {
-                    Files.createDirectories(path);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                // create file to save data
-
-                File singleData = new File(path.toAbsolutePath().toString() + "\\" + fileName +".json");
-                if(!singleData.exists()){
-                    try {
-                        singleData.createNewFile();
-                    } catch (IOException ex) {
-                        System.out.println("can't open file");
-                    }
-                }
-                if(newValue){
-                    AnswerSingleChoice singleAnswer = new AnswerSingleChoice();
-                    singleAnswer.setOrd(question.getOrd());
-                    singleAnswer.setSubAnswerID(question.getQuestionID());
-                    singleAnswer.setSampleAnswerID(singleChoice.getSampleAnswerID());
-                    ObjectMapper mapper = new ObjectMapper();
-                    try
-                    {
-                        mapper.writerWithDefaultPrettyPrinter().writeValue(singleData, singleAnswer);
-                    } catch (JsonGenerationException ex) {
-                        ex.printStackTrace();
-                    } catch (JsonMappingException ex) {
-                        ex.printStackTrace();
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
-                }
-
-            });
-
-        }
         listChoice.setSpacing(30.0);
-
         return questionLayout;
     }
 
@@ -275,7 +255,7 @@ public class CQuestionsController implements Initializable {
                 imageChoice.setImage(image);
             } catch (FileNotFoundException e) {
                 Path path = Paths.get("FixedSetting", "Icon\\CSAT");
-                String fileName = "\\icon_"+ (i+1) + ".gif";
+                String fileName = "\\icon_"+ (i+1) + ".png";
                 try{
                     Image image = new Image(new FileInputStream(new File(path.toAbsolutePath().toString() + fileName)));
                     imageChoice.setImage(image);
@@ -386,10 +366,20 @@ public class CQuestionsController implements Initializable {
         assert questionLayout != null;
         HBox parentContentQuestion = (HBox) questionLayout.getChildren().get(0);
         Label content = (Label) parentContentQuestion.getChildren().get(0);
+        Label require = (Label) parentContentQuestion.getChildren().get(1);
+
         if (vi){
             content.setText(question.getViContent());
+            if(question.isRequire()){
+                require.setText("(*) Bắt buộc!");
+                require.setVisible(true);
+            }
         }else{
             content.setText(question.getEnContent());
+            if(question.isRequire()){
+                require.setText("(*) Required!");
+                require.setVisible(true);
+            }
         }
 
         //set Choices
@@ -414,10 +404,23 @@ public class CQuestionsController implements Initializable {
         //setContentQuestion
         HBox contentHb = (HBox) questionLayout.getChildren().get(0);
         Label content = (Label) contentHb.getChildren().get(0);
+        Label require = (Label) contentHb.getChildren().get(1);
         if (vi){
             content.setText(question.getViContent());
+            if(question.isRequire()){
+                require.setText("Bắt buộc");
+                require.setVisible(true);
+            }else{
+                require.setVisible(false);
+            }
         }else{
             content.setText(question.getEnContent());
+            if(question.isRequire()){
+                require.setText("Required");
+                require.setVisible(true);
+            }else{
+                require.setVisible(false);
+            }
         }
 
         //set Choices
@@ -448,10 +451,23 @@ public class CQuestionsController implements Initializable {
         HBox contentHb = (HBox) questionLayout.getChildren().get(0);
         //setContentQuestion
         Label content = (Label) contentHb.getChildren().get(0);
+        Label require = (Label) contentHb.getChildren().get(1);
         if (vi){
             content.setText(question.getViContent());
+            if(question.isRequire()){
+                require.setText("Bắt buộc");
+                require.setVisible(true);
+            }else{
+                require.setVisible(false);
+            }
         }else{
             content.setText(question.getEnContent());
+            if(question.isRequire()){
+                require.setText("(*)Required");
+                require.setVisible(true);
+            }else{
+                require.setVisible(true);
+            }
         }
 
         //set Choices
@@ -492,17 +508,27 @@ public class CQuestionsController implements Initializable {
 
     private AnchorPane createStarLayout(Question question, boolean vi){
         AnchorPane starAnchorPane = (AnchorPane) CQuestionStarController.getParent();
-        HBox contentQuestionHb = (HBox) starAnchorPane.getChildren().get(0);
+        HBox contentHb = (HBox) starAnchorPane.getChildren().get(0);
         HBox listChoice = (HBox) starAnchorPane.getChildren().get(1);
 
-        Label contentQuestion = (Label) contentQuestionHb.getChildren().get(0);
-
-        //set content
-        if(vi){
-            contentQuestion.setText(question.getViContent());
-
+        Label content = (Label) contentHb.getChildren().get(0);
+        Label require = (Label) contentHb.getChildren().get(1);
+        if (vi){
+            content.setText(question.getViContent());
+            if(question.isRequire()){
+                require.setText("Bắt buộc");
+                require.setVisible(true);
+            }else{
+                require.setVisible(false);
+            }
         }else{
-            contentQuestion.setText(question.getEnContent());
+            content.setText(question.getEnContent());
+            if(question.isRequire()){
+                require.setText("Required");
+                require.setVisible(true);
+            }else{
+                require.setVisible(true);
+            }
         }
 
         //set Choice
@@ -517,7 +543,7 @@ public class CQuestionsController implements Initializable {
            } catch (FileNotFoundException e) {
                Path emptyStarPath = Paths.get("FixedSetting", "Icon\\Star");
                try{
-                   imageView = configureStar(emptyStarPath.toAbsolutePath().toString() + "\\emptyStar.png");
+                   imageView = configureStar(emptyStarPath.toAbsolutePath().toString() + "\\whiteStar.png");
                    listChoice.getChildren().add(imageView);
                } catch (FileNotFoundException ex) {
                    Alert.AlertType alertAlertType = AlertType.ERROR;
@@ -536,27 +562,51 @@ public class CQuestionsController implements Initializable {
         AnchorPane openLayout = (AnchorPane) CQuestionOpenController.getParent();
 
         HBox contentHb = (HBox) openLayout.getChildren().get(0);
-        Label contentQuestion = (Label) contentHb.getChildren().get(0);
-        if(vi){
-            contentQuestion.setText(question.getViContent());
 
+        Label content = (Label) contentHb.getChildren().get(0);
+        Label require = (Label) contentHb.getChildren().get(1);
+        if (vi){
+            content.setText(question.getViContent());
+            if(question.isRequire()){
+                require.setText("Bắt buộc");
+                require.setVisible(true);
+            }else{
+                require.setVisible(false);
+            }
         }else{
-            contentQuestion.setText(question.getEnContent());
+            content.setText(question.getEnContent());
+            if(question.isRequire()){
+                require.setText("Required");
+                require.setVisible(true);
+            }else{
+                require.setVisible(true);
+            }
         }
-
         return openLayout;
     }
 
     private AnchorPane createContactLayout(Question question, boolean vi){
         AnchorPane contactLayout = (AnchorPane) CQuestionContactController.getParent();
-        HBox contentQuestionHb = (HBox) contactLayout.getChildren().get(0);
 
-        Label contentQuestion = (Label) contentQuestionHb.getChildren().get(0);
-
-        if(vi){
-            contentQuestion.setText(question.getViContent());
+        HBox contentHb = (HBox) contactLayout.getChildren().get(0);
+        Label content = (Label) contentHb.getChildren().get(0);
+        Label require = (Label) contentHb.getChildren().get(1);
+        if (vi){
+            content.setText(question.getViContent());
+            if(question.isRequire()){
+                require.setText("Bắt buộc");
+                require.setVisible(true);
+            }else{
+                require.setVisible(false);
+            }
         }else{
-            contentQuestion.setText(question.getEnContent());
+            content.setText(question.getEnContent());
+            if(question.isRequire()){
+                require.setText("Required");
+                require.setVisible(true);
+            }else{
+                require.setVisible(true);
+            }
         }
 
 
@@ -672,12 +722,6 @@ public class CQuestionsController implements Initializable {
         }
     }
 
-
-    private void setFinishAnswerLight(){
-
-    }
-
-
     private void displayData(boolean vi){
         Survey survey = getSurveyData();
         assert survey != null;
@@ -686,6 +730,34 @@ public class CQuestionsController implements Initializable {
         for(int index = 0; index<listQuestionOfSurvey.size(); index++){
             AnchorPane questionAnchorPane = new AnchorPane();
             Question question = listQuestionOfSurvey.get(index);
+
+            if(question.isRequire()){
+                Path tempDataPath = Paths.get("Temp", "CheckData");
+                try{
+                    Files.createDirectories(tempDataPath);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                File tempDataFile = new File(tempDataPath.toAbsolutePath().toString() + "\\" + question.getType() + "_" + question.getOrd() + ".json");
+                if(!tempDataFile.exists()){
+                    try{
+                        tempDataFile.createNewFile();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+                CheckRequireQuestion checkRequireQuestion = new CheckRequireQuestion();
+                checkRequireQuestion.setOrderInList(index);
+                checkRequireQuestion.setRequired(question.isRequire());
+                checkRequireQuestion.setTypeQuestion(question.getType());
+                try{
+                    new ObjectMapper().writerWithDefaultPrettyPrinter().writeValue(tempDataFile, checkRequireQuestion);
+                } catch (IOException e) {
+
+                }
+            }
 
             if (question.getType().equals("CSAT")) {
                 questionAnchorPane = createCSATLayout(question, vi);
@@ -722,6 +794,8 @@ public class CQuestionsController implements Initializable {
                             }
                         }
 
+                        ImageView imageView = (ImageView) surveyNumPr.getChildren().get(1);
+                        imageView.setImage(null);
                         listFinishedAnswer.getChildren().get(finalBigIndex).setStyle(chosenStyle);
 
                         //write data
@@ -744,6 +818,9 @@ public class CQuestionsController implements Initializable {
                         levelAnswer.setLevel(finalIndex+1);
                         levelAnswer.setOrd(question.getOrd());
                         levelAnswer.setSubAnswerID(question.getQuestionID());
+                        levelAnswer.setFilled(true);//to check
+                        levelAnswer.setRequired(question.isRequire());
+                        levelAnswer.setOrdInList(finalBigIndex);//to annoucement to these question in list
 
                         ObjectMapper mapper = new ObjectMapper();
                         try
@@ -756,6 +833,7 @@ public class CQuestionsController implements Initializable {
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
+
                     });
                 }
 
@@ -794,6 +872,9 @@ public class CQuestionsController implements Initializable {
                           }
                         }
 
+                        ImageView imageView = (ImageView) surveyNumPr.getChildren().get(1);
+                        imageView.setImage(null);
+
                         listFinishedAnswer.getChildren().get(finalBigIndex).setStyle(chosenStyle);
 
                         //write data
@@ -816,6 +897,9 @@ public class CQuestionsController implements Initializable {
                         levelAnswer.setLevel(finalIndex+1);
                         levelAnswer.setOrd(question.getOrd());
                         levelAnswer.setSubAnswerID(question.getQuestionID());
+                        levelAnswer.setOrdInList(finalBigIndex);
+                        levelAnswer.setFilled(true);
+                        levelAnswer.setRequired(question.isRequire());
 
                         ObjectMapper mapper = new ObjectMapper();
                         try
@@ -828,6 +912,9 @@ public class CQuestionsController implements Initializable {
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
+
+
+
                     });
                 }
 
@@ -857,6 +944,8 @@ public class CQuestionsController implements Initializable {
                     ((CheckBox) listChildrenChoice.get(i)).selectedProperty().addListener((observable, oldValue, newValue) -> {
                         //set effect
                         listFinishedAnswer.getChildren().get(bigIndex).setStyle(chosenStyle);
+                        ImageView imageView = (ImageView) surveyNumPr.getChildren().get(1);
+                        imageView.setImage(null);
 
                         //open file
                         //create Path
@@ -904,13 +993,20 @@ public class CQuestionsController implements Initializable {
 
                             try{
                                 while(itr.hasNext()){
-
                                     AnswerChoice choiceElement = (AnswerChoice) itr.next();
                                     if(choiceElement.getOrd() == Integer.parseInt(listChildrenChoice.get(finalI).getId())){
                                         itr.remove();
                                     }
+                                    if(!listAnswerMultipleChoice.isEmpty()){
+                                        answerMultipleChoice.setFilled(true);
+                                    }else{
+                                        answerMultipleChoice.setFilled(false);
+                                    }
 
                                     answerMultipleChoice.setListAnswerMultiChoice(listAnswerMultipleChoice);
+                                    answerMultipleChoice.setOrdInList(bigIndex);
+                                    answerMultipleChoice.setRequired(question.isRequire());
+
                                     ObjectMapper objectMapper = new ObjectMapper();
                                     try {
                                         objectMapper.writerWithDefaultPrettyPrinter().writeValue(multipleAnswerData, answerMultipleChoice);
@@ -950,6 +1046,8 @@ public class CQuestionsController implements Initializable {
                         //set effect
                         listFinishedAnswer.getChildren().get(bigIndex).setStyle(chosenStyle);
 
+                        ImageView imageView = (ImageView) surveyNumHb.getChildren().get(1);
+                        imageView.setImage(null);
                         //write Data
                         String fileName = question.getType()+ "_" + question.getOrd();
 
@@ -975,6 +1073,9 @@ public class CQuestionsController implements Initializable {
                             singleAnswer.setOrd(question.getOrd());
                             singleAnswer.setSubAnswerID(question.getQuestionID());
                             singleAnswer.setSampleAnswerID(singleChoice.getSampleAnswerID());
+                            singleAnswer.setOrdInList(bigIndex);
+                            singleAnswer.setFilled(true);
+                            singleAnswer.setRequired(question.isRequire());
                             ObjectMapper mapper = new ObjectMapper();
                             try
                             {
@@ -1020,6 +1121,8 @@ public class CQuestionsController implements Initializable {
                             }
                         }
 
+                        ImageView imageView = (ImageView) surveyNumHb.getChildren().get(1);
+                        imageView.setImage(null);
 
                         listFinishedAnswer.getChildren().get(bigIndex).setStyle(chosenStyle);
                         //write data
@@ -1042,6 +1145,9 @@ public class CQuestionsController implements Initializable {
                         levelAnswer.setLevel(level);
                         levelAnswer.setOrd(question.getOrd());
                         levelAnswer.setSubAnswerID(question.getQuestionID());
+                        levelAnswer.setFilled(true);
+                        levelAnswer.setRequired(question.isRequire());
+                        levelAnswer.setOrdInList(bigIndex);
 
                         ObjectMapper mapper = new ObjectMapper();
                         try
@@ -1091,6 +1197,8 @@ public class CQuestionsController implements Initializable {
                             }
                         }
                         listFinishedAnswer.getChildren().get(bigIndex).setStyle(chosenStyle);
+                        ImageView imageView = (ImageView) surveyNumHb.getChildren().get(1);
+                        imageView.setImage(null);
                         //write Data
                         String fileName = question.getType() + "_" + question.getOrd();
                         Path path = Paths.get("Data", "SubAnswer");
@@ -1111,7 +1219,7 @@ public class CQuestionsController implements Initializable {
                         levelAnswer.setLevel(level);
                         levelAnswer.setOrd(question.getOrd());
                         levelAnswer.setSubAnswerID(question.getQuestionID());
-
+                        levelAnswer.setOrdInList(bigIndex);
                         ObjectMapper mapper = new ObjectMapper();
                         try {
                             mapper.writerWithDefaultPrettyPrinter().writeValue(csatData, levelAnswer);
@@ -1122,13 +1230,15 @@ public class CQuestionsController implements Initializable {
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
+
                     });
                 }
             }else if(question.getType().equals("CONTACT")){
                 questionAnchorPane = createContactLayout(question, vi);
-
+                int bigIndex = index;
                 HBox surveyNumHb = (HBox) questionAnchorPane.getChildren().get(2);
                 Label surveyNum = (Label) surveyNumHb.getChildren().get(0);
+
                 if(vi){
                     surveyNum.setText("Khảo sát số "+(index+1));
                 }else{
@@ -1138,7 +1248,17 @@ public class CQuestionsController implements Initializable {
                 AnswerContact answerContact = new AnswerContact();
 
                 answerContact.setSubAnswerID(question.getQuestionID());
+                //init data
+                answerContact.setName("");
+                answerContact.setAddress("");
+                answerContact.setEmail("");
+                answerContact.setPhone("");
+
                 answerContact.setOrd(question.getOrd());
+                answerContact.setOrdInList(bigIndex);
+                answerContact.setRequired(question.isRequire());
+                answerContact.setFilled(false);
+
 
                 HBox infoHb = (HBox) questionAnchorPane.getChildren().get(1);
                 AnchorPane parentListInfor = (AnchorPane) infoHb.getChildren().get(0);
@@ -1147,17 +1267,34 @@ public class CQuestionsController implements Initializable {
                 HBox parentOfName = (HBox) listInfor.get(0);
                 HBox parentOfPhone = (HBox) listInfor.get(1);
                 HBox parentOfEmail = (HBox) listInfor.get(2);
+                HBox parentOfAddress = (HBox) listInfor.get(6);
 
                 Label emailAnnoucement = (Label) listInfor.get(3);
                 Label nameAnnoucement = (Label) listInfor.get(4);
                 Label phoneAnnoucement = (Label) listInfor.get(5);
+                Label addressAnnoucement = (Label) listInfor.get(7);
 
                 TextField name = (TextField) parentOfName.getChildren().get(1);
                 TextField phone = (TextField) parentOfPhone.getChildren().get(1);
                 TextField email = (TextField) parentOfEmail.getChildren().get(1);
+                TextField address = (TextField) parentOfAddress.getChildren().get(1);
 
-                int bigIndex = index;
+                if(vi){
+                   name.setPromptText("Họ và tên");
+                   phone.setPromptText("Số điện thoại");
+                   email.setPromptText("Địa chỉ Email");
+                   address.setPromptText("Địa chỉ của bạn");
+                }else{
+                    name.setPromptText("Your Name");
+                    phone.setPromptText("Telephone Number");
+                    email.setPromptText("Email");
+                    address.setPromptText("Address");
+                }
+
                 name.focusedProperty().addListener(((observable, oldValue, newValue) -> {
+                    ImageView imageView = (ImageView) surveyNumHb.getChildren().get(1);
+                    imageView.setImage(null);
+
                     String fileName = question.getType()+ "_" + question.getOrd();
                     Path path = Paths.get("Data", "SubAnswer");
                     try {
@@ -1173,28 +1310,185 @@ public class CQuestionsController implements Initializable {
                             System.out.println("can't open file");
                         }
                     }
+
+
+
                     if(!newValue){
-                        if(name.getText().equals("")){
-                            nameAnnoucement.setText("(*) Tên không được để trống");
-                            nameAnnoucement.setVisible(true);
-                            listFinishedAnswer.getChildren().get(bigIndex).setStyle(normalStyle);
-                        }else{
-                            answerContact.setName(name.getText());
-                            listFinishedAnswer.getChildren().get(bigIndex).setStyle(chosenStyle);
+
+                        if(question.isRequire()){
+                            ContactField contactField = question.getContactField();
+                            if(name.getText().isEmpty()||name.getText()==null){
+                                if(contactField.isNameRequire()){
+                                    if(contactData.exists()){
+                                        contactData.delete();
+                                    }
+                                    nameAnnoucement.setText("Tên không được để trống");
+                                    nameAnnoucement.setVisible(true);
+                                }else{
+                                    answerContact.setName("");
+                                }
+                            }else{
+                                answerContact.setName(name.getText());
+
+                                if(contactField.isEmailRequire()){
+                                    if(answerContact.getEmail().isEmpty()||answerContact.getEmail()==null){
+                                        if(contactData.exists()){
+                                            contactData.delete();
+                                        }
+                                    }
+                                }
+                                if(contactField.isPhoneRequire()){
+                                    if(answerContact.getPhone().equals("")||answerContact.getPhone()==null){
+                                        if(contactData.exists()){
+                                            contactData.delete();
+                                        }
+                                    }
+                                }
+                                if(contactField.isAddressRequire()){
+                                    if(answerContact.getAddress().equals("")||answerContact.getAddress()==null){
+                                        if(contactData.exists()){
+                                            contactData.delete();
+                                        }
+                                    }
+                                }
+                                if(contactData.exists()){
+                                    try{
+                                        new ObjectMapper().writerWithDefaultPrettyPrinter().writeValue(contactData, answerContact);
+                                    }catch(IOException er){
+                                        System.out.println("Lỗi k ghi đc file tại name TextFile");
+                                    }
+                                }else{
+                                    System.out.println("Không ghi được file tại name tf");
+                                }
+
+                            }
+
+                        }else{//nếu không require, chỉ lưu khi điền một thông tin nào đó
+                            boolean existData = answerContact.getEmail()!=null||answerContact.getPhone()!=null||answerContact.getName()!=null||answerContact.getAddress()!=null;
+                            if(existData){
+                                if(contactData.exists()){
+                                    try{
+                                        new ObjectMapper().writerWithDefaultPrettyPrinter().writeValue(contactData, answerContact);
+                                    } catch (IOException er) {
+                                        er.printStackTrace();
+                                    }
+                                }
+                            }else{
+                                if(contactData.exists()){
+                                    contactData.delete();
+                                }
+                            }
                         }
                     }else{
                         nameAnnoucement.setVisible(false);
                         listFinishedAnswer.getChildren().get(bigIndex).setStyle(normalStyle);
                     }
-                    ObjectMapper objectMapper = new ObjectMapper();
+
+
+
+
+                }));
+
+                address.focusedProperty().addListener(((observable, oldValue, newValue) -> {
+                    //dont care
+                    ImageView imageView = (ImageView) surveyNumHb.getChildren().get(1);
+                    imageView.setImage(null);
+
+                    //create File whenever focusedProperty is changed
+                    String fileName = question.getType()+ "_" + question.getOrd();
+                    Path path = Paths.get("Data", "SubAnswer");
                     try {
-                        objectMapper.writerWithDefaultPrettyPrinter().writeValue(contactData, answerContact);
+                        Files.createDirectories(path);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                    File contactData = new File(path.toAbsolutePath().toString() + "\\" + fileName +".json");
+                    if(!contactData.exists()){
+                        try {
+                            contactData.createNewFile();
+                        } catch (IOException ex) {
+                            System.out.println("can't open file");
+                        }
+                    }
+
+                    if(!newValue){
+                        if(question.isRequire()){
+                            ContactField contactField = question.getContactField();
+                            if(address.getText().isEmpty()||address.getText()==null){
+                                if(contactField.isAddressRequire()){
+                                    if(contactData.exists()){
+                                        contactData.delete();
+                                    }
+                                    addressAnnoucement.setText("Địa chỉ không được để trống");
+                                    addressAnnoucement.setVisible(true);
+                                }else{
+                                    answerContact.setAddress("");
+                                }
+                            }else{
+                                answerContact.setAddress(address.getText());
+
+                                if(contactField.isEmailRequire()){
+                                    if(answerContact.getEmail().equals("")||answerContact.getEmail()==null){
+                                        if(contactData.exists()){
+                                            contactData.delete();
+                                        }
+                                    }
+                                }
+                                if(contactField.isPhoneRequire()){
+                                    if(answerContact.getPhone().equals("")||answerContact.getPhone()==null){
+                                        if(contactData.exists()){
+                                            contactData.delete();
+                                        }
+                                    }
+                                }
+                                if(contactField.isNameRequire()){
+                                    if(answerContact.getName().equals("")||answerContact.getName()==null){
+                                        if(contactData.exists()){
+                                            contactData.delete();
+                                        }
+                                    }
+                                }
+                                try{
+                                    new ObjectMapper().writerWithDefaultPrettyPrinter().writeValue(contactData, answerContact);
+
+                                }catch(IOException er){
+                                    System.out.println("Lỗi k ghi đc file tại address TextFile");
+                                }
+                            }
+
+
+                        }else{//nếu không require, chỉ lưu khi điền một thông tin nào đó
+                            boolean existData = answerContact.getEmail()!=null||answerContact.getPhone()!=null||answerContact.getName()!=null||answerContact.getAddress()!=null;
+                            if(existData){
+                                if(contactData.exists()){
+                                    try{
+                                        new ObjectMapper().writerWithDefaultPrettyPrinter().writeValue(contactData, answerContact);
+                                    } catch (IOException er) {
+                                        er.printStackTrace();
+                                    }
+                                }
+                            }else{
+                                if(contactData.exists()){
+                                    contactData.delete();
+                                }
+                            }
+
+                        }
+                    }else{
+                        addressAnnoucement.setVisible(false);
+                        listFinishedAnswer.getChildren().get(bigIndex).setStyle(normalStyle);
+                    }
+
                 }));
 
                 email.focusedProperty().addListener((observable, oldValue, newValue) -> {
+                    answerContact.setOrdInList(bigIndex);
+                    answerContact.setRequired(question.isRequire());
+                    answerContact.setFilled(false);
+                    ImageView imageView = (ImageView) surveyNumHb.getChildren().get(1);
+                    imageView.setImage(null);
+
+                    //create file
                     String fileName = question.getType()+ "_" + question.getOrd();
                     Path path = Paths.get("Data", "SubAnswer");
                     try {
@@ -1210,33 +1504,87 @@ public class CQuestionsController implements Initializable {
                             System.out.println("can't open file");
                         }
                     }
-                    if(!newValue){
 
-                        if(checkValidateEmail(email.getText())){
-                            answerContact.setEmail(email.getText());
-                            listFinishedAnswer.getChildren().get(bigIndex).setStyle(chosenStyle);
+                    if(!newValue){
+                        // check require. if not, save as normal
+                        if(question.isRequire()){
+                            ContactField contactField = question.getContactField();
+
+                            if(email.getText().isEmpty()||email.getText()==null){
+                                contactData.delete();
+                                emailAnnoucement.setText("(*) Email không được để trống");
+                                emailAnnoucement.setVisible(true);
+                                listFinishedAnswer.getChildren().get(bigIndex).setStyle(normalStyle);
+                            }else{
+                                if(checkValidateEmail(email.getText())){
+                                    answerContact.setEmail(email.getText());
+
+                                    if(contactField.isAddressRequire()){
+                                        if(answerContact.getEmail().isEmpty()||answerContact.getEmail()==null){
+                                            if(contactData.exists()){
+                                                contactData.delete();
+                                            }
+                                        }
+                                    }
+
+                                    if(contactField.isPhoneRequire()){
+                                        if(answerContact.getPhone().isEmpty()||answerContact.getPhone()==null){
+                                            if(contactData.exists()){
+                                                contactData.delete();
+                                            }
+                                        }
+                                    }
+
+                                    if(contactField.isNameRequire()){
+                                        if(answerContact.getName().isEmpty()||answerContact.getName()==null){
+                                            if(contactData.exists()){
+                                                contactData.delete();
+                                            }
+                                        }
+                                    }
+                                    if(contactData.exists()){
+                                        try {
+                                            new ObjectMapper().writerWithDefaultPrettyPrinter().writeValue(contactData, answerContact);
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }else{
+                                        System.out.println("Không tồn tại file khi lưu email. thiếu thông tin");
+                                    }
+
+
+                                }else{
+                                    contactData.delete();
+                                    emailAnnoucement.setText("Email không đúng định dạng");
+                                    emailAnnoucement.setVisible(true);
+                                }
+                            }
 
                         }else{
-                            if(email.getText().equals("")){
-                                emailAnnoucement.setText("(*) Email không được để trống");
-                            } else{
-                                emailAnnoucement.setText("(*) Email không hợp lệ");
+                            boolean checkExist = answerContact.getEmail()!=null||answerContact.getPhone()!=null||answerContact.getName()!=null||answerContact.getAddress()!=null;
+                            if(checkExist){
+                                if(contactData.exists()){
+                                    try{
+                                        new ObjectMapper().writerWithDefaultPrettyPrinter().writeValue(contactData, answerContact);
+                                    }catch(IOException er){
+                                        System.out.println("không ghi được file khi question require == false tại email");
+                                    }
+                                }
+                            }else{
+                                System.out.println("file k ton tai tai email khi question require == false");
                             }
-                            emailAnnoucement.setVisible(true);
-                            listFinishedAnswer.getChildren().get(bigIndex).setStyle(normalStyle);
                         }
+
                     }else{
                         emailAnnoucement.setVisible(false);
                     }
-                    ObjectMapper objectMapper = new ObjectMapper();
-                    try {
-                        objectMapper.writerWithDefaultPrettyPrinter().writeValue(contactData, answerContact);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+
                 });
 
                 phone.focusedProperty().addListener((observable, oldValue, newValue) -> {
+                    ImageView imageView = (ImageView) surveyNumHb.getChildren().get(1);
+                    imageView.setImage(null);
+
                     String fileName = question.getType()+ "_" + question.getOrd();
                     Path path = Paths.get("Data", "SubAnswer");
                     try {
@@ -1255,29 +1603,80 @@ public class CQuestionsController implements Initializable {
 
                     if(!newValue){
 
-                        if(checkValidatePhone(phone.getText())){
-                            answerContact.setPhone(phone.getText());
-                            listFinishedAnswer.getChildren().get(bigIndex).setStyle(chosenStyle);
+                        if(question.isRequire()){
+                            ContactField contactField = question.getContactField();
+
+                            if(phone.getText().isEmpty()||phone.getText()==null){
+                                if(contactField.isPhoneRequire()){
+                                    contactData.delete();
+                                    phoneAnnoucement.setText("(*) Số điện thoại không được để trống");
+                                    phoneAnnoucement.setVisible(true);
+                                }
+                                listFinishedAnswer.getChildren().get(bigIndex).setStyle(normalStyle);
+                            }else{
+                                if(checkValidatePhone(phone.getText())){
+                                    answerContact.setPhone(phone.getText());
+
+                                    if(contactField.isAddressRequire()){
+                                        if(answerContact.getAddress().equals("")||answerContact.getAddress()==null){
+                                            if(contactData.exists()){
+                                                contactData.delete();
+                                            }
+                                        }
+                                    }
+                                    if(contactField.isEmailRequire()){
+                                        if(answerContact.getEmail().equals("")||answerContact.getEmail()==null){
+                                            if(contactData.exists()){
+                                                contactData.delete();
+                                            }
+                                        }
+                                    }
+                                    if(contactField.isNameRequire()){
+                                        if(answerContact.getName().equals("")||answerContact.getName()==null){
+                                            if(contactData.exists()){
+                                                contactData.delete();
+                                            }
+                                        }
+                                    }
+
+                                    if(contactData.exists()){
+                                        try {
+                                            new ObjectMapper().writerWithDefaultPrettyPrinter().writeValue(contactData, answerContact);
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }else{
+                                        System.out.println("Không tồn tại file khi lưu phone. thiếu thông tin");
+                                    }
+
+
+                                }else{
+                                    contactData.delete();
+                                    phoneAnnoucement.setText("Số điện thoại không đúng định dạng");
+                                    phoneAnnoucement.setVisible(true);
+                                }
+                            }
 
                         }else{
-                            if(phone.getText().equals("")){
-                                phoneAnnoucement.setText("(*) số điện thoại không được để trống");
-                            } else{
-                                phoneAnnoucement.setText("(*) số điện thoại không hợp lệ");
+                            boolean checkExist = answerContact.getEmail()!=null||answerContact.getPhone()!=null||answerContact.getName()!=null||answerContact.getAddress()!=null;
+                            if(checkExist){
+                                if(contactData.exists()){
+                                    try{
+                                        new ObjectMapper().writerWithDefaultPrettyPrinter().writeValue(contactData, answerContact);
+                                    }catch(IOException er){
+                                        System.out.println("không ghi được file khi question require == false tại email");
+                                    }
+                                }
+                            }else{
+                                System.out.println("file k ton tai tai email khi question require == false");
                             }
-                            phoneAnnoucement.setVisible(true);
-                            listFinishedAnswer.getChildren().get(bigIndex).setStyle(normalStyle);
                         }
                     }else{
                         phoneAnnoucement.setVisible(false);
                     }
-                    ObjectMapper objectMapper = new ObjectMapper();
-                    try {
-                        objectMapper.writerWithDefaultPrettyPrinter().writeValue(contactData, answerContact);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+
                 });
+
             }else if(question.getType().equals("OPEN")){
                 questionAnchorPane = createOpenLayout(question, vi);
                 HBox contentHb = (HBox) questionAnchorPane.getChildren().get(0);
@@ -1290,41 +1689,61 @@ public class CQuestionsController implements Initializable {
                     surveyNum.setText("Survey No."+(index+1));
                 }
 
-
                 TextArea contentAnswer = (TextArea) textHb.getChildren().get(0);
                 AnswerOpen answerOpen = new AnswerOpen();
                 answerOpen.setSubAnswerID(question.getQuestionID());
                 answerOpen.setOrd(question.getOrd());
                 int bigIndex = index;
                 contentAnswer.focusedProperty().addListener((observable, oldValue, newValue) -> {
+                    ImageView imageView = (ImageView) contentNumHb.getChildren().get(1);
+                    imageView.setImage(null);
+
                     //set eff
                     listFinishedAnswer.getChildren().get(bigIndex).setStyle(chosenStyle);
                     if(!newValue){
-
                         //open and write data to file
-                        String fileName = question.getType()+ "_" + question.getOrd();
-                        Path path = Paths.get("Data", "SubAnswer");
-                        try {
-                            Files.createDirectories(path);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        File openData = new File(path.toAbsolutePath().toString()+"\\" + fileName +".json");
-
-                        if(!openData.exists()){
+                        if(!contentAnswer.getText().equals("")){
+                            String fileName = question.getType()+ "_" + question.getOrd();
+                            Path path = Paths.get("Data", "SubAnswer");
                             try {
-                                openData.createNewFile();
-                            } catch (IOException ex) {
-                                System.out.println("can't open file");
+                                Files.createDirectories(path);
+                            } catch (IOException e) {
+                                e.printStackTrace();
                             }
+                            File openData = new File(path.toAbsolutePath().toString()+"\\" + fileName +".json");
+
+                            if(!openData.exists()){
+                                try {
+                                    openData.createNewFile();
+                                } catch (IOException ex) {
+                                    System.out.println("can't open file");
+                                }
+                            }
+
+                            if(question.isRequire()){
+                                if(contentAnswer.getText().isEmpty()){
+                                    answerOpen.setFilled(false);
+                                }else{
+                                    answerOpen.setFilled(true);
+                                }
+                            }else{
+                                answerOpen.setFilled(true);
+                            }
+
+                            answerOpen.setOrdInList(bigIndex);
+                            answerOpen.setRequired(question.isRequire());
+                            answerOpen.setContentAnswer(contentAnswer.getText());
+                            ObjectMapper objectMapper = new ObjectMapper();
+                            try {
+                                objectMapper.writerWithDefaultPrettyPrinter().writeValue(openData, answerOpen);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+
+
                         }
-                        answerOpen.setContentAnswer(contentAnswer.getText());
-                        ObjectMapper objectMapper = new ObjectMapper();
-                        try {
-                            objectMapper.writerWithDefaultPrettyPrinter().writeValue(openData, answerOpen);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+
                     }
                 });
             }else if(question.getType().equals("STAR")){
@@ -1348,6 +1767,9 @@ public class CQuestionsController implements Initializable {
                     int level = i +1;
                     listImageStar.get(i).setOnMouseClicked(e->{
                         //set eff
+                        ImageView imageView = (ImageView) surveyNumHb.getChildren().get(1);
+                        imageView.setImage(null);
+
                         listFinishedAnswer.getChildren().get(bigIndex).setStyle(chosenStyle);
 
                         //set event
@@ -1355,14 +1777,28 @@ public class CQuestionsController implements Initializable {
                             try {
                                 ((ImageView)listImageStar.get(j)).setImage(new Image(new FileInputStream(filledStarRootPath)));
                             } catch (FileNotFoundException ex) {
-                                ex.printStackTrace();
+                                Path filledStarPath = Paths.get("FixedSetting", "Icon\\Star");
+                                try{
+                                    ((ImageView)listImageStar.get(j)).setImage(new Image(new FileInputStream(filledStarPath.toAbsolutePath().toString() + "\\filledStar.png")));
+                                } catch (FileNotFoundException exception) {
+                                    Alert filledAnnoucement = new Alert(AlertType.INFORMATION);
+                                    filledAnnoucement.setContentText("Filled star k ton tai");
+                                    filledAnnoucement.show();
+                                }
                             }
                         }
                         for(int j = level; j<5; j++){
                             try {
                                 ((ImageView)listImageStar.get(j)).setImage(new Image(new FileInputStream(emptyStarRootPath)));
                             } catch (FileNotFoundException ex) {
-                                ex.printStackTrace();
+                                Path filledStarPath = Paths.get("FixedSetting", "Icon\\Star");
+                                try{
+                                    ((ImageView)listImageStar.get(j)).setImage(new Image(new FileInputStream(filledStarPath.toAbsolutePath().toString() + "\\whiteStar.png")));
+                                } catch (FileNotFoundException exception) {
+                                    Alert filledAnnoucement = new Alert(AlertType.INFORMATION);
+                                    filledAnnoucement.setContentText("empty star k ton tai khi click");
+                                    filledAnnoucement.show();
+                                }
                             }
                         }
 
@@ -1389,6 +1825,9 @@ public class CQuestionsController implements Initializable {
                         levelAnswer.setLevel(level);
                         levelAnswer.setOrd(question.getOrd());
                         levelAnswer.setSubAnswerID(question.getQuestionID());
+                        levelAnswer.setOrdInList(bigIndex);
+                        levelAnswer.setFilled(true);
+                        levelAnswer.setRequired(question.isRequire());
 
                         ObjectMapper mapper = new ObjectMapper();
                         try
@@ -1402,7 +1841,6 @@ public class CQuestionsController implements Initializable {
                             ex.printStackTrace();
                         }
 
-                        //set effect
 
                     });
                 }
@@ -1410,12 +1848,49 @@ public class CQuestionsController implements Initializable {
             }
             listQuestions.getChildren().add(questionAnchorPane);
         }
-
     }
+
+    //check Data before sending
+    private ArrayList<Integer> listDataNotFiled(){
+        ArrayList<Integer> listIndexQuestionNotFilled = new ArrayList<>();
+
+        Path listTempFilePath = Paths.get("Temp","CheckData");
+        Path listSubAnswerPath = Paths.get("Data", "SubAnswer");
+
+        if(listSubAnswerPath.toFile().isDirectory()){
+            File[] listSubAnswer = listSubAnswerPath.toFile().listFiles();
+            if(listTempFilePath.toFile().isDirectory()){
+                    File[] listTempFile = listTempFilePath.toFile().listFiles();
+                    if(listTempFile== null){
+                        listIndexQuestionNotFilled.add(-1);
+                        return listIndexQuestionNotFilled;
+                    }else{
+                        for (File file : listTempFile) {
+                            String tempFileName = file.getName();
+                            File ifExistFile = new File(listSubAnswerPath.toAbsolutePath().toString() + "\\" + tempFileName);
+                            if (!ifExistFile.exists()) {
+                                try {
+                                    CheckRequireQuestion checkRequireQuestion = new ObjectMapper().readValue(file, CheckRequireQuestion.class);
+                                    listIndexQuestionNotFilled.add(checkRequireQuestion.getOrderInList());
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+
+                    }
+                }
+        }
+
+        return listIndexQuestionNotFilled;
+    }
+
+
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         //set full scene for question layout
         setFullQuestionLayout();
 
@@ -1432,11 +1907,18 @@ public class CQuestionsController implements Initializable {
 
         KeyFrame frame = new KeyFrame(Duration.seconds(1), event -> {
             second.getAndDecrement();
+            System.out.println(second.get());
             if(second.get() == 0){
                 time.stop();
-                Stage stage = (Stage) back.getScene().getWindow();
-                stage.setScene(new Scene(VideoController.getParent()));
-                stage.show();
+                if(!waitingScene.isType()){
+                    Stage stage = (Stage) back.getScene().getWindow();
+                    stage.setScene(new Scene(VideoController.getParent()));
+                    stage.show();
+                }else{
+                    Stage stage = (Stage) back.getScene().getWindow();
+                    stage.setScene(new Scene(WaitingSceneSlideController.getParent()));
+                    stage.show();
+                }
             }
         });
 
@@ -1476,7 +1958,6 @@ public class CQuestionsController implements Initializable {
         //set Event for buttons
         sendingSurvey.setOnAction(e->{
             AnswerTotal answerTotal = new AnswerTotal();
-
             try{
                 answerTotal.setAnswerTotalID(answerService.getAnswerTotalID());
             }catch (IOException er){
@@ -1486,131 +1967,151 @@ public class CQuestionsController implements Initializable {
             ArrayList<SubAnswer> listAnswer = new ArrayList<>();
             Path path = Paths.get("Data", "SubAnswer");
             File parentListData = new File(path.toAbsolutePath().toString());
-            if(parentListData.isDirectory()){
-                File[] listDataFile = parentListData.listFiles();
-                for(File child : listDataFile){
-                    String fileName = child.getName();
-                    String[] splitFileName = fileName.split("[.]");
-                    String[] typeRaw = splitFileName[0].split("_");
-                    String type = typeRaw[0];
 
-                    if(type.equals("CSAT")||type.equals("NPS")||type.equals("CES")||type.equals("FLX")||type.equals("STAR")){
-                        SubAnswer answerLevel;
-                        ObjectMapper objectMapper = new ObjectMapper();
-                        try {
-                            answerLevel = objectMapper.readValue(child, AnswerLevel.class);
-                            listAnswer.add(answerLevel);
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
-                        }
-                    }else if(type.equals("MULTIPLE")){
-                        SubAnswer answerLevel;
-                        ObjectMapper objectMapper = new ObjectMapper();
-                        try {
-                            answerLevel = objectMapper.readValue(child, AnswerMultipleChoice.class);
-                            listAnswer.add(answerLevel);
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
-                        }
-                    }else if(type.equals("SINGLE")){
-                        SubAnswer answerSingle;
-                        ObjectMapper objectMapper = new ObjectMapper();
-                        try {
-                            answerSingle = objectMapper.readValue(child, AnswerSingleChoice.class);
-                            listAnswer.add(answerSingle);
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
-                        }
-                    }else if(type.equals("OPEN")){
-                        SubAnswer answerOpen;
-                        ObjectMapper objectMapper = new ObjectMapper();
-                        try {
-                            answerOpen = objectMapper.readValue(child, AnswerOpen.class);
+            //check require data
+            ArrayList<Integer> listNotFilledData = listDataNotFiled();
+            if(listNotFilledData.isEmpty()){
+                if(parentListData.isDirectory()){
+                    File[] listDataFile = parentListData.listFiles();
+                    assert listDataFile != null;
+                    for(File child : listDataFile){
+                        String fileName = child.getName();
+                        String[] splitFileName = fileName.split("[.]");
+                        String[] typeRaw = splitFileName[0].split("_");
+                        String type = typeRaw[0];
 
-                            listAnswer.add(answerOpen);
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
+                        if(type.equals("CSAT")||type.equals("NPS")||type.equals("CES")||type.equals("FLX")||type.equals("STAR")){
+                            try {
+                                SubAnswer answerLevel = new ObjectMapper().readValue(child, AnswerLevel.class);
+                                listAnswer.add(answerLevel);
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                            }
+                        }else if(type.equals("MULTIPLE")){
+                            try {
+                                SubAnswer answerLevel = new ObjectMapper().readValue(child, AnswerMultipleChoice.class);
+                                listAnswer.add(answerLevel);
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                            }
+                        }else if(type.equals("SINGLE")){
+                            try {
+                                SubAnswer answerSingle = new ObjectMapper().readValue(child, AnswerSingleChoice.class);
+                                listAnswer.add(answerSingle);
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                            }
+                        }else if(type.equals("OPEN")){
+                            try {
+                                SubAnswer answerOpen = new ObjectMapper().readValue(child, AnswerOpen.class);
+                                listAnswer.add(answerOpen);
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                            }
+                        }else if(type.equals("CONTACT")){
+                            try {
+                                SubAnswer answerContact = new ObjectMapper().readValue(child, AnswerContact.class);
+                                listAnswer.add(answerContact);
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                            }
                         }
-                    }else if(type.equals("CONTACT")){
-                        SubAnswer answerContact;
-                        ObjectMapper objectMapper = new ObjectMapper();
-                        try {
-                            answerContact = objectMapper.readValue(child, AnswerContact.class);
-                            listAnswer.add(answerContact);
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
-                        }
+
                     }
-
+                    answerTotal.setListAnswer(listAnswer);
                 }
-                answerTotal.setListAnswer(listAnswer);
-            }
+                long stt = answerService.uploadAnswerTotal(answerTotal);
 
-
-            long stt = answerService.uploadAnswerTotal(answerTotal);
-
-            if(stt != 400 && stt !=500){
-                Path answerPathData = Paths.get("Data","Answer", "UpdatedAnswer");
-                try {
-                    Files.createDirectories(answerPathData);
-                } catch (IOException ex) {
-                    System.out.println("không thể tạo đường dẫn UpdatedAnswer");
-                }
-                String nameOfUpdatedAnswer = "answerTotal_" + LocalDateTime.now().getHour() + "h"+ LocalDateTime.now().getMinute() + "m"+LocalDateTime.now().getSecond() + ".json";
-                File updatedAnswerData = new File(answerPathData.toAbsolutePath().toString()+"\\" + nameOfUpdatedAnswer);
-                if(!updatedAnswerData.exists()){
+                if(stt != 400 && stt !=500){
+                    Path answerPathData = Paths.get("Data","Answer", "UpdatedAnswer");
                     try {
-                        updatedAnswerData.createNewFile();
+                        Files.createDirectories(answerPathData);
                     } catch (IOException ex) {
-                        ex.printStackTrace();
+                        System.out.println("không thể tạo đường dẫn UpdatedAnswer");
+                    }
+                    String nameOfUpdatedAnswer = "answerTotal_" + LocalDateTime.now().getHour() + "h"+ LocalDateTime.now().getMinute() + "m"+LocalDateTime.now().getSecond() + ".json";
+                    File updatedAnswerData = new File(answerPathData.toAbsolutePath().toString()+"\\" + nameOfUpdatedAnswer);
+                    if(!updatedAnswerData.exists()){
+                        try {
+                            updatedAnswerData.createNewFile();
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                    try{
+                        ObjectMapper objectMapper = new ObjectMapper();
+                        objectMapper.writerWithDefaultPrettyPrinter().writeValue(updatedAnswerData, answerTotal);
+                        RewardService rewardService = new RewardService();
+                        rewardService.getReward(answerTotal.getAnswerTotalID());
+                    } catch (JsonGenerationException err) {
+                        System.out.println("không thể tạo json Generator");
+                    } catch (JsonMappingException err) {
+                        System.out.println("Không thể mapping dữ liệu!");
+                    } catch (IOException err) {
+                        System.out.println("Lỗi ghi dữ liệu online vào file");
+                    }
+
+                    File[] listDatafile = parentListData.listFiles();
+                    for(int i = 0; i <listAnswer.size(); i++){
+                        assert listDatafile != null;
+                        listDatafile[i].delete();
+                    }
+                    time.stop();
+                    setScene(CThanksController.getParent(), e);
+                }else{
+                    Path answerPathData = Paths.get("Data","Answer", "NotBeUpdated");
+                    try {
+                        Files.createDirectories(answerPathData);
+                    } catch (IOException ex) {
+                        System.out.println("không thể tạo đường dẫn answer offline");
+                    }
+                    String nameOfNotBeUpdatedAnswer = "answerTotal_" + LocalDateTime.now().getHour() + "h"+ LocalDateTime.now().getMinute() + "m"+LocalDateTime.now().getSecond() + ".json";
+                    File notBeUpdatedAnswer = new File(answerPathData.toAbsolutePath().toString() + "\\" + nameOfNotBeUpdatedAnswer);
+                    if(!notBeUpdatedAnswer.exists()){
+                        try {
+                            notBeUpdatedAnswer.createNewFile();
+                        } catch (IOException ex) {
+                            System.out.println("Không thể ghi thông tin answer vào file offline");
+                        }
+                    }
+                    try{
+                        ObjectMapper objectMapper = new ObjectMapper();
+                        objectMapper.writerWithDefaultPrettyPrinter().writeValue(notBeUpdatedAnswer, answerTotal);
+                    } catch (JsonGenerationException err) {
+                        System.out.println("không thể tạo json Generator");
+                    } catch (JsonMappingException err) {
+                        System.out.println("Không thể mapping dữ liệu!");
+                    } catch (IOException err) {
+                        System.out.println("Lỗi ghi dữ liệu offline vào file");
                     }
                 }
-
-                try{
-                    ObjectMapper objectMapper = new ObjectMapper();
-                    objectMapper.writerWithDefaultPrettyPrinter().writeValue(updatedAnswerData, answerTotal);
-                } catch (JsonGenerationException err) {
-                    System.out.println("không thể tạo json Generator");
-                } catch (JsonMappingException err) {
-                    System.out.println("Không thể mapping dữ liệu!");
-                } catch (IOException err) {
-                    System.out.println("Lỗi ghi dữ liệu online vào file");
-                }
-
-                File[] listDatafile = parentListData.listFiles();
-                for(int i = 0; i <listAnswer.size(); i++){
-                    assert listDatafile != null;
-                    listDatafile[i].delete();
-                }
-                setScene(CThanksController.getParent(), e);
             }else{
-                Path answerPathData = Paths.get("Data","Answer", "NotBeUpdated");
-                try {
-                    Files.createDirectories(answerPathData);
-                } catch (IOException ex) {
-                    System.out.println("không thể tạo đường dẫn answer offline");
-                }
-                String nameOfNotBeUpdatedAnswer = "answerTotal_" + LocalDateTime.now().getHour() + "h"+ LocalDateTime.now().getMinute() + "m"+LocalDateTime.now().getSecond() + ".json";
-                File notBeUpdatedAnswer = new File(answerPathData.toAbsolutePath().toString() + "\\" + nameOfNotBeUpdatedAnswer);
-                if(!notBeUpdatedAnswer.exists()){
-                    try {
-                        notBeUpdatedAnswer.createNewFile();
-                    } catch (IOException ex) {
-                        System.out.println("Không thể ghi thông tin answer vào file offline");
+                second.set(waitingScene.getTime());
+                Alert warningDataNotFilled = new Alert(AlertType.INFORMATION);
+                warningDataNotFilled.setContentText("Bạn cần điền đầy đủ các thông tin bắt buộc");
+                warningDataNotFilled.show();
+                for(int i = 0; i<listNotFilledData.size(); i++){
+                    AnchorPane questionAnchorPane = (AnchorPane) listQuestions.getChildren().get(listNotFilledData.get(i));
+                    HBox surveyNumHb = (HBox) questionAnchorPane.getChildren().get(2);
+                    ImageView imageView = (ImageView) surveyNumHb.getChildren().get(1);
+                    try{
+                        String rootWarningIconPath = "src/main/resources/FixedSetting/Icon/Question/warning.png";
+                        File warningIconFile = new File(rootWarningIconPath);
+                        Image image = new Image(new FileInputStream(warningIconFile));
+                        imageView.setImage(image);
+                    } catch (FileNotFoundException ex) {
+                        Path warningIconPath = Paths.get("FixedSetting", "Icon\\Question");
+                        try{
+                            File warningIconFile = new File(warningIconPath.toAbsolutePath().toString() + "\\warning.png");
+                            Image image = new Image(new FileInputStream(warningIconFile));
+                            imageView.setImage(image);
+                        } catch (FileNotFoundException exception) {
+                            System.out.println("Không tìm thấy warningIcon");
+                        }
                     }
                 }
-                try{
-                    ObjectMapper objectMapper = new ObjectMapper();
-                    objectMapper.writerWithDefaultPrettyPrinter().writeValue(notBeUpdatedAnswer, answerTotal);
-                } catch (JsonGenerationException err) {
-                    System.out.println("không thể tạo json Generator");
-                } catch (JsonMappingException err) {
-                    System.out.println("Không thể mapping dữ liệu!");
-                } catch (IOException err) {
-                    System.out.println("Lỗi ghi dữ liệu offline vào file");
-                }
-
             }
+
         });
 
         undo.setOnAction(event -> {
@@ -1619,10 +2120,19 @@ public class CQuestionsController implements Initializable {
             for(int i = 0; i<listFinishedAnswer.getChildren().size(); i++){
                 listFinishedAnswer.getChildren().get(i).setStyle(normalStyle);
             }
+            Path path = Paths.get("Data", "SubAnswer");
+            File[] listSubAnswer = path.toFile().listFiles();
+            if(listSubAnswer!=null){
+                for(int i = 0; i<listSubAnswer.length; i++){
+                    listSubAnswer[i].delete();
+                }
+            }
+
         });
 
         back.setOnAction(e->{
-            setScene(QIndexController.getParent(), e);
+            Stage QStage = (Stage) back.getScene().getWindow();
+            QStage.close();
             time.stop();
         });
 

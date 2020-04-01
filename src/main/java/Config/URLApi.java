@@ -11,8 +11,10 @@ public class URLApi {
     public static final String THANKS = "http://103.9.86.61:8080/admin_srs/api/v1/public/thank/find-by-id?id=";
     public static final String COMPANY = "http://103.9.86.61:8080/admin_srs/api/v1/admin/company/find-by-id?id=";
     public static final String COLLECTION = "http://103.9.86.61:8080/admin_srs/api/v1/admin/collection/find-by-id?id=";
+    public static final String REWARD = "http://103.9.86.61:8080/admin_srs/api/v1/public/reward-code/find-by-answer-total?answer-total-id=";
 
     public static final String GET_ID_ANSWER = "http://103.9.86.61:8080/admin_srs/api/v1/public/answer-total/upload-v2";
     public static final String UPLOAD_ANSWER = "http://103.9.86.61:8080/admin_srs/api/v1/public/answer-submit/upload";
+
 
 }

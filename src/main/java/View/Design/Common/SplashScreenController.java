@@ -77,7 +77,7 @@ public class SplashScreenController extends Application implements Initializable
                             Path imgPath = Paths.get("Data", "Collection\\Image");
                             Files.createDirectories(imgPath);
                             String pathImageFile = imgPath.toAbsolutePath().toString() + "\\" + fileName;
-                            FileMethod.saveFileFromURL(pathImageFile, webUrl);
+
 
                         } catch (MalformedURLException e) {
                             System.out.println("Sai định dạng URL");
@@ -92,7 +92,7 @@ public class SplashScreenController extends Application implements Initializable
                                 Path videoPath = Paths.get("Data", "Collection\\Video");
                                 Files.createDirectories(videoPath);
                                 String pathImageFile = videoPath.toAbsolutePath().toString() + fileName;
-                                FileMethod.saveFileFromURL(pathImageFile, webUrl);
+
                             } catch (MalformedURLException e) {
                                 System.out.println("Không đúng định dạng URL");
                             } catch (IOException e) {
@@ -105,7 +105,6 @@ public class SplashScreenController extends Application implements Initializable
                                 String fileName = "hihi" + LocalDateTime.now().getSecond();
                                 System.out.println(fileName);
                                 String pathVideoFile = videoPath.toAbsolutePath().toString()+"\\" + fileName + ".mp4";
-                                FileMethod.saveFileFromURL(pathVideoFile, collectionItem.getUrl());
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }

@@ -2,6 +2,7 @@ package Service.impl;
 
 import Config.URLApi;
 import Models.Survey.Choice.*;
+import Models.Survey.ContactField;
 import Models.Survey.Question;
 import Models.Survey.Survey;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,14 +24,12 @@ import java.util.ArrayList;
 public class SurveyService {
 
     public JSONObject getdata(long idSurvey) throws IOException, ParseException {
-
             byte[] responseByte =  Request.Get("http://103.9.86.61:8080/admin_srs/api/v1/public/survey-display/find-by-survey-total?id=" + idSurvey)
                     .execute().returnContent().asBytes();
             String response = new String(responseByte, StandardCharsets.UTF_8);
             JSONParser jsonParser = new JSONParser();
             JSONObject result = (JSONObject) jsonParser.parse(response);
             return (JSONObject) result.get("data");
-
     }
 
     public long getOrderQuestion(long surveyTotalID, long questionID, boolean enable){
@@ -181,6 +180,26 @@ public class SurveyService {
                     question.setMaxLevel(i);
                 }
                 listQuestions.add(question);
+                if(question.getType().equals("CONTACT")){
+                    JSONObject contactFieldJs = (JSONObject) questionJSon.get("contactField");
+                    if(contactFieldJs!=null){
+                        ContactField contactField = new ContactField();
+                        boolean nameRequire = (boolean) contactFieldJs.get("nameRequire");
+
+                        boolean phoneRequire = (boolean) contactFieldJs.get("phoneRequire");
+
+                        boolean emailRequire = (boolean) contactFieldJs.get("emailRequire");
+
+                        boolean addressRequire = (boolean) contactFieldJs.get("addressRequire");
+
+                        contactField.setNameRequire(nameRequire);
+                        contactField.setEmailRequire(emailRequire);
+                        contactField.setAddressRequire(addressRequire);
+                        contactField.setPhoneRequire(phoneRequire);
+
+                        question.setContactField(contactField);
+                    }
+                }
             }
 
             survey.setListQuestion(listQuestions);

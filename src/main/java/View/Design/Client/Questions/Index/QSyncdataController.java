@@ -13,12 +13,15 @@ import javafx.stage.Stage;
 import java.awt.*;
 import java.io.*;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 public class QSyncdataController implements Initializable {
     @FXML private Button syncDataButton;
     @FXML private Button setWaitingSceneButton;
     @FXML private Button syncQuestion;
+
     private Desktop desktop = Desktop.getDesktop();
 
 
@@ -26,16 +29,18 @@ public class QSyncdataController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         syncDataButton.setOnAction(event -> {
-            try{
-                BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("src/main/java/Data/WaitingScene/WaitingSceneData.txt")));
-                File file = new File(bufferedReader.readLine());
-                desktop.open(file);
-                bufferedReader.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
+            Path imageCollection = Paths.get("Data", "Collection\\Image");
+            Path videoCollection = Paths.get("Data", "Collection\\Video");
+            File[] listImageFile = imageCollection.toFile().listFiles();
+            File[] listVideoFile = videoCollection.toFile().listFiles();
+            assert  listImageFile !=null;
+            for (File file : listImageFile) {
+                file.delete();
             }
+            for(File f :listVideoFile){
+                f.delete();
+            }
+
         });
 
         syncDataButton.setDisable(true);
